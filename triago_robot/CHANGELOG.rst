@@ -1,0 +1,81 @@
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Changelog for package tiago_pro_robot
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+1.0.9 (2024-05-09)
+------------------
+
+1.0.8 (2024-04-26)
+------------------
+
+1.0.7 (2024-04-18)
+------------------
+
+1.0.6 (2024-04-17)
+------------------
+
+1.0.5 (2024-04-16)
+------------------
+
+1.0.4 (2024-04-10)
+------------------
+
+1.0.3 (2024-03-26)
+------------------
+
+1.0.2 (2024-03-26)
+------------------
+
+1.0.1 (2024-03-22)
+------------------
+
+1.0.0 (2024-01-30)
+------------------
+* Merge branch 'ros2-migration' into 'humble-devel'
+  Ros2 migration
+  See merge request robots/tiago_pro_robot!23
+* Fix lintern tests
+* update to 3.8 the cmake_minimum_required Version
+* migration of CMakeLists.txt and package.xml to ros2
+* Contributors: Adria Roig, ileniaperrella
+
+0.0.11 (2023-11-08)
+-------------------
+
+0.0.10 (2023-10-20)
+-------------------
+* Merge branch 'change_name' into 'master'
+  Change tiago_v2_prototype to tiago_pro + move arm to an external package
+  See merge request robots/tiago_pro_robot!16
+* Change tiago_v2_prototype to tiago_pro + move arm to an external package
+* Contributors: Jordan Palacios, thomaspeyrucain
+
+0.0.9 (2023-05-25)
+------------------
+
+0.0.8 (2023-05-24)
+------------------
+
+0.0.7 (2023-05-24)
+------------------
+
+0.0.6 (2023-05-24)
+------------------
+
+0.0.5 (2023-05-22)
+------------------
+
+0.0.4 (2023-05-20)
+------------------
+
+0.0.3 (2023-05-16)
+------------------
+
+0.0.2 (2023-05-16)
+------------------
+
+0.0.1 (2023-05-16)
+------------------
+* Fix the metapkg CMakeLists.txt
+* First commit
+* Contributors: Narcis Miguel, Sai Kishor Kothakota

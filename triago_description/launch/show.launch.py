@@ -21,15 +21,15 @@ from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
 from launch_pal.include_utils import include_scoped_launch_py_description
-from launch_pal.arg_utils import LaunchArgumentsBase, CommonArgs
-from launch_pal.robot_arguments import TiagoProArgs
-
+from launch_pal.arg_utils import LaunchArgumentsBase
+from launch_pal.robot_arguments import CommonArgs
+from triago_description.launch_arguments import TriagoArgs
 from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
 class LaunchArguments(LaunchArgumentsBase):
-    base_type: DeclareLaunchArgument = TiagoProArgs.base_type
+    base_type: DeclareLaunchArgument = TriagoArgs.base_type
 
 
 
@@ -37,21 +37,7 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
     robot_state_publisher = include_scoped_launch_py_description(
         pkg_name='tiago_pro_description',
-        paths=['launch', 'robot_state_publisher.launch.py'],
-        launch_arguments={'arm_type_right': launch_args.arm_type_right,
-                          'arm_type_left': launch_args.arm_type_left,
-                          "end_effector_right": launch_args.end_effector_right,
-                          "end_effector_left": launch_args.end_effector_left,
-                          "ft_sensor_right": launch_args.ft_sensor_right,
-                          "ft_sensor_left": launch_args.ft_sensor_left,
-                          "wrist_model_right": launch_args.wrist_model_right,
-                          "wrist_model_left": launch_args.wrist_model_left,
-                          "laser_model": launch_args.laser_model,
-                          "camera_model": launch_args.camera_model,
-                          "base_type": launch_args.base_type,
-                          "namespace": launch_args.namespace,
-                          "use_sim_time": launch_args.use_sim_time
-                          })
+        paths=['launch', 'robot_state_publisher.launch.py'])
 
     launch_description.add_action(robot_state_publisher)
 
@@ -63,18 +49,8 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
     launch_description.add_action(joint_state_pub_gui)
 
-    rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare('tiago_pro_description'), 'config', 'show.rviz'])
 
-    rviz = Node(
-        package='rviz2',
-        executable='rviz2',
-        name='rviz2',
-        arguments=['-d', rviz_config_file],
-        output='screen',
-        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')
-                     }])
-    launch_description.add_action(rviz)
+
 
     return
 

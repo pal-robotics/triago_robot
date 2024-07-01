@@ -22,9 +22,10 @@ from launch.substitutions import LaunchConfiguration
 from launch.actions import DeclareLaunchArgument, OpaqueFunction, SetLaunchConfiguration
 from launch_ros.actions import Node
 from launch_param_builder import load_xacro
-from launch_ros.parameter_descriptions import ParameterValue
-from launch_pal.arg_utils import LaunchArgumentsBase, CommonArgs, read_launch_argument
-from launch_pal.robot_arguments import TiagoProArgs
+
+from launch_pal.arg_utils import LaunchArgumentsBase, read_launch_argument
+from launch_pal.robot_arguments import CommonArgs
+from triago_description.launch_arguments import TriagoArgs
 
 from dataclasses import dataclass
 
@@ -59,7 +60,7 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 def create_robot_description_param(context, *args, **kwargs):
 
     xacro_file_path = Path(os.path.join(
-        get_package_share_directory('tiago_pro_description'),
+        get_package_share_directory('triago_description'),
         'robots', 'triago.urdf.xacro'))
 
     xacro_input_args = {

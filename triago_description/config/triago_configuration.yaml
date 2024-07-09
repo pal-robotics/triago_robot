@@ -32,11 +32,11 @@ end_effector_right:
   default_value: 'allegro-hand'
 end_effector_left:
   description: 'End effector model left arm'
-  choices: ['pal-pro-gripper', 'custom', 'no-end-effector']
-  default_value: 'pal-pro-gripper'
+  choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector']
+  default_value: 'allegro-hand'
 end_effector_head:
   description: 'End effector model head arm'
-  choices: ['pal-pro-gripper', 'custom', 'no-end-effector']
+  choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector']
   default_value: 'pal-pro-gripper'
 ft_sensor_right:
   description: 'FT sensor model right arm'

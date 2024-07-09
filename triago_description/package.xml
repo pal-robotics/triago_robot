@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>triago_description</name>
-  <version>1.0.9</version>
-  <description>The tiago_pro_description package</description>
+  <version>1.0.12</version>
+  <description>The triago_description package</description>
 
   <maintainer email="viviana.morlando@pal-robotics.com">Viviana Morlando</maintainer>
 
@@ -22,6 +22,7 @@
   <exec_depend>triago_controller_configuration</exec_depend>
   <exec_depend>realsense2_description</exec_depend>
   <exec_depend>realsense_simulation</exec_depend>
+  <exec_depend>allegro_hand_description</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

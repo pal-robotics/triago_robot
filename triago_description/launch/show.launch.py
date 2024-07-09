@@ -24,20 +24,54 @@ from launch_pal.include_utils import include_scoped_launch_py_description
 from launch_pal.arg_utils import LaunchArgumentsBase
 from launch_pal.robot_arguments import CommonArgs
 from triago_description.launch_arguments import TriagoArgs
+
 from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
 class LaunchArguments(LaunchArgumentsBase):
     base_type: DeclareLaunchArgument = TriagoArgs.base_type
-
+    arm_type_right: DeclareLaunchArgument = TriagoArgs.arm_type_right
+    arm_type_left: DeclareLaunchArgument = TriagoArgs.arm_type_left
+    arm_type_head: DeclareLaunchArgument = TriagoArgs.arm_type_head
+    end_effector_right: DeclareLaunchArgument = TriagoArgs.end_effector_right
+    end_effector_left: DeclareLaunchArgument = TriagoArgs.end_effector_left
+    end_effector_head: DeclareLaunchArgument = TriagoArgs.end_effector_head
+    ft_sensor_right: DeclareLaunchArgument = TriagoArgs.ft_sensor_right
+    ft_sensor_left: DeclareLaunchArgument = TriagoArgs.ft_sensor_left
+    ft_sensor_head: DeclareLaunchArgument = TriagoArgs.ft_sensor_head
+    wrist_model_right: DeclareLaunchArgument = TriagoArgs.wrist_model_right
+    wrist_model_left: DeclareLaunchArgument = TriagoArgs.wrist_model_left
+    wrist_model_head: DeclareLaunchArgument = TriagoArgs.wrist_model_head
+    camera_model: DeclareLaunchArgument = TriagoArgs.camera_model
+    laser_model: DeclareLaunchArgument = TriagoArgs.laser_model
+    use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
+    namespace: DeclareLaunchArgument = CommonArgs.namespace
 
 
 def declare_actions(launch_description: LaunchDescription, launch_args: LaunchArguments):
 
     robot_state_publisher = include_scoped_launch_py_description(
-        pkg_name='tiago_pro_description',
-        paths=['launch', 'robot_state_publisher.launch.py'])
+        pkg_name='triago_description',
+        paths=['launch', 'robot_state_publisher.launch.py'],
+        launch_arguments={'arm_type_right': launch_args.arm_type_right,
+                          'arm_type_left': launch_args.arm_type_left,
+                          'arm_type_head': launch_args.arm_type_head,
+                          "end_effector_right": launch_args.end_effector_right,
+                          "end_effector_left": launch_args.end_effector_left,
+                          "end_effector_head": launch_args.end_effector_head,
+                          "ft_sensor_right": launch_args.ft_sensor_right,
+                          "ft_sensor_left": launch_args.ft_sensor_left,
+                          "ft_sensor_head": launch_args.ft_sensor_head,
+                          "wrist_model_right": launch_args.wrist_model_right,
+                          "wrist_model_left": launch_args.wrist_model_left,
+                          "wrist_model_head": launch_args.wrist_model_head,
+                          "laser_model": launch_args.laser_model,
+                          "camera_model": launch_args.camera_model,
+                          "base_type": launch_args.base_type,
+                          "namespace": launch_args.namespace,
+                          "use_sim_time": launch_args.use_sim_time
+                          })
 
     launch_description.add_action(robot_state_publisher)
 
@@ -49,8 +83,18 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
     launch_description.add_action(joint_state_pub_gui)
 
+    rviz_config_file = PathJoinSubstitution(
+        [FindPackageShare('triago_description'), 'config', 'show.rviz'])
 
-
+    rviz = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        arguments=['-d', rviz_config_file],
+        output='screen',
+        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')
+                     }])
+    launch_description.add_action(rviz)
 
     return
 

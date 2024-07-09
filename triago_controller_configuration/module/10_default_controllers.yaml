@@ -1,5 +1,5 @@
 default_controllers:
-  launch: "tiago_pro_controller_configuration default_controllers.launch.py
+  launch: "triago_controller_configuration default_controllers.launch.py
            base_type:=@base_type@
            arm_type_right:=@arm_type_right@
            arm_type_left:=@arm_type_left@

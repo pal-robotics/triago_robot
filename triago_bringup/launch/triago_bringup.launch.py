@@ -13,33 +13,34 @@
 # limitations under the License.
 
 
-import os
-
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 
 from launch_pal.include_utils import include_scoped_launch_py_description
-from launch_pal.arg_utils import LaunchArgumentsBase, CommonArgs
-from launch_pal.robot_arguments import TiagoProArgs
-from launch_ros.actions import Node
-from ament_index_python.packages import get_package_share_directory
-from controller_manager.launch_utils import generate_load_controller_launch_description
+from launch_pal.arg_utils import LaunchArgumentsBase
+from launch_pal.robot_arguments import CommonArgs
+from triago_description.launch_arguments import TriagoArgs
 
 from dataclasses import dataclass
 
+
 @dataclass(frozen=True)
 class LaunchArguments(LaunchArgumentsBase):
-    base_type: DeclareLaunchArgument = TiagoProArgs.base_type
-    arm_type_right: DeclareLaunchArgument = TiagoProArgs.arm_type_right
-    arm_type_left: DeclareLaunchArgument = TiagoProArgs.arm_type_left
-    end_effector_right: DeclareLaunchArgument = TiagoProArgs.end_effector_right
-    end_effector_left: DeclareLaunchArgument = TiagoProArgs.end_effector_left
-    ft_sensor_right: DeclareLaunchArgument = TiagoProArgs.ft_sensor_right
-    ft_sensor_left: DeclareLaunchArgument = TiagoProArgs.ft_sensor_left
-    wrist_model_right: DeclareLaunchArgument = TiagoProArgs.wrist_model_right
-    wrist_model_left: DeclareLaunchArgument = TiagoProArgs.wrist_model_left
-    camera_model: DeclareLaunchArgument = TiagoProArgs.camera_model
-    laser_model: DeclareLaunchArgument = TiagoProArgs.laser_model
+    base_type: DeclareLaunchArgument = TriagoArgs.base_type
+    arm_type_right: DeclareLaunchArgument = TriagoArgs.arm_type_right
+    arm_type_left: DeclareLaunchArgument = TriagoArgs.arm_type_left
+    arm_type_head: DeclareLaunchArgument = TriagoArgs.arm_type_head
+    end_effector_right: DeclareLaunchArgument = TriagoArgs.end_effector_right
+    end_effector_left: DeclareLaunchArgument = TriagoArgs.end_effector_left
+    end_effector_head: DeclareLaunchArgument = TriagoArgs.end_effector_head
+    ft_sensor_right: DeclareLaunchArgument = TriagoArgs.ft_sensor_right
+    ft_sensor_left: DeclareLaunchArgument = TriagoArgs.ft_sensor_left
+    ft_sensor_head: DeclareLaunchArgument = TriagoArgs.ft_sensor_head
+    wrist_model_right: DeclareLaunchArgument = TriagoArgs.wrist_model_right
+    wrist_model_left: DeclareLaunchArgument = TriagoArgs.wrist_model_left
+    wrist_model_head: DeclareLaunchArgument = TriagoArgs.wrist_model_head
+    camera_model: DeclareLaunchArgument = TriagoArgs.camera_model
+    laser_model: DeclareLaunchArgument = TriagoArgs.laser_model
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
     namespace: DeclareLaunchArgument = CommonArgs.namespace
     is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
@@ -47,62 +48,40 @@ class LaunchArguments(LaunchArgumentsBase):
 
 def declare_actions(launch_description: LaunchDescription, launch_args: LaunchArguments):
     default_controllers = include_scoped_launch_py_description(
-        pkg_name='tiago_pro_controller_configuration',
+        pkg_name='triago_controller_configuration',
         paths=['launch', 'default_controllers.launch.py'],
         launch_arguments={"arm_type_right": launch_args.arm_type_right,
                           "arm_type_left": launch_args.arm_type_left,
+                          "arm_type_head": launch_args.arm_type_head,
                           "end_effector_right": launch_args.end_effector_right,
                           "end_effector_left": launch_args.end_effector_left,
+                          "end_effector_head": launch_args.end_effector_head,
                           "ft_sensor_right": launch_args.ft_sensor_right,
                           "ft_sensor_left": launch_args.ft_sensor_left,
+                          "ft_sensor_head": launch_args.ft_sensor_head,
                           "use_sim_time": launch_args.use_sim_time
                           })
 
-
     launch_description.add_action(default_controllers)
 
-    arm_right_velocity_controller = Node(
-    package='controller_manager',
-    executable='spawner',
-    arguments=[
-        "arm_right_velocity_controller", "--param-file", os.path.join(
-            get_package_share_directory('tiago_pro_controller_configuration'),
-            'config', 'arm_right_controller.yaml'),
-        "--controller-type", "triago_jnt_controller/TriagoJntController", "--inactive"],
-    )
-
-    launch_description.add_action(arm_right_velocity_controller)
-
-    arm_left_velocity_controller = Node(
-    package='controller_manager',
-    executable='spawner',
-    arguments=[
-        "arm_left_velocity_controller", "--param-file", os.path.join(
-            get_package_share_directory('tiago_pro_controller_configuration'),
-            'config', 'arm_left_controller.yaml'),
-        "--controller-type", "triago_jnt_controller/TriagoJntController", "--inactive"],
-    )
-    
-    launch_description.add_action(arm_left_velocity_controller)
-
-    
     play_motion2 = include_scoped_launch_py_description(
-        pkg_name='tiago_pro_bringup',
-        paths=['launch', 'tiago_pro_play_motion2.launch.py'],
+        pkg_name='triago_bringup',
+        paths=['launch', 'triago_play_motion2.launch.py'],
         launch_arguments={"arm_type_right": launch_args.arm_type_right,
                           "arm_type_left": launch_args.arm_type_left,
+                          "arm_type_head": launch_args.arm_type_head,
                           "end_effector_right": launch_args.end_effector_right,
                           "end_effector_left": launch_args.end_effector_left,
+                          "end_effector_head": launch_args.end_effector_head,
                           "ft_sensor_right": launch_args.ft_sensor_right,
                           "ft_sensor_left": launch_args.ft_sensor_left,
+                          "ft_sensor_head": launch_args.ft_sensor_head,
                           "use_sim_time": launch_args.use_sim_time})
 
     launch_description.add_action(play_motion2)
 
-
-
     twist_mux = include_scoped_launch_py_description(
-        pkg_name="tiago_pro_bringup",
+        pkg_name="triago_bringup",
         paths=["launch", "twist_mux.launch.py"],
         launch_arguments={"use_sim_time": launch_args.use_sim_time}
     )
@@ -110,16 +89,20 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
     launch_description.add_action(twist_mux)
 
     robot_state_publisher = include_scoped_launch_py_description(
-        pkg_name='tiago_pro_description',
+        pkg_name='triago_description',
         paths=['launch', 'robot_state_publisher.launch.py'],
         launch_arguments={"arm_type_right": launch_args.arm_type_right,
                           "arm_type_left": launch_args.arm_type_left,
+                          "arm_type_head": launch_args.arm_type_head,
                           "end_effector_right": launch_args.end_effector_right,
                           "end_effector_left": launch_args.end_effector_left,
+                          "end_effector_head": launch_args.end_effector_head,
                           "ft_sensor_right": launch_args.ft_sensor_right,
                           "ft_sensor_left": launch_args.ft_sensor_left,
+                          "ft_sensor_head": launch_args.ft_sensor_head,
                           "wrist_model_right": launch_args.wrist_model_right,
                           "wrist_model_left": launch_args.wrist_model_left,
+                          "wrist_model_head": launch_args.wrist_model_head,
                           "laser_model": launch_args.laser_model,
                           "camera_model": launch_args.camera_model,
                           "base_type": launch_args.base_type,
@@ -130,11 +113,6 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
     launch_description.add_action(robot_state_publisher)
 
-    gravity = include_scoped_launch_py_description(
-                              pkg_name="tiago_pro_controller_configuration",
-                              paths=["launch", "gravity_compensation_controller.launch.py"])
-
-    launch_description.add_action(gravity)
     return
 
 

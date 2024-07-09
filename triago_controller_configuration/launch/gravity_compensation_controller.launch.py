@@ -20,24 +20,42 @@ from launch_pal.arg_utils import LaunchArgumentsBase
 
 from dataclasses import dataclass
 
-from dataclasses import dataclass
+
+@dataclass(frozen=True)
+class LaunchArguments(LaunchArgumentsBase):
+    pass
 
 
+def declare_actions(launch_description: LaunchDescription, launch_args: LaunchArguments):
 
-def generate_launch_description():
+    pkg_share_directory = get_package_share_directory(
+        'triago_controller_configuration')
 
+    controller_config = os.path.join(
+        pkg_share_directory,
+        'config', 'gravity_compensation_controller.yaml')
+    controller_type = "pal_controllers/GravityCompensationController"
     gravity_spawner_node = Node(
         package='controller_manager',
         executable='spawner',
         arguments=[
-            "gravity_compensation_controller", "--param-file", os.path.join(
-                get_package_share_directory('tiago_pro_controller_configuration'),
-                'config', 'gravity_compensation_controller.yaml'),
-            "--controller-type", "pal_controllers/GravityCompensationController", "--inactive"],
+            "gravity_compensation_controller", "--param-file", controller_config,
+            "--controller-type", controller_type, "--inactive"],
     )
+    launch_description.add_action(gravity_spawner_node)
 
+    return
+
+
+def generate_launch_description():
+
+    # Create the launch description
     ld = LaunchDescription()
-    ld.add_action(gravity_spawner_node)
+
+    launch_arguments = LaunchArguments()
+
+    launch_arguments.add_to_launch_description(ld)
+
+    declare_actions(ld, launch_arguments)
+
     return ld
-
-

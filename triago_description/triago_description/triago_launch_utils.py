@@ -13,7 +13,7 @@
 # limitations under the License.
 
 
-def get_tiago_pro_hw_suffix(
+def get_triago_hw_suffix(
     arm_right: str = "no-arm",
     arm_left: str = "no-arm",
     end_effector_right: str = "no-end-effector",
@@ -23,7 +23,7 @@ def get_tiago_pro_hw_suffix(
 ):
     """
     Generate a substitution that creates a text suffix combining the specified \
-    tiago pro arguments.
+    triago arguments.
 
     The arguments are read as string
     """
@@ -41,11 +41,11 @@ def get_single_arm_hw_suffix(
         end_effector: str = 'no-ee',
         ft_sensor: str = 'no-ft-sensor'):
     """
-    Generate a substitution that creates a text suffix combining the specified tiago pro arguments.
+    Generate a substitution that creates a text suffix combining the specified triago arguments.
 
     The arguments are read as string
 
-    For instance, the suffix for: arm=tiago-pro, end_effector='pal-pro-gripper', ft_sensor='rokubi'
+    For instance, the suffix for: arm=triago, end_effector='pal-pro-gripper', ft_sensor='rokubi'
     would be '_pal-pro-gripper_rokubi'
     """
     if arm in ['no-arm']:

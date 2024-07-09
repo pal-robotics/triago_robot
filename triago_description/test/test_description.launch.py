@@ -23,5 +23,5 @@ __all__ = ('TestDescriptionPublished', 'TestSuccessfulExit')
 def generate_test_description():
     return generate_urdf_test_description(
         include_launch_py_description(
-            'tiago_pro_description', ['launch', 'robot_state_publisher.launch.py']),
+            'triago_description', ['launch', 'robot_state_publisher.launch.py']),
     )

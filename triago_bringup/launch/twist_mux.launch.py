@@ -18,7 +18,8 @@ from launch.actions import DeclareLaunchArgument
 from ament_index_python.packages import get_package_share_directory
 
 from launch_pal.include_utils import include_scoped_launch_py_description
-from launch_pal.arg_utils import LaunchArgumentsBase, CommonArgs
+from launch_pal.arg_utils import LaunchArgumentsBase
+from launch_pal.robot_arguments import CommonArgs
 
 from dataclasses import dataclass
 
@@ -30,7 +31,7 @@ class LaunchArguments(LaunchArgumentsBase):
 
 def declare_actions(launch_description: LaunchDescription, launch_args: LaunchArguments):
 
-    pkg_dir = get_package_share_directory('tiago_pro_bringup')
+    pkg_dir = get_package_share_directory('triago_bringup')
 
     config_locks_file = os.path.join(
         pkg_dir, 'config', 'twist_mux', 'twist_mux_locks.yaml')

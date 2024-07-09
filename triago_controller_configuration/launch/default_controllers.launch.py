@@ -23,21 +23,22 @@ from launch_pal.param_utils import merge_param_files
 from launch.actions import DeclareLaunchArgument
 from controller_manager.launch_utils import generate_load_controller_launch_description
 from launch_pal.include_utils import include_scoped_launch_py_description
-from launch_pal.arg_utils import LaunchArgumentsBase, CommonArgs, read_launch_argument
-from launch_pal.robot_arguments import TiagoProArgs
+from launch_pal.arg_utils import LaunchArgumentsBase, read_launch_argument
+from launch_pal.robot_arguments import CommonArgs
+from triago_description.launch_arguments import TriagoArgs
 
 from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
 class LaunchArguments(LaunchArgumentsBase):
-    base_type: DeclareLaunchArgument = TiagoProArgs.base_type
-    arm_type_right: DeclareLaunchArgument = TiagoProArgs.arm_type_right
-    arm_type_left: DeclareLaunchArgument = TiagoProArgs.arm_type_left
-    end_effector_right: DeclareLaunchArgument = TiagoProArgs.end_effector_right
-    end_effector_left: DeclareLaunchArgument = TiagoProArgs.end_effector_left
-    ft_sensor_right: DeclareLaunchArgument = TiagoProArgs.ft_sensor_right
-    ft_sensor_left: DeclareLaunchArgument = TiagoProArgs.ft_sensor_left
+    base_type: DeclareLaunchArgument = TriagoArgs.base_type
+    arm_type_right: DeclareLaunchArgument = TriagoArgs.arm_type_right
+    arm_type_left: DeclareLaunchArgument = TriagoArgs.arm_type_left
+    end_effector_right: DeclareLaunchArgument = TriagoArgs.end_effector_right
+    end_effector_left: DeclareLaunchArgument = TriagoArgs.end_effector_left
+    ft_sensor_right: DeclareLaunchArgument = TriagoArgs.ft_sensor_right
+    ft_sensor_left: DeclareLaunchArgument = TriagoArgs.ft_sensor_left
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
     namespace: DeclareLaunchArgument = CommonArgs.namespace
 
@@ -45,7 +46,7 @@ class LaunchArguments(LaunchArgumentsBase):
 def declare_actions(launch_description: LaunchDescription, launch_args: LaunchArguments):
 
     pkg_share_folder = get_package_share_directory(
-        'tiago_pro_controller_configuration')
+        'triago_controller_configuration')
 
     # Mobile base controller
     default_config = os.path.join(
@@ -96,18 +97,20 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
     launch_description.add_action(torso_controller)
 
-    # Head controller
-    head_controller = GroupAction(
-        [generate_load_controller_launch_description(
-            controller_name='head_controller',
-            controller_type='joint_trajectory_controller/JointTrajectoryController',
-            controller_params_file=os.path.join(
-                pkg_share_folder,
-                'config', 'head_controller.yaml'))
-         ],
-        forwarding=False)
 
-    launch_description.add_action(head_controller)
+
+    # IMU sensor broadcaster
+    imu_sensor_broadcaster = GroupAction(
+        [
+            generate_load_controller_launch_description(
+                controller_name='imu_sensor_broadcaster',
+                controller_type='imu_sensor_broadcaster/IMUSensorBroadcaster',
+                controller_params_file=os.path.join(
+                    pkg_share_folder, 'config', 'imu_sensor_broadcaster.yaml'))
+
+        ],
+    )
+    launch_description.add_action(imu_sensor_broadcaster)
 
     # Add controller of right arm, end-effector and ft-sensor
     launch_description.add_action(OpaqueFunction(
@@ -179,7 +182,7 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
         )
     )
 
-    return [ arm_controller, end_effector_controller, ft_sensor_controller]
+    return [arm_controller, end_effector_controller, ft_sensor_controller]
 
 
 def concatenate_strings(strings: List[str], delimiter: str = '', skip_empty: bool = False):

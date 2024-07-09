@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>triago_robot</name>
-  <version>1.0.9</version>
-  <description>The tiago_pro_robot package</description>
+  <version>1.0.12</version>
+  <description>The triago_robot package</description>
 
-  <maintainer email="narcis.miguel@pal-robotics.com">Narcis Miguel</maintainer>
-  <maintainer email="ilenia.perrella@pal-robotics.com">Ilenia Perrella</maintainer>
+  <maintainer email="viviana.morlando@pal-robotics.com">Viviana Morlando</maintainer>
 
   <license>Apache License 2.0</license>
 
@@ -13,7 +12,7 @@
 
   <exec_depend>triago_bringup</exec_depend>
   <exec_depend>triago_controller_configuration</exec_depend>
-  <exec_depend>triaigo_description</exec_depend>
+  <exec_depend>triago_description</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

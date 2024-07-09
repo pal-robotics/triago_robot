@@ -1,5 +1,5 @@
 joystick:
-  launch: "tiago_pro_bringup joystick_teleop.launch.py
+  launch: "triago_bringup joystick_teleop.launch.py
           arm_type_right:=@arm_type_right@
           arm_type_left:=@arm_type_left@
           end_effector_right:=@end_effector_right@

@@ -18,22 +18,22 @@ from launch.substitutions import PathJoinSubstitution, LaunchConfiguration
 from launch.actions import DeclareLaunchArgument, SetLaunchConfiguration, OpaqueFunction
 
 from launch_pal.include_utils import include_scoped_launch_py_description
-from launch_pal.arg_utils import LaunchArgumentsBase, CommonArgs, read_launch_argument
-# from launch_pal.param_utils import merge_param_files
+from launch_pal.arg_utils import LaunchArgumentsBase, read_launch_argument
+from launch_pal.robot_arguments import CommonArgs
 
-from launch_pal.robot_arguments import TiagoProArgs
-from tiago_pro_description.tiago_pro_launch_utils import get_tiago_pro_hw_suffix
+from triago_description.launch_arguments import TriagoArgs
+from triago_description.triago_launch_utils import get_triago_hw_suffix
 from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
 class LaunchArguments(LaunchArgumentsBase):
-    arm_type_right: DeclareLaunchArgument = TiagoProArgs.arm_type_right
-    arm_type_left: DeclareLaunchArgument = TiagoProArgs.arm_type_left
-    end_effector_right: DeclareLaunchArgument = TiagoProArgs.end_effector_right
-    end_effector_left: DeclareLaunchArgument = TiagoProArgs.end_effector_left
-    ft_sensor_right: DeclareLaunchArgument = TiagoProArgs.ft_sensor_right
-    ft_sensor_left: DeclareLaunchArgument = TiagoProArgs.ft_sensor_left
+    arm_type_right: DeclareLaunchArgument = TriagoArgs.arm_type_right
+    arm_type_left: DeclareLaunchArgument = TriagoArgs.arm_type_left
+    end_effector_right: DeclareLaunchArgument = TriagoArgs.end_effector_right
+    end_effector_left: DeclareLaunchArgument = TriagoArgs.end_effector_left
+    ft_sensor_right: DeclareLaunchArgument = TriagoArgs.ft_sensor_right
+    ft_sensor_left: DeclareLaunchArgument = TriagoArgs.ft_sensor_left
 
     use_sim_time:  DeclareLaunchArgument = CommonArgs.use_sim_time
 
@@ -57,10 +57,10 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
 def create_play_motion_filename(context):
 
-    pkg_name = 'tiago_pro_bringup'
+    pkg_name = 'triago_bringup'
     pkg_share_dir = get_package_share_directory(pkg_name)
 
-    hw_suffix = get_tiago_pro_hw_suffix(
+    hw_suffix = get_triago_hw_suffix(
         arm_right=read_launch_argument('arm_type_right', context),
         arm_left=read_launch_argument('arm_type_left', context),
         end_effector_right=read_launch_argument('end_effector_right', context),
@@ -69,19 +69,15 @@ def create_play_motion_filename(context):
         ft_sensor_left=read_launch_argument('ft_sensor_left', context),
     )
 
-    # hw_config_specific_file = f"tiago_motions{hw_suffix}.yaml"
+ 
 
-    # hw_config_specific_yaml = PathJoinSubstitution(
-    #     [pkg_share_dir,
-    #      'config', 'motions', hw_config_specific_file])
-
-    base_motions_file = 'tiago_pro_motions_general.yaml'
+    base_motions_file = 'triago_motions_general.yaml'
 
     if read_launch_argument('arm_type_right', context) == 'no-arm':
-        base_motions_file = 'tiago_pro_motions_general_arm_left.yaml'
+        base_motions_file = 'triago_motions_general_arm_left.yaml'
 
     if read_launch_argument('arm_type_left', context) == 'no-arm':
-        base_motions_file = 'tiago_pro_motions_general_arm_right.yaml'
+        base_motions_file = 'triago_motions_general_arm_right.yaml'
 
     base_motions_yaml = PathJoinSubstitution(
         [pkg_share_dir, 'config', 'motions', base_motions_file])

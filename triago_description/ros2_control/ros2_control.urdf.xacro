@@ -14,12 +14,13 @@
   See the License for the specific language governing permissions and
   limitations under the License.
  -->
-<robot xmlns:xacro="http://ros.org/wiki/xacro" name="tiago_pro">
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="triago">
 
-  <xacro:macro name="tiago_pro_ros2_control" params="use_sim:=^|false">
+  <xacro:macro name="triago_ros2_control" params="use_sim_time:=^|false">
 
-    <xacro:arg name="arm_type_left" default="tiago-pro"/>
-    <xacro:arg name="arm_type_right" default="tiago-pro"/>
+    <xacro:arg name="arm_type_left" default="triago"/>
+    <xacro:arg name="arm_type_right" default="triago"/>
+    <xacro:arg name="arm_type_head" default="triago"/>
 
     <xacro:arg name="end_effector_left" default="pal-pro-pripper"/>
     <xacro:arg name="end_effector_right" default="pal-pro-gripper"/>
@@ -27,11 +28,13 @@
     <xacro:arg name="ft_sensor_left" default="no-ft-sensor"/>
     <xacro:arg name="ft_sensor_right" default="no-ft-sensor"/>
 
-    <xacro:arg name="description_calibration_dir" default="$(find tiago_pro_description)/urdf/calibration" />
+    <xacro:arg name="description_calibration_dir" default="$(find triago_description)/urdf/calibration" />
     <!-- TODO-->
 
     <xacro:property name="arm_type_left" value="$(arg arm_type_left)" />
     <xacro:property name="arm_type_right" value="$(arg arm_type_right)" />
+    <xacro:property name="arm_type_head" value="$(arg arm_type_head)" />
+
     <xacro:property name="end_effector_left" value="$(arg end_effector_left)" />
     <xacro:property name="end_effector_right" value="$(arg end_effector_right)" />
 
@@ -43,8 +46,7 @@
     <xacro:include filename="$(find omni_base_description)/urdf/sensors/sensors.ros2_control.xacro" />
     <xacro:include filename="$(find omni_base_description)/urdf/wheels/wheel.ros2_control.xacro" />
 
-    <xacro:include filename="$(find tiago_pro_description)/urdf/torso/torso.ros2_control.xacro" />
-    <xacro:include filename="$(find tiago_pro_description)/urdf/head/head.ros2_control.xacro" />
+    <xacro:include filename="$(find triago_description)/urdf/torso/torso.ros2_control.xacro" />
     <xacro:include filename="$(find pal_sea_arm_description)/urdf/arm/arm.ros2_control.xacro" />
 
     <xacro:if value="${end_effector_left == 'pal-pro-gripper' or end_effector_right == 'pal-pro-gripper'}">
@@ -54,12 +56,22 @@
     <!-- calibration offsets -->
     <xacro:include filename="$(arg description_calibration_dir)/calibration_constants.urdf.xacro" />
 
-    <ros2_control name="ros2_control_tiago_pro_system" type="system">
+
+    <!-- Init the ROS 2 control gazebo interface -->
+    <xacro:if value="${use_sim_time}">
+      <gazebo>
+        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+          <parameters>$(find triago_description)/ros2_control/gazebo_controller_manager_cfg.yaml</parameters>
+        </plugin>
+      </gazebo>
+    </xacro:if>
+
+    <ros2_control name="ros2_control_triago_system" type="system">
       <hardware>
-        <xacro:if value="$(arg use_sim)">
+        <xacro:if value="$(arg use_sim_time)">
           <plugin>gazebo_ros2_control/GazeboSystem</plugin>
         </xacro:if>
-        <xacro:unless value="$(arg use_sim)">
+        <xacro:unless value="$(arg use_sim_time)">
           <plugin>robot_control/RobotControl</plugin>
         </xacro:unless>
 
@@ -72,16 +84,12 @@
       <xacro:ros2_control_wheel side="rear_left" />
 
       <!-- IMU -->
-      <xacro:if value="$(arg use_sim)">
+      <xacro:if value="$(arg use_sim_time)">
         <xacro:ros2_control_imu name="base_imu_sensor"/>
       </xacro:if>
 
       <!-- torso -->
       <xacro:ros2_control_torso name="torso_lift" reduction="1.0" />
-
-      <!-- head -->
-      <xacro:ros2_control_head name="head_1" reduction="1.0" offset_value="${head_1_joint_offset}" />
-      <xacro:ros2_control_head name="head_2" reduction="1.0" offset_value="${head_2_joint_offset}" />
 
       <!-- arm left -->
       <xacro:if value="${has_arm_left}">

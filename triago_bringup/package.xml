@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>triago_bringup</name>
-  <version>1.0.9</version>
+  <version>1.0.12</version>
   <description>Launch files to upload the TRIAGo robot description and start the controllers</description>
-  <maintainer email="viviana.morlando@pal-robotics.com">Viviana Molando</maintainer>
-  <author email="viviana.morlando@pal-robotics.com">Viviana Molando</author>
+  <maintainer email="viviana.morlando@pal-robotics.com">Viviana Morlando</maintainer>
+  <author email="viviana.morlando@pal-robotics.com">Viviana Morlando</author>
   <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
@@ -13,7 +13,7 @@
 
 
   <exec_depend>triago_controller_configuration</exec_depend>
-  <exec_depend>joy</exec_depend>
+  <exec_depend>joy_linux</exec_depend>
   <exec_depend>joy_teleop</exec_depend>
   <exec_depend>twist_mux</exec_depend>
   <exec_depend>play_motion2</exec_depend>

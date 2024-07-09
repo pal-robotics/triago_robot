@@ -1,2 +1,2 @@
 twist_mux:
-  launch: "tiago_pro_bringup twist_mux.launch.py"
+  launch: "triago_bringup twist_mux.launch.py"

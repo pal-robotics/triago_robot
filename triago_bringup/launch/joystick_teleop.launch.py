@@ -21,22 +21,22 @@ from launch.actions import DeclareLaunchArgument, OpaqueFunction, SetLaunchConfi
 from launch_ros.actions import Node
 from launch.conditions import LaunchConfigurationEquals
 
-from tiago_pro_description.tiago_pro_launch_utils import get_single_arm_hw_suffix
+from triago_description.triago_launch_utils import get_single_arm_hw_suffix
 
 from launch_pal.arg_utils import LaunchArgumentsBase, read_launch_argument
-from launch_pal.robot_arguments import TiagoProArgs
+from triago_description.launch_arguments import TriagoArgs
 
 from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
 class LaunchArguments(LaunchArgumentsBase):
-    arm_type_right: DeclareLaunchArgument = TiagoProArgs.arm_type_right
-    arm_type_left: DeclareLaunchArgument = TiagoProArgs.arm_type_left
-    end_effector_right: DeclareLaunchArgument = TiagoProArgs.end_effector_right
-    end_effector_left: DeclareLaunchArgument = TiagoProArgs.end_effector_left
-    ft_sensor_right: DeclareLaunchArgument = TiagoProArgs.ft_sensor_right
-    ft_sensor_left: DeclareLaunchArgument = TiagoProArgs.ft_sensor_left
+    arm_type_right: DeclareLaunchArgument = TriagoArgs.arm_type_right
+    arm_type_left: DeclareLaunchArgument = TriagoArgs.arm_type_left
+    end_effector_right: DeclareLaunchArgument = TriagoArgs.end_effector_right
+    end_effector_left: DeclareLaunchArgument = TriagoArgs.end_effector_left
+    ft_sensor_right: DeclareLaunchArgument = TriagoArgs.ft_sensor_right
+    ft_sensor_left: DeclareLaunchArgument = TriagoArgs.ft_sensor_left
 
     cmd_vel: DeclareLaunchArgument = DeclareLaunchArgument(
         name='cmd_vel',
@@ -57,11 +57,11 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
     launch_description.add_action(joy_teleop_node)
 
-    pkg_dir = get_package_share_directory('tiago_pro_bringup')
+    pkg_dir = get_package_share_directory('triago_bringup')
 
     joy_node = Node(
-        package='joy',
-        executable='joy_node',
+        package='joy_linux',
+        executable='joy_linux_node',
         name='joystick',
         parameters=[os.path.join(pkg_dir, 'config', 'joy_config.yaml')])
 
@@ -105,7 +105,7 @@ def create_joy_teleop_filename(context):
     joy_teleop_file = f"joy_teleop{hw_suffix}.yaml"
 
     joy_teleop_path = os.path.join(
-        get_package_share_directory('tiago_pro_bringup'), 'config', 'joy_teleop', joy_teleop_file)
+        get_package_share_directory('triago_bringup'), 'config', 'joy_teleop', joy_teleop_file)
 
     joy_teleop_config = SetLaunchConfiguration(
         'teleop_config', joy_teleop_path)

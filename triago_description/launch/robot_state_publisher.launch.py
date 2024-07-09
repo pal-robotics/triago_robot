@@ -32,8 +32,24 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class LaunchArguments(LaunchArgumentsBase):
-    base_type: DeclareLaunchArgument = TiagoProArgs.base_type
-
+    base_type: DeclareLaunchArgument = TriagoArgs.base_type
+    arm_type_right: DeclareLaunchArgument = TriagoArgs.arm_type_right
+    arm_type_left: DeclareLaunchArgument = TriagoArgs.arm_type_left
+    arm_type_head: DeclareLaunchArgument = TriagoArgs.arm_type_head
+    end_effector_right: DeclareLaunchArgument = TriagoArgs.end_effector_right
+    end_effector_left: DeclareLaunchArgument = TriagoArgs.end_effector_left
+    end_effector_head: DeclareLaunchArgument = TriagoArgs.end_effector_head
+    ft_sensor_right: DeclareLaunchArgument = TriagoArgs.ft_sensor_right
+    ft_sensor_left: DeclareLaunchArgument = TriagoArgs.ft_sensor_left
+    ft_sensor_head: DeclareLaunchArgument = TriagoArgs.ft_sensor_head
+    wrist_model_right: DeclareLaunchArgument = TriagoArgs.wrist_model_right
+    wrist_model_left: DeclareLaunchArgument = TriagoArgs.wrist_model_left
+    wrist_model_head: DeclareLaunchArgument = TriagoArgs.wrist_model_head
+    camera_model: DeclareLaunchArgument = TriagoArgs.camera_model
+    laser_model: DeclareLaunchArgument = TriagoArgs.laser_model
+    use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
+    namespace: DeclareLaunchArgument = CommonArgs.namespace
+    is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
 
 
 def declare_actions(launch_description: LaunchDescription, launch_args: LaunchArguments):
@@ -45,12 +61,7 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
                executable='robot_state_publisher',
                output='both',
                parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time'),
-               "robot_description": ParameterValue(
-                                   LaunchConfiguration("robot_description"), value_type=str
-                               ),
-                           }
-                       ],
-               )
+                            'robot_description': LaunchConfiguration('robot_description')}])
 
     launch_description.add_action(rsp)
 
@@ -64,7 +75,24 @@ def create_robot_description_param(context, *args, **kwargs):
         'robots', 'triago.urdf.xacro'))
 
     xacro_input_args = {
-        'base_type': read_launch_argument('base_type', context)
+        'base_type': read_launch_argument('base_type', context),
+        'arm_type_right': read_launch_argument('arm_type_right', context),
+        'arm_type_left': read_launch_argument('arm_type_left', context),
+        'arm_type_head': read_launch_argument('arm_type_head', context),
+        'end_effector_right': read_launch_argument('end_effector_right', context),
+        'end_effector_left': read_launch_argument('end_effector_left', context),
+        'end_effector_head': read_launch_argument('end_effector_head', context),
+        'ft_sensor_right': read_launch_argument('ft_sensor_right', context),
+        'ft_sensor_left': read_launch_argument('ft_sensor_left', context),
+        'ft_sensor_head': read_launch_argument('ft_sensor_head', context),
+        'wrist_model_right': read_launch_argument('wrist_model_right', context),
+        'wrist_model_left': read_launch_argument('wrist_model_left', context),
+        'wrist_model_head': read_launch_argument('wrist_model_head', context),
+        'camera_model': read_launch_argument('camera_model', context),
+        'laser_model': read_launch_argument('laser_model', context),
+        'use_sim_time': read_launch_argument('use_sim_time', context),
+        'namespace': read_launch_argument('namespace', context),
+        'is_public_sim': read_launch_argument('is_public_sim', context),
     }
     robot_description = load_xacro(xacro_file_path, xacro_input_args)
 

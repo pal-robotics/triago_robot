@@ -64,21 +64,21 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
     launch_description.add_action(default_controllers)
 
-    play_motion2 = include_scoped_launch_py_description(
-        pkg_name='triago_bringup',
-        paths=['launch', 'triago_play_motion2.launch.py'],
-        launch_arguments={"arm_type_right": launch_args.arm_type_right,
-                          "arm_type_left": launch_args.arm_type_left,
-                          "arm_type_head": launch_args.arm_type_head,
-                          "end_effector_right": launch_args.end_effector_right,
-                          "end_effector_left": launch_args.end_effector_left,
-                          "end_effector_head": launch_args.end_effector_head,
-                          "ft_sensor_right": launch_args.ft_sensor_right,
-                          "ft_sensor_left": launch_args.ft_sensor_left,
-                          "ft_sensor_head": launch_args.ft_sensor_head,
-                          "use_sim_time": launch_args.use_sim_time})
-
-    launch_description.add_action(play_motion2)
+    #play_motion2 = include_scoped_launch_py_description(
+    #    pkg_name='triago_bringup',
+    #    paths=['launch', 'triago_play_motion2.launch.py'],
+    #    launch_arguments={"arm_type_right": launch_args.arm_type_right,
+    #                      "arm_type_left": launch_args.arm_type_left,
+    #                      "arm_type_head": launch_args.arm_type_head,
+    #                      "end_effector_right": launch_args.end_effector_right,
+    #                      "end_effector_left": launch_args.end_effector_left,
+    #                      "end_effector_head": launch_args.end_effector_head,
+    #                      "ft_sensor_right": launch_args.ft_sensor_right,
+    #                      "ft_sensor_left": launch_args.ft_sensor_left,
+    #                      "ft_sensor_head": launch_args.ft_sensor_head,
+    #                      "use_sim_time": launch_args.use_sim_time})
+#
+    #launch_description.add_action(play_motion2)
 
     twist_mux = include_scoped_launch_py_description(
         pkg_name="triago_bringup",

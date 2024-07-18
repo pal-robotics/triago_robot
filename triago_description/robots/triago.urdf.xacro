@@ -237,7 +237,7 @@
     </xacro:pal_sea_arm>
 
     <!-- End effector -->
-    <xacro:if value="${has_end_effector_head}">
+    <!--xacro:if value="${has_end_effector_head}">
       <xacro:if  value="${end_effector_head == 'allegro-hand'}">
         <xacro:tool_changer name="tool_changer_head" parent="${end_effector_head_link}"/>
         <xacro:allegro-hand name="gripper_head" parent="tool_changer_head_tc_tool_link" reflect="1">
@@ -247,12 +247,12 @@
       <xacro:unless value="${end_effector_head == 'allegro-hand'}">
         <xacro:pal_sea_arm_end_effector name="gripper_head" parent="${end_effector_head_link}" type="${end_effector_head}" has_end_effector="${has_end_effector_head}" reflect="1" is_dual="true"/>
       </xacro:unless>
-    </xacro:if>
+    </xacro:if-->
 
     <!-- FT sensors -->
-    <xacro:if value="${has_ft_sensor_head}">
+    <!--xacro:if value="${has_ft_sensor_head}">
       <xacro:ft_sensor name="wrist_right" parent="arm_head_tool_link"/>
-    </xacro:if>
+    </xacro:if-->
     
 
   </xacro:if>

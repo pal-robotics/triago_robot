@@ -35,6 +35,7 @@ class LaunchArguments(LaunchArgumentsBase):
     base_type: DeclareLaunchArgument = TriagoArgs.base_type
     arm_type_right: DeclareLaunchArgument = TriagoArgs.arm_type_right
     arm_type_left: DeclareLaunchArgument = TriagoArgs.arm_type_left
+    arm_type_head: DeclareLaunchArgument = TriagoArgs.arm_type_head
     end_effector_right: DeclareLaunchArgument = TriagoArgs.end_effector_right
     end_effector_left: DeclareLaunchArgument = TriagoArgs.end_effector_left
     ft_sensor_right: DeclareLaunchArgument = TriagoArgs.ft_sensor_right
@@ -119,6 +120,10 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
     # Add controller of left arm, end-effector and ft-sensor
     launch_description.add_action(OpaqueFunction(
         function=configure_side_controllers, args=['left']))
+    
+    # Add controller of head arm, end-effector and ft-sensor
+    launch_description.add_action(OpaqueFunction(
+        function=configure_side_controllers, args=['head']))
 
     return
 

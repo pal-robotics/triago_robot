@@ -85,7 +85,7 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
     rviz_config_file = PathJoinSubstitution(
         [FindPackageShare('triago_description'), 'config', 'show.rviz'])
-
+    
     rviz = Node(
         package='rviz2',
         executable='rviz2',

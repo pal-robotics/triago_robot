@@ -63,6 +63,8 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
                parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time'),
                             'robot_description': LaunchConfiguration('robot_description')}])
 
+  
+    
     launch_description.add_action(rsp)
 
     return

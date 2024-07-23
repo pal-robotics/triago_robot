@@ -28,17 +28,25 @@
   <!-- triago, no-arm -->
   <xacro:arg name="arm_type_right" default="triago" />
 
+  <xacro:arg name="arm_type_head" default="triago" />
+
   <!-- pal-pro-gripper custom-->
   <xacro:arg name="end_effector_left" default="pal-pro-gripper" />
 
   <!-- pal-pro-gripper, custom-->
   <xacro:arg name="end_effector_right" default="pal-pro-gripper" />
 
+  <xacro:arg name="end_effector_head" default="pal-pro-gripper" />
+
+
   <!-- no-ft-sensor, rokubi -->
   <xacro:arg name="ft_sensor_left" default="no-ft-sensor" />
 
   <!-- no-ft-sensor, rokubi -->
   <xacro:arg name="ft_sensor_right" default="no-ft-sensor" />
+
+  <xacro:arg name="ft_sensor_head" default="no-ft-sensor" />
+
 
   <xacro:arg name="use_sim_time" default="false"/>
   <xacro:arg name="is_public_sim" default="false"/>
@@ -64,7 +72,7 @@
   <xacro:property name="end_effector_right" value="$(arg end_effector_right)" />
   <xacro:property name="end_effector_head" value="$(arg end_effector_head)" />
   <xacro:property name="ft_sensor_left" value="$(arg ft_sensor_left)" />
-  <xacro:property name="ft_sensor_right" value="$(arg ft_sensor_head)" />
+  <xacro:property name="ft_sensor_right" value="$(arg ft_sensor_right)" />
   <xacro:property name="ft_sensor_head" value="$(arg ft_sensor_head)" />
   <xacro:property name="arm_type" value="triago" />
   <xacro:property name="description_calibration_dir" value="${arg description_calibration_dir}"/>
@@ -175,15 +183,22 @@
 
     <!-- Arm -->
     <xacro:pal_sea_arm name="arm_left" parent="arm_left_link" arm_type="$(arg arm_type_left)" reflect="1" arm_1_offset="${arm_left_1_joint_offset}" arm_2_offset="${arm_left_2_joint_offset}" arm_3_offset="${arm_left_3_joint_offset}" arm_4_offset="${arm_left_4_joint_offset}" arm_5_offset="${arm_left_5_joint_offset}" arm_6_offset="${arm_left_6_joint_offset}" arm_7_offset="${arm_left_7_joint_offset}">
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 1.5708"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${90.0 * deg_to_rad}"/>
     </xacro:pal_sea_arm>
 
     <!-- End effector -->
     <xacro:if value="${has_end_effector_left}">
       <xacro:if value="${end_effector_left == 'allegro-hand'}">
-        <xacro:tool_changer name="tool_changer_left" parent="${end_effector_left_link}"/>
+        <xacro:tool_changer name="tool_changer_left" parent="${end_effector_left_link}">
+            <xacro:if value="${has_ft_sensor_left}">
+              <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            </xacro:if>
+            <xacro:unless value="${has_ft_sensor_left}">
+              <origin xyz="0.0 0.0 0.0" rpy="${-90.0 * deg_to_rad} ${90.0 * deg_to_rad} ${-90.0 * deg_to_rad}"/>
+            </xacro:unless>
+        </xacro:tool_changer>
         <xacro:allegro_hand name="gripper_left" parent="tool_changer_left_tc_tool_link" reflect="-1">
-                <origin xyz="0 0 0.0" rpy="0 0 3.14"/>
+                <origin xyz="-0.00956 -0.001 0.094" rpy="0.0 0.0 ${-180.0 * deg_to_rad}"/>
         </xacro:allegro_hand>
       </xacro:if>
       <xacro:unless value="${end_effector_left == 'allegro-hand'}">
@@ -203,15 +218,22 @@
 
     <!-- Arm -->
     <xacro:pal_sea_arm name="arm_right" parent="arm_right_link" arm_type="$(arg arm_type_right)" reflect="1" arm_1_offset="${arm_right_1_joint_offset}" arm_2_offset="${arm_right_2_joint_offset}" arm_3_offset="${arm_right_3_joint_offset}" arm_4_offset="${arm_right_4_joint_offset}" arm_5_offset="${arm_right_5_joint_offset}" arm_6_offset="${arm_right_6_joint_offset}" arm_7_offset="${arm_right_7_joint_offset}">
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 -1.5708"/>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${-90.0 * deg_to_rad}"/>
     </xacro:pal_sea_arm>
 
     <!-- End effector -->
     <xacro:if value="${has_end_effector_right}">
       <xacro:if value="${end_effector_right == 'allegro-hand'}">
-        <xacro:tool_changer name="tool_changer_right" parent="${end_effector_right_link}"/>
+        <xacro:tool_changer name="tool_changer_right" parent="${end_effector_right_link}">
+         <xacro:if value="${has_ft_sensor_left}">
+              <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            </xacro:if>
+            <xacro:unless value="${has_ft_sensor_left}">
+              <origin xyz="0.0 0.0 0.0" rpy="${-90.0 * deg_to_rad} ${90.0 * deg_to_rad} ${-90.0 * deg_to_rad}"/>
+            </xacro:unless>
+        </xacro:tool_changer>
         <xacro:allegro_hand name="gripper_right" parent="tool_changer_right_tc_tool_link" reflect="1">
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 -1.57"/>
+                <origin xyz="-0.00956 -0.001 0.094" rpy="0.0 0.0 ${-180.0 * deg_to_rad}"/>
         </xacro:allegro_hand>
       </xacro:if>
       <xacro:unless value="${end_effector_right == 'allegro-hand'}">

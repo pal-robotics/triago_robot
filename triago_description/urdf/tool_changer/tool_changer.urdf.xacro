@@ -17,7 +17,7 @@
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:macro name="tool_changer" params="name parent">
+  <xacro:macro name="tool_changer" params="name parent *origin">
     <!--************************-->
     <!--        ft sensor       -->
     <!--************************-->
@@ -65,7 +65,7 @@
     <joint name="${name}_tc_base_joint" type="fixed">
       <parent link="${parent}" />
       <child link="${name}_tc_base_link" />
-      <origin xyz="0.0 0 0" rpy="${-90.0 * deg_to_rad} ${45.0 * deg_to_rad} ${-90.0 * deg_to_rad}" />
+      <xacro:insert_block name="origin"/>
     </joint>
 
     <link

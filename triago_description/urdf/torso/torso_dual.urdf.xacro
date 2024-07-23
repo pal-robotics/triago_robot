@@ -71,7 +71,7 @@
   </joint>
 
   <!-- Middle extending  -->
-  <!--link name="${name}_fixed_column_link">
+  <link name="${name}_fixed_column_link">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <mass value="0.01" />
@@ -103,7 +103,7 @@
     <parent link="${parent}" />
     <child link="${name}_fixed_column_link" />
     <axis xyz="0 0 0" />
-  </joint-->
+  </joint>
 
 
   <link

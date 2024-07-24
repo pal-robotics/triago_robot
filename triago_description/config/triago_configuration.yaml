@@ -37,7 +37,7 @@ end_effector_left:
 end_effector_head:
   description: 'End effector model head arm'
   choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector']
-  default_value: 'no-end-effector'
+  default_value: 'pal-pro-gripper'
 ft_sensor_right:
   description: 'FT sensor model right arm'
   choices: ['rokubi', 'no-ft-sensor']

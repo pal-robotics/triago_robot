@@ -33,11 +33,11 @@ end_effector_right:
 end_effector_left:
   description: 'End effector model left arm'
   choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector']
-  default_value: 'allegro-hand'
+  default_value: 'pal-pro-gripper'
 end_effector_head:
   description: 'End effector model head arm'
   choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector']
-  default_value: 'pal-pro-gripper'
+  default_value: 'allegro-hand'
 ft_sensor_right:
   description: 'FT sensor model right arm'
   choices: ['rokubi', 'no-ft-sensor']
@@ -49,7 +49,7 @@ ft_sensor_left:
 ft_sensor_head:
   description: 'FT sensor model head arm'
   choices: ['rokubi', 'no-ft-sensor']
-  default_value: 'no-ft-sensor'
+  default_value: 'rokubi'
 base_type:
   description: 'Base type'
   choices: ['omni_base']

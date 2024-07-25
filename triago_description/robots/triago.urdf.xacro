@@ -150,7 +150,7 @@
   <!-- End effector -->
   <xacro:if value="${(has_arm_right or has_arm_left) and (has_end_effector_right or has_end_effector_left)}">
     <xacro:include filename="$(find triago_description)/urdf/end_effector/end_effector.urdf.xacro" />
-    <xacro:include filename="$(find triago_description)/urdf/tool_changer/tool_changer.urdf.xacro" />
+    <xacro:include filename="$(find pal_sea_arm_description)/urdf/tool_changer/tool_changer.urdf.xacro" />
   </xacro:if>
 
   <!-- Allegro hand and tool changer-->

@@ -38,8 +38,10 @@ class LaunchArguments(LaunchArgumentsBase):
     arm_type_head: DeclareLaunchArgument = TriagoArgs.arm_type_head
     end_effector_right: DeclareLaunchArgument = TriagoArgs.end_effector_right
     end_effector_left: DeclareLaunchArgument = TriagoArgs.end_effector_left
+    end_effector_head: DeclareLaunchArgument = TriagoArgs.end_effector_head
     ft_sensor_right: DeclareLaunchArgument = TriagoArgs.ft_sensor_right
     ft_sensor_left: DeclareLaunchArgument = TriagoArgs.ft_sensor_left
+    ft_sensor_head: DeclareLaunchArgument = TriagoArgs.ft_sensor_head
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
     namespace: DeclareLaunchArgument = CommonArgs.namespace
 

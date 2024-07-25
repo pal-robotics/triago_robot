@@ -40,16 +40,16 @@ end_effector_head:
   default_value: 'allegro-hand'
 ft_sensor_right:
   description: 'FT sensor model right arm'
-  choices: ['rokubi', 'no-ft-sensor']
-  default_value: 'rokubi'
+  choices: ['ati-mini45', 'no-ft-sensor']
+  default_value: 'ati-mini45'
 ft_sensor_left:
   description: 'FT sensor model left arm'
-  choices: ['rokubi', 'no-ft-sensor']
-  default_value: 'rokubi'
+  choices: ['ati-mini45', 'no-ft-sensor']
+  default_value: 'ati-mini45'
 ft_sensor_head:
   description: 'FT sensor model head arm'
-  choices: ['rokubi', 'no-ft-sensor']
-  default_value: 'rokubi'
+  choices: ['ati-mini45', 'no-ft-sensor']
+  default_value: 'ati-mini45'
 base_type:
   description: 'Base type'
   choices: ['omni_base']

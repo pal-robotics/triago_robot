@@ -39,10 +39,10 @@
   <xacro:arg name="end_effector_head" default="pal-pro-gripper" />
 
 
-  <!-- no-ft-sensor, rokubi -->
+  <!-- no-ft-sensor, ati-mini45 -->
   <xacro:arg name="ft_sensor_left" default="no-ft-sensor" />
 
-  <!-- no-ft-sensor, rokubi -->
+  <!-- no-ft-sensor, ati-mini45 -->
   <xacro:arg name="ft_sensor_right" default="no-ft-sensor" />
 
   <xacro:arg name="ft_sensor_head" default="no-ft-sensor" />
@@ -115,13 +115,13 @@
   <xacro:if value="${end_effector_head not in ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector']}">
     <xacro:wrong_end_effector_head />
   </xacro:if>
-  <xacro:if value="${ft_sensor_left not in ['no-ft-sensor', 'rokubi']}">
+  <xacro:if value="${ft_sensor_left not in ['no-ft-sensor', 'ati-mini45']}">
     <xacro:wrong_ft_sensor_left />
   </xacro:if>
-  <xacro:if value="${ft_sensor_right not in ['no-ft-sensor', 'rokubi']}">
+  <xacro:if value="${ft_sensor_right not in ['no-ft-sensor', 'ati-mini45']}">
     <xacro:wrong_ft_sensor_right />
   </xacro:if>
-  <xacro:if value="${ft_sensor_head not in ['no-ft-sensor', 'rokubi']}">
+  <xacro:if value="${ft_sensor_head not in ['no-ft-sensor', 'ati-mini45']}">
     <xacro:wrong_ft_sensor_head />
   </xacro:if>
   <xacro:if value="${laser_model not in ['no-laser', 'sick-571']}">
@@ -153,14 +153,9 @@
     <xacro:include filename="$(find pal_sea_arm_description)/urdf/tool_changer/tool_changer.urdf.xacro" />
   </xacro:if>
 
-  <!-- Allegro hand and tool changer-->
-  <xacro:if value="${end_effector_right == 'allegro-hand' or end_effector_left == 'allegro-hand' or end_effector_head == 'allegro-hand'}">
-    <xacro:include filename="$(find allegro_hand_description)/urdf/allegro_hand.urdf.xacro" />
-  </xacro:if>
-
   <!-- Force Torque sensor -->
   <xacro:if value="${has_ft_sensor_right or has_ft_sensor_left or has_ft_sensor_head}">
-    <xacro:include filename="$(find triago_description)/urdf/ft_sensor/ft_sensor.urdf.xacro" />
+    <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/ft_sensor_ati_mini45.urdf.xacro" />
   </xacro:if>
 
   <!-- Materials for visualization -->

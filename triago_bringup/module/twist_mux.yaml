@@ -1,2 +1,0 @@
-twist_mux:
-  launch: "triago_bringup twist_mux.launch.py"

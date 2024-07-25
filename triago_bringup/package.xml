@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>triago_bringup</name>
+  <version>0.0.0</version>
+  <description>Launch files to upload the TRIAGo robot description and start the controllers</description>
+  <maintainer email="viviana.morlando@pal-robotics.com">Viviana Morlando</maintainer>
+  <author email="viviana.morlando@pal-robotics.com">Viviana Morlando</author>
+  <license>Apache License 2.0</license>
+
+  <buildtool_depend>ament_cmake_auto</buildtool_depend>
+
+  <build_depend condition="$PAL_DISTRO >= alum">pal_module_cmake</build_depend>
+
+
+  <exec_depend>triago_controller_configuration</exec_depend>
+  <exec_depend>joy_linux</exec_depend>
+  <exec_depend>joy_teleop</exec_depend>
+  <exec_depend>twist_mux</exec_depend>
+  <exec_depend>play_motion2</exec_depend>
+
+
+<!--  <exec_depend>robot_pose</exec_depend>-->
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+
+</package>

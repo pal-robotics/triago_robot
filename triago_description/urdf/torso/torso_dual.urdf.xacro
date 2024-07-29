@@ -152,7 +152,7 @@
     <parent link="${name}_fixed_link" />
     <child link="${name}_lift_link" />
     <axis xyz="0 0 1" />
-    <limit effort="0" lower="0" upper="0.35" velocity="0" />
+    <limit effort="0" lower="0" upper="0.35" velocity="${torso_max_vel}" />
   </joint>
 
   <link

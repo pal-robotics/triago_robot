@@ -18,26 +18,35 @@ if(BUILD_TESTING)
 
   foreach(arm_type_left triago no-arm)
     foreach(arm_type_right triago no-arm)
+      foreach(arm_type_head triago no-arm)      
         foreach(end_effector_left pal-pro-gripper custom no-end-effector)
             foreach(end_effector_right pal-pro-gripper custom no-end-effector)
+              foreach(end_effector_head pal-pro-gripper custom no-end-effector)
                 foreach(ft_sensor_left no-ft-sensor ati-mini45)
                     foreach(ft_sensor_right no-ft-sensor ati-mini45)
+                      foreach(ft_sensor_head no-ft-sensor ati-mini45)
 
                           set(left_side "${arm_type_left}_${end_effector_left}_${ft_sensor_left}")
                           set(right_side "${arm_type_right}_${end_effector_right}_${ft_sensor_right}")
-  
+                          set(head_side "${arm_type_head}_${end_effector_head}_${ft_sensor_head}")
   
                           add_launch_test(
                             test/test_description.launch.py
-                            TARGET "triago_description_${left_side}_${right_side}"
+                            TARGET "triago_description_${left_side}_${right_side}_${head_side}"
                             ARGS
                             "arm_type_left:=${arm_type_left}"
                             "arm_type_right:=${arm_type_right}"
+                            "arm_type_head:=${arm_type_head}"
                             "end_effector_left:=${end_effector_left}"
                             "end_effector_right:=${end_effector_right}"
+                            "end_effector_head:=${end_effector_head}"
                             "ft_sensor_left:=${ft_sensor_left}"
                             "ft_sensor_right:=${ft_sensor_right}"
+                            "ft_sensor_head:=${ft_sensor_head}"
                           )
+                          endforeach()
+                        endforeach()
+                      endforeach()
                     endforeach()
                 endforeach()
             endforeach()

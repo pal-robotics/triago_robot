@@ -16,10 +16,13 @@
 def get_triago_hw_suffix(
     arm_right: str = "no-arm",
     arm_left: str = "no-arm",
+    arm_head: str = "no-arm",
     end_effector_right: str = "no-end-effector",
     end_effector_left: str = "no-end-effector",
+    end_effector_head: str = "no-end-effector",
     ft_sensor_right: str = "no-ft-sensor",
     ft_sensor_left: str = "no-ft-sensor",
+    ft_sensor_head: str = "no-ft-sensor",
 ):
     """
     Generate a substitution that creates a text suffix combining the specified \
@@ -32,7 +35,9 @@ def get_triago_hw_suffix(
     )
     left_suffix = get_single_arm_hw_suffix(arm_left, end_effector_left, ft_sensor_left)
 
-    suffix = left_suffix + right_suffix
+    head_suffix = get_single_arm_hw_suffix(arm_head, end_effector_head, ft_sensor_head)
+
+    suffix = left_suffix + right_suffix + head_suffix
     return suffix
 
 

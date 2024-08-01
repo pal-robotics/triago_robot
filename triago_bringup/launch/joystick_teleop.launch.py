@@ -33,10 +33,13 @@ from dataclasses import dataclass
 class LaunchArguments(LaunchArgumentsBase):
     arm_type_right: DeclareLaunchArgument = TriagoArgs.arm_type_right
     arm_type_left: DeclareLaunchArgument = TriagoArgs.arm_type_left
+    arm_type_head: DeclareLaunchArgument = TriagoArgs.arm_type_head
     end_effector_right: DeclareLaunchArgument = TriagoArgs.end_effector_right
     end_effector_left: DeclareLaunchArgument = TriagoArgs.end_effector_left
+    end_effector_head: DeclareLaunchArgument = TriagoArgs.end_effector_head
     ft_sensor_right: DeclareLaunchArgument = TriagoArgs.ft_sensor_right
     ft_sensor_left: DeclareLaunchArgument = TriagoArgs.ft_sensor_left
+    ft_sensor_head: DeclareLaunchArgument = TriagoArgs.ft_sensor_head
 
     cmd_vel: DeclareLaunchArgument = DeclareLaunchArgument(
         name='cmd_vel',
@@ -82,15 +85,6 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         namespace='head_controller')
 
     launch_description.add_action(head_incrementer_server)
-
-    gripper_incrementer_server = Node(
-        package='joy_teleop',
-        executable='incrementer_server',
-        name='incrementer',
-        namespace='gripper_right_controller',
-        condition=LaunchConfigurationEquals('end_effector_right', 'pal-pro-gripper'))
-
-    launch_description.add_action(gripper_incrementer_server)
 
     return
 

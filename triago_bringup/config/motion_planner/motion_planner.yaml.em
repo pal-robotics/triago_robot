@@ -11,19 +11,14 @@ play_motion2:
         - arm_right_torso
         - arm_right
 @[end if]@
-@[if has_arm_left and has_arm_right]@
-        - both_arms_torso
+@[if has_arm_head]@
+        - arm_head_torso
+        - arm_head
+@[end if]@
+@[if has_arm_left and has_arm_right and has_arm_head]@
+        - all_arms_torso
 @[end if]@
         - torso
-      exclude_from_planning_joints:
-        - head_1_joint
-        - head_2_joint
-@[if end_effector_left in ["pal-pro-gripper"]]@
-        - gripper_left_finger_joint
-@[end if]@
-@[if end_effector_right in ["pal-pro-gripper"]]@
-        - gripper_right_finger_joint
-@[end if]@
       joint_tolerance: 0.01
 
       # Parameters for non-planned approach

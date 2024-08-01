@@ -30,10 +30,13 @@ from dataclasses import dataclass
 class LaunchArguments(LaunchArgumentsBase):
     arm_type_right: DeclareLaunchArgument = TriagoArgs.arm_type_right
     arm_type_left: DeclareLaunchArgument = TriagoArgs.arm_type_left
+    arm_type_head: DeclareLaunchArgument = TriagoArgs.arm_type_head
     end_effector_right: DeclareLaunchArgument = TriagoArgs.end_effector_right
     end_effector_left: DeclareLaunchArgument = TriagoArgs.end_effector_left
+    end_effector_head: DeclareLaunchArgument = TriagoArgs.end_effector_head
     ft_sensor_right: DeclareLaunchArgument = TriagoArgs.ft_sensor_right
     ft_sensor_left: DeclareLaunchArgument = TriagoArgs.ft_sensor_left
+    ft_sensor_head: DeclareLaunchArgument = TriagoArgs.ft_sensor_head
 
     use_sim_time:  DeclareLaunchArgument = CommonArgs.use_sim_time
 
@@ -63,10 +66,13 @@ def create_play_motion_filename(context):
     hw_suffix = get_triago_hw_suffix(
         arm_right=read_launch_argument('arm_type_right', context),
         arm_left=read_launch_argument('arm_type_left', context),
+        arm_head=read_launch_argument('arm_type_head', context),
         end_effector_right=read_launch_argument('end_effector_right', context),
         end_effector_left=read_launch_argument('end_effector_left', context),
+        end_effector_head=read_launch_argument('end_effector_head', context),
         ft_sensor_right=read_launch_argument('ft_sensor_right', context),
         ft_sensor_left=read_launch_argument('ft_sensor_left', context),
+        ft_sensor_head=read_launch_argument('ft_sensor_head', context),
     )
 
  
@@ -74,10 +80,13 @@ def create_play_motion_filename(context):
     base_motions_file = 'triago_motions_general.yaml'
 
     if read_launch_argument('arm_type_right', context) == 'no-arm':
-        base_motions_file = 'triago_motions_general_arm_left.yaml'
+        base_motions_file = 'triago_motions_general_arm_left_arm_head.yaml'
 
     if read_launch_argument('arm_type_left', context) == 'no-arm':
-        base_motions_file = 'triago_motions_general_arm_right.yaml'
+        base_motions_file = 'triago_motions_general_arm_right_arm_head.yaml'
+
+    if read_launch_argument('arm_type_head', context) == 'no-arm':
+        base_motions_file = 'triago_motions_general_arm_left_arm_right.yaml'
 
     base_motions_yaml = PathJoinSubstitution(
         [pkg_share_dir, 'config', 'motions', base_motions_file])

@@ -28,15 +28,15 @@ laser_model:
   default_value: 'sick-571'
 end_effector_right:
   description: 'End effector model right arm'
-  choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector']
+  choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector', 'camera-tools'] 
   default_value: 'allegro-hand'
 end_effector_left:
   description: 'End effector model left arm'
-  choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector']
+  choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector', 'camera-tools']
   default_value: 'allegro-hand'
 end_effector_head:
   description: 'End effector model head arm'
-  choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector']
+  choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector', 'camera-tools']
   default_value: 'pal-pro-gripper'
 ft_sensor_right:
   description: 'FT sensor model right arm'

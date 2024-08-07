@@ -52,8 +52,11 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         'triago_controller_configuration')
 
     # Mobile base controller
+    base_share_folder = get_package_share_directory(
+        'omni_base_controller_configuration')
+
     default_config = os.path.join(
-        pkg_share_folder,
+        base_share_folder,
         'config', 'mobile_base_controller.yaml')
 
     calibration_config = '/etc/calibration/master_calibration.yaml'
@@ -97,8 +100,6 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
     launch_description.add_action(torso_controller)
 
-
-
     # IMU sensor broadcaster
     imu_sensor_broadcaster = GroupAction(
         [
@@ -118,7 +119,7 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
     # Add controller of left arm, end-effector and ft-sensor
     launch_description.add_action(OpaqueFunction(
         function=configure_side_controllers, args=['left']))
-    
+
     # Add controller of head arm, end-effector and ft-sensor
     launch_description.add_action(OpaqueFunction(
         function=configure_side_controllers, args=['head']))

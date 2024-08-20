@@ -244,10 +244,10 @@
        <xacro:tool_changer name="tool_changer_head" parent="${end_effector_head_link}">
          <xacro:if value="${has_ft_sensor_head}">
               <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-            </xacro:if>
-            <xacro:unless value="${has_ft_sensor_head}">
+         </xacro:if>
+         <xacro:unless value="${has_ft_sensor_head}">
               <origin xyz="0.0 0.0 0.0" rpy="${-90.0 * deg_to_rad} ${90.0 * deg_to_rad} ${-90.0 * deg_to_rad}"/>
-            </xacro:unless>
+         </xacro:unless>
         </xacro:tool_changer>
       <xacro:triago_end_effector name="gripper_head" parent="tool_changer_head_tc_tool_link" type="${end_effector_head}" has_end_effector="${has_end_effector_head}" reflect="1" is_dual="true"/>
     </xacro:if>

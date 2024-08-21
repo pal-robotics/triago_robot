@@ -39,6 +39,7 @@ class LaunchArguments(LaunchArgumentsBase):
     end_effector_right: DeclareLaunchArgument = TriagoArgs.end_effector_right
     end_effector_left: DeclareLaunchArgument = TriagoArgs.end_effector_left
     end_effector_head: DeclareLaunchArgument = TriagoArgs.end_effector_head
+    hand_head_type: DeclareLaunchArgument = TriagoArgs.hand_head_type
     ft_sensor_right: DeclareLaunchArgument = TriagoArgs.ft_sensor_right
     ft_sensor_left: DeclareLaunchArgument = TriagoArgs.ft_sensor_left
     ft_sensor_head: DeclareLaunchArgument = TriagoArgs.ft_sensor_head
@@ -84,6 +85,7 @@ def create_robot_description_param(context, *args, **kwargs):
         'end_effector_right': read_launch_argument('end_effector_right', context),
         'end_effector_left': read_launch_argument('end_effector_left', context),
         'end_effector_head': read_launch_argument('end_effector_head', context),
+        'hand_head_type': read_launch_argument('hand_head_type', context),
         'ft_sensor_right': read_launch_argument('ft_sensor_right', context),
         'ft_sensor_left': read_launch_argument('ft_sensor_left', context),
         'ft_sensor_head': read_launch_argument('ft_sensor_head', context),

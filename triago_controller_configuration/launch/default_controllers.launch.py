@@ -39,6 +39,7 @@ class LaunchArguments(LaunchArgumentsBase):
     end_effector_right: DeclareLaunchArgument = TriagoArgs.end_effector_right
     end_effector_left: DeclareLaunchArgument = TriagoArgs.end_effector_left
     end_effector_head: DeclareLaunchArgument = TriagoArgs.end_effector_head
+    hand_head_type: DeclareLaunchArgument = TriagoArgs.hand_head_type
     ft_sensor_right: DeclareLaunchArgument = TriagoArgs.ft_sensor_right
     ft_sensor_left: DeclareLaunchArgument = TriagoArgs.ft_sensor_left
     ft_sensor_head: DeclareLaunchArgument = TriagoArgs.ft_sensor_head

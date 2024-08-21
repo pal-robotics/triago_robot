@@ -38,6 +38,7 @@ class TriagoArgs:
     end_effector_right: DLA = __arg_creator.get_argument("end_effector_right")
     end_effector_left: DLA = __arg_creator.get_argument("end_effector_left")
     end_effector_head: DLA = __arg_creator.get_argument("end_effector_head")
+    hand_head_type: DLA = __arg_creator.get_argument("hand_head_type")
     ft_sensor_right: DLA = __arg_creator.get_argument("ft_sensor_right")
     ft_sensor_left: DLA = __arg_creator.get_argument("ft_sensor_left")
     ft_sensor_head: DLA = __arg_creator.get_argument("ft_sensor_head")

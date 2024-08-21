@@ -249,7 +249,7 @@
               <origin xyz="0.0 0.0 0.0" rpy="${-90.0 * deg_to_rad} ${90.0 * deg_to_rad} ${-90.0 * deg_to_rad}"/>
          </xacro:unless>
         </xacro:tool_changer>
-      <xacro:triago_end_effector name="gripper_head" parent="tool_changer_head_tc_tool_link" type="${end_effector_head}" has_end_effector="${has_end_effector_head}" reflect="1" is_dual="true"/>
+      <xacro:triago_end_effector name="gripper" parent="tool_changer_head_tc_tool_link" type="${end_effector_head}" has_end_effector="${has_end_effector_head}" reflect="1" is_dual="true"/>
     </xacro:if>
 
     <!-- FT sensors -->

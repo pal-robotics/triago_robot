@@ -17,7 +17,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import OpaqueFunction, GroupAction
-from launch.conditions import LaunchConfigurationNotEquals, LaunchConfigurationEquals, IfCondition, UnlessCondition
+from launch.conditions import LaunchConfigurationNotEquals, IfCondition, UnlessCondition
 from launch.substitutions import LaunchConfiguration, PythonExpression
 from launch_pal.param_utils import merge_param_files
 from launch.actions import DeclareLaunchArgument
@@ -129,12 +129,10 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
 def configure_side_controllers(context, end_effector_side='right', *args, **kwargs):
 
-
     end_effector_arg_name = concatenate_strings(
-    strings=['end_effector', end_effector_side],
-    delimiter='_',
-    skip_empty=True)
-
+        strings=['end_effector', end_effector_side],
+        delimiter='_',
+        skip_empty=True)
 
     arm_arg_name = concatenate_strings(
         strings=['arm_type', end_effector_side],
@@ -158,31 +156,31 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
     ee_pkg_name = f'{end_effector_underscore}_controller_configuration'
     ee_launch_file = f'{end_effector_underscore}_controller.launch.py'
 
-    if( end_effector_side == 'head'):
+    if end_effector_side == 'head':
         end_effector_controller = include_scoped_launch_py_description(
-        pkg_name=ee_pkg_name,
-        paths=['launch', ee_launch_file],
-        launch_arguments={"side": ""},
-        condition=IfCondition(
-            PythonExpression(
-                ["'", LaunchConfiguration(arm_arg_name), "' != 'no-arm' and '",
-                 LaunchConfiguration(end_effector_arg_name), "' != 'no-end-effector'"]
+            pkg_name=ee_pkg_name,
+            paths=['launch', ee_launch_file],
+            launch_arguments={"side": ""},
+            condition=IfCondition(
+                PythonExpression(
+                    ["'", LaunchConfiguration(arm_arg_name), "' != 'no-arm' and '",
+                     LaunchConfiguration(end_effector_arg_name), "' != 'no-end-effector'"]
+                     )
+                )
             )
-        )
-        )
     else:
         end_effector_controller = include_scoped_launch_py_description(
-        pkg_name=ee_pkg_name,
-        paths=['launch', ee_launch_file],
-        launch_arguments={"side": end_effector_side},
-        condition=IfCondition(
-            PythonExpression(
-                ["'", LaunchConfiguration(arm_arg_name), "' != 'no-arm' and '",
-                 LaunchConfiguration(end_effector_arg_name), "' != 'no-end-effector'"]
+            pkg_name=ee_pkg_name,
+            paths=['launch', ee_launch_file],
+            launch_arguments={"side": end_effector_side},
+            condition=IfCondition(
+                PythonExpression(
+                    ["'", LaunchConfiguration(arm_arg_name), "' != 'no-arm' and '",
+                     LaunchConfiguration(end_effector_arg_name), "' != 'no-end-effector'"]
+                     )
+                )
             )
-        )
-    )
-
+        
     # Setup ft-sensor controller
     ft_sensor = read_launch_argument(ft_sensor_arg_name, context)
     ft_pkg_name = 'pal_sea_arm_controller_configuration'

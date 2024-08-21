@@ -37,7 +37,7 @@ end_effector_left:
 end_effector_head:
   description: 'End effector model head arm'
   choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector', 'camera-tools']
-  default_value: 'pal-pro-gripper'
+  default_value: 'allegro-hand'
 ft_sensor_right:
   description: 'FT sensor model right arm'
   choices: ['ati-mini45', 'no-ft-sensor']

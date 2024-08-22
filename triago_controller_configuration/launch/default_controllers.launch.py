@@ -156,31 +156,18 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
 
     ee_pkg_name = f'{end_effector_underscore}_controller_configuration'
     ee_launch_file = f'{end_effector_underscore}_controller.launch.py'
-
-    if end_effector_side == 'head':
-        end_effector_controller = include_scoped_launch_py_description(
-            pkg_name=ee_pkg_name,
-            paths=['launch', ee_launch_file],
-            launch_arguments={"side": ""},
-            condition=IfCondition(
-                PythonExpression(
-                    ["'", LaunchConfiguration(arm_arg_name), "' != 'no-arm' and '",
-                     LaunchConfiguration(end_effector_arg_name), "' != 'no-end-effector'"]
-                     )
-                )
+    
+    end_effector_controller = include_scoped_launch_py_description(
+        pkg_name=ee_pkg_name,
+        paths=['launch', ee_launch_file],
+        launch_arguments={"side": end_effector_side},
+        condition=IfCondition(
+            PythonExpression(
+                ["'", LaunchConfiguration(arm_arg_name), "' != 'no-arm' and '",
+                 LaunchConfiguration(end_effector_arg_name), "' != 'no-end-effector'"]
+                 )
             )
-    else:
-        end_effector_controller = include_scoped_launch_py_description(
-            pkg_name=ee_pkg_name,
-            paths=['launch', ee_launch_file],
-            launch_arguments={"side": end_effector_side},
-            condition=IfCondition(
-                PythonExpression(
-                    ["'", LaunchConfiguration(arm_arg_name), "' != 'no-arm' and '",
-                     LaunchConfiguration(end_effector_arg_name), "' != 'no-end-effector'"]
-                     )
-                )
-            )
+        )
         
     # Setup ft-sensor controller
     ft_sensor = read_launch_argument(ft_sensor_arg_name, context)

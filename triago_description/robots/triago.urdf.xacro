@@ -23,12 +23,12 @@
   <xacro:arg name="laser_model" default="sick-571"/>
 
   <!-- triago, no-arm -->
-  <xacro:arg name="arm_type_left" default="triago" />
+  <xacro:arg name="arm_type_left" default="tiago-pro" />
 
   <!-- triago, no-arm -->
-  <xacro:arg name="arm_type_right" default="triago" />
+  <xacro:arg name="arm_type_right" default="tiago-pro" />
 
-  <xacro:arg name="arm_type_head" default="triago" />
+  <xacro:arg name="arm_type_head" default="tiago-pro" />
 
   <!-- pal-pro-gripper custom-->
   <xacro:arg name="end_effector_left" default="allegro-hand" />
@@ -75,7 +75,6 @@
   <xacro:property name="ft_sensor_left" value="$(arg ft_sensor_left)" />
   <xacro:property name="ft_sensor_right" value="$(arg ft_sensor_right)" />
   <xacro:property name="ft_sensor_head" value="$(arg ft_sensor_head)" />
-  <xacro:property name="arm_type" value="triago" />
   <xacro:property name="description_calibration_dir" value="${arg description_calibration_dir}"/>
   <xacro:property name="is_public_sim" value="$(arg is_public_sim)" />
 
@@ -105,13 +104,13 @@
   </xacro:unless>
 
   <!-- Properties check -->
-  <xacro:if value="${arm_type_left not in ['triago', 'no-arm']}">
+  <xacro:if value="${arm_type_left not in ['tiago-pro', 'no-arm']}">
     <xacro:wrong_arm_type_left />
   </xacro:if>
-  <xacro:if value="${arm_type_right not in ['triago', 'no-arm']}">
+  <xacro:if value="${arm_type_right not in ['tiago-pro', 'no-arm']}">
     <xacro:wrong_arm_type_right />
   </xacro:if>
-  <xacro:if value="${arm_type_head not in ['triago', 'no-arm']}">
+  <xacro:if value="${arm_type_head not in ['tiago-pro', 'no-arm']}">
     <xacro:wrong_arm_type_head />
   </xacro:if>
   <xacro:if value="${end_effector_left not in ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector']}">
@@ -184,15 +183,15 @@
   <xacro:if value="${has_arm_left}">
 
     <!-- Arm -->
-    <xacro:pal_sea_arm name="arm_left" parent="arm_left_link" arm_type="$(arg arm_type_left)" reflect="1" arm_1_offset="${arm_left_1_joint_offset}" arm_2_offset="${arm_left_2_joint_offset}" arm_3_offset="${arm_left_3_joint_offset}" arm_4_offset="${arm_left_4_joint_offset}" arm_5_offset="${arm_left_5_joint_offset}" arm_6_offset="${arm_left_6_joint_offset}" arm_7_offset="${arm_left_7_joint_offset}">
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${-111.0 * deg_to_rad}"/>
+    <xacro:pal_sea_arm name="arm_left" parent="torso_lift_link" arm_type="$(arg arm_type_left)" reflect="1" arm_1_offset="${arm_left_1_joint_offset}" arm_2_offset="${arm_left_2_joint_offset}" arm_3_offset="${arm_left_3_joint_offset}" arm_4_offset="${arm_left_4_joint_offset}" arm_5_offset="${arm_left_5_joint_offset}" arm_6_offset="${arm_left_6_joint_offset}" arm_7_offset="${arm_left_7_joint_offset}">
+      <origin xyz="$(arg arm_x) $(arg arm_y) $(arg arm_z)" rpy="$(arg arm_roll) $(arg arm_pitch) $(arg arm_yaw)"/>
     </xacro:pal_sea_arm>
 
     <!-- End effector -->
     <xacro:if value="${has_end_effector_left}">
        <xacro:tool_changer name="tool_changer_left" parent="${end_effector_left_link}">
          <xacro:if value="${has_ft_sensor_left}">
-              <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${-180.0 * deg_to_rad}"/>
+              <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             </xacro:if>
             <xacro:unless value="${has_ft_sensor_left}">
               <origin xyz="0.0 0.0 0.0" rpy="${-90.0 * deg_to_rad} ${90.0 * deg_to_rad} ${-90.0 * deg_to_rad}"/>
@@ -212,8 +211,8 @@
   <xacro:if value="${has_arm_right}">
 
     <!-- Arm -->
-    <xacro:pal_sea_arm name="arm_right" parent="arm_right_link" arm_type="$(arg arm_type_right)" reflect="1" arm_1_offset="${arm_right_1_joint_offset}" arm_2_offset="${arm_right_2_joint_offset}" arm_3_offset="${arm_right_3_joint_offset}" arm_4_offset="${arm_right_4_joint_offset}" arm_5_offset="${arm_right_5_joint_offset}" arm_6_offset="${arm_right_6_joint_offset}" arm_7_offset="${arm_right_7_joint_offset}">
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${-69.0 * deg_to_rad}"/>
+    <xacro:pal_sea_arm name="arm_right" parent="torso_lift_link" arm_type="$(arg arm_type_right)" reflect="1" arm_1_offset="${arm_right_1_joint_offset}" arm_2_offset="${arm_right_2_joint_offset}" arm_3_offset="${arm_right_3_joint_offset}" arm_4_offset="${arm_right_4_joint_offset}" arm_5_offset="${arm_right_5_joint_offset}" arm_6_offset="${arm_right_6_joint_offset}" arm_7_offset="${arm_right_7_joint_offset}">
+      <origin xyz="$(arg arm_x) ${-1.0*$(arg arm_y)} $(arg arm_z)" rpy="$(arg arm_roll) ${-1.0*$(arg arm_pitch)} ${-3.14159 -$(arg arm_yaw)}"/>
     </xacro:pal_sea_arm>
 
     <!-- End effector -->
@@ -221,7 +220,7 @@
     <xacro:if value="${has_end_effector_right}">
        <xacro:tool_changer name="tool_changer_right" parent="${end_effector_right_link}">
          <xacro:if value="${has_ft_sensor_right}">
-              <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+              <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${-180.0 * deg_to_rad}"/>
             </xacro:if>
             <xacro:unless value="${has_ft_sensor_right}">
               <origin xyz="0.0 0.0 0.0" rpy="${-90.0 * deg_to_rad} ${90.0 * deg_to_rad} ${-90.0 * deg_to_rad}"/>
@@ -243,8 +242,8 @@
   <xacro:if value="${has_arm_head}">
 
     <!-- Arm -->
-    <xacro:pal_sea_arm name="arm_head" parent="arm_head_link" arm_type="$(arg arm_type_head)" reflect="1" arm_1_offset="${arm_right_1_joint_offset}" arm_2_offset="${arm_right_2_joint_offset}" arm_3_offset="${arm_right_3_joint_offset}" arm_4_offset="${arm_right_4_joint_offset}" arm_5_offset="${arm_right_5_joint_offset}" arm_6_offset="${arm_right_6_joint_offset}" arm_7_offset="${arm_right_7_joint_offset}">
-      <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <xacro:pal_sea_arm name="arm_head" parent="torso_lift_link" arm_type="$(arg arm_type_head)" reflect="1" arm_1_offset="${arm_right_1_joint_offset}" arm_2_offset="${arm_right_2_joint_offset}" arm_3_offset="${arm_right_3_joint_offset}" arm_4_offset="${arm_right_4_joint_offset}" arm_5_offset="${arm_right_5_joint_offset}" arm_6_offset="${arm_right_6_joint_offset}" arm_7_offset="${arm_right_7_joint_offset}">
+      <origin xyz="0.00733452377915612 0 0.630632193308821" rpy="0 0.785398163397445 0" />
     </xacro:pal_sea_arm>
 
     <!-- End effector -->

@@ -156,10 +156,10 @@
   </joint>
 
   <link
-    name="arm_left_link">
+    name="${name}_arm_left_link">
     <inertial>
       <origin
-        xyz="0.024927 -0.0093838 -0.030755"
+        xyz="0 0 0"
         rpy="0 0 0" />
       <mass
         value="0.23047" />
@@ -196,24 +196,22 @@
     </collision>
   </link>
   <joint
-    name="arm_left_link"
+    name="${name}_arm_left_joint"
     type="fixed">
-    <origin
-      xyz="0.089428 0.15903 0.46268"
-      rpy="-2.0961 0.31441 -1.3991" />
+    <origin xyz="0.0898413194899453 0.159181203216899 -0.0920547375491735" rpy="-2.06788770984932 0 -1.22173047639603" />
     <parent
       link="${name}_lift_link" />
     <child
-      link="arm_left_link" />
+      link="${name}_arm_left_link" />
     <axis
       xyz="0 0 0" />
   </joint>
 
  <link
-    name="arm_right_link">
+    name="${name}_arm_right_link">
     <inertial>
       <origin
-        xyz="-0.025026 -0.009123 -0.031256"
+        xyz="0 0 0"
         rpy="0 0 0" />
       <mass
         value="0.23047" />
@@ -250,25 +248,23 @@
     </collision>
   </link>
   <joint
-    name="arm_right_joint"
+    name="${name}_arm_right_joint"
     type="fixed">
-    <origin
-      xyz="0.0898413194899457 -0.159181203217083 0.462445262450827"
-      rpy="-2.09439510239319 -0.305349554638743 -1.74800742587503" />
+    <origin xyz="0.0898413194899453 -0.1591812032169 -0.0920547375491731" rpy="-2.06788770984932 0 -1.91986217719377" />
     <parent
       link="${name}_lift_link" />
     <child
-      link="arm_right_link" />
+      link="${name}_arm_right_link" />
     <axis
       xyz="0 0 0" />
   </joint>
 
 
  <link
-    name="arm_head_link">
+    name="${name}_arm_head_link">
     <inertial>
       <origin
-        xyz="0.01289 -1.9489E-07 -0.017393"
+        xyz="0 0 0"
         rpy="0 0 0" />
       <mass
         value="0.18229" />
@@ -305,7 +301,7 @@
     </collision>
   </link>
   <joint
-    name="arm_head_joint"
+    name="${name}_arm_head_joint"
     type="fixed">
     <origin
       xyz="0.00733452377915612 0 0.630632193308821"
@@ -313,7 +309,7 @@
     <parent
       link="${name}_lift_link" />
     <child
-      link="arm_head_link" />
+      link="${name}_arm_head_link" />
     <axis
       xyz="0 0 0" />
   </joint>

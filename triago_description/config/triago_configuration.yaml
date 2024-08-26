@@ -1,15 +1,15 @@
 arm_type_right:
   description: 'Arm type right'
-  choices: ['triago', 'no-arm']
-  default_value: 'triago'
+  choices: ['tiago-pro', 'no-arm']
+  default_value: 'tiago-pro'
 arm_type_left:
   description: 'Arm type left'
-  choices: ['triago', 'no-arm']
-  default_value: 'triago'
+  choices: ['tiago-pro', 'no-arm']
+  default_value: 'tiago-pro'
 arm_type_head:
   description: 'Arm type head'
-  choices: ['triago', 'no-arm']
-  default_value: 'triago'
+  choices: ['tiago-pro', 'no-arm']
+  default_value: 'tiago-pro'
 wrist_model_right:
   description: 'Wrist model right'
   choices: ['spherical-wrist', 'wrist-2023']
@@ -37,11 +37,11 @@ end_effector_left:
 end_effector_head:
   description: 'End effector model head arm'
   choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector', 'camera-tools']
-  default_value: 'pal-pro-gripper'
+  default_value: 'no-end-effector'
 hand_head_type:
   description: 'If the head arm has allegro hand specify if it is right or left'
   choices: ['right' , 'left' , '']
-  default_value: ''
+  default_value: 'left'
 ft_sensor_right:
   description: 'FT sensor model right arm'
   choices: ['ati-mini45', 'no-ft-sensor']

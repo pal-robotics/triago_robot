@@ -50,7 +50,7 @@ def get_single_arm_hw_suffix(
 
     The arguments are read as string
 
-    For instance, the suffix for: arm=triago, end_effector='pal-pro-gripper', ft_sensor='ati-mini45'
+    For instance, the suffix for: arm=tiago-pro, end_effector='pal-pro-gripper', ft_sensor='ati-mini45'
     would be '_pal-pro-gripper_ati_mini45'
     """
     if arm in ['no-arm']:

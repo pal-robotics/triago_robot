@@ -28,7 +28,7 @@ extension = os.path.splitext(no_em_extension_path)[1]
 
 end_effectors = ["pal-pro-gripper", "custom", "no-end-effector", "allegro-hand"]
 ft_sensors = ["ati-mini45", "no-ft-sensor"]
-arm_types = ['triago', 'no-arm']
+arm_types = ['tiago-pro', 'no-arm']
 
 for end_effector_left in end_effectors:
     for end_effector_right in end_effectors:

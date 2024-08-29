@@ -54,12 +54,12 @@
   <xacro:arg name="is_multiple" default="false"/>
   <xacro:arg name="description_calibration_dir" default="$(find triago_description)/urdf"/>
   <xacro:arg name="extrinsic_calibration_dir" default="$(find triago_description)/urdf"/>
-  <xacro:arg name="arm_x" default="0.089428" />
-  <xacro:arg name="arm_y" default="0.15903" />
+  <xacro:arg name="arm_x" default="0.089841" />
+  <xacro:arg name="arm_y" default="0.15918" />
   <xacro:arg name="arm_z" default="0.46268" />
-  <xacro:arg name="arm_roll" default="-2.0961" />
-  <xacro:arg name="arm_pitch" default="0.31441" />
-  <xacro:arg name="arm_yaw" default="-1.3991" />
+  <xacro:arg name="arm_roll" default="-2.0679" />
+  <xacro:arg name="arm_pitch" default="0.0" />
+  <xacro:arg name="arm_yaw" default="-1.2217" />
 
   <!-- PROPERTIES -->
 

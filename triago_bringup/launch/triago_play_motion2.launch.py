@@ -76,8 +76,6 @@ def create_play_motion_filename(context):
         ft_sensor_head=read_launch_argument('ft_sensor_head', context),
     )
 
- 
-
     base_motions_file = 'triago_motions_general.yaml'
 
     if read_launch_argument('arm_type_right', context) == 'no-arm':

@@ -19,7 +19,6 @@ from launch import LaunchDescription
 from launch.substitutions import LaunchConfiguration
 from launch.actions import DeclareLaunchArgument, OpaqueFunction, SetLaunchConfiguration
 from launch_ros.actions import Node
-from launch.conditions import LaunchConfigurationEquals
 
 from triago_description.triago_launch_utils import get_single_arm_hw_suffix
 

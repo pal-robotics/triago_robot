@@ -77,14 +77,6 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
     launch_description.add_action(torso_incrementer_server)
 
-    head_incrementer_server = Node(
-        package='joy_teleop',
-        executable='incrementer_server',
-        name='incrementer',
-        namespace='head_controller')
-
-    launch_description.add_action(head_incrementer_server)
-
     return
 
 

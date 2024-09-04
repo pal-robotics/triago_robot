@@ -44,7 +44,7 @@
   <xacro:arg name="ft_sensor_left" default="ati-mini45" />
 
   <!-- no-ft-sensor, ati-mini45 -->
-  <xacro:arg name="ft_sensor_right" default="no-ft-sensor" />
+  <xacro:arg name="ft_sensor_right" default="ati-mini45" />
 
   <xacro:arg name="ft_sensor_head" default="no-ft-sensor" />
 

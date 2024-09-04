@@ -27,8 +27,6 @@
 
   <!-- No end-effector -->
   <xacro:if value="${not has_end_effector}">
-
-    <!-- Add nothing -->
   </xacro:if>
 
 

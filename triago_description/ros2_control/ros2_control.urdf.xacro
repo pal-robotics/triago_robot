@@ -101,7 +101,7 @@
       <!-- torso -->
       <xacro:ros2_control_torso name="torso_lift" reduction="1.0" />
 
-    <xacro:arg name="pid_controllers" default="false"/>
+      <xacro:arg name="pid_controllers" default="false"/>
 
       <!-- arm left -->
       <xacro:if value="${has_arm_left}">
@@ -112,9 +112,10 @@
         <xacro:ros2_control_arm name="arm_left_5" reduction="1.0" offset_value="${arm_left_5_joint_offset}" />
         <xacro:ros2_control_arm name="arm_left_6" reduction="1.0" offset_value="${arm_left_6_joint_offset}" />
         <xacro:ros2_control_arm name="arm_left_7" reduction="1.0" offset_value="${arm_left_7_joint_offset}" />
+
         <xacro:if value="${has_ft_sensor_left}">
           <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/sensors.ros2_control.xacro"/>
-          <xacro:ros2_control_force_torque_sensor name="wrist_left_ft_sensor"/>
+          <xacro:ros2_control_force_torque_sensor name="wrist_left_sensor"/>
         </xacro:if>
 
         <xacro:if value="${end_effector_left == 'pal-pro-gripper'}">
@@ -141,7 +142,7 @@
 
         <xacro:if value="${has_ft_sensor_right}">
           <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/sensors.ros2_control.xacro"/>
-          <xacro:ros2_control_force_torque_sensor name="wrist_right_ft_sensor"/>
+          <xacro:ros2_control_force_torque_sensor name="wrist_right_sensor"/>
         </xacro:if>
 
         <xacro:if value="${end_effector_right == 'pal-pro-gripper'}">
@@ -165,10 +166,10 @@
         <xacro:ros2_control_arm name="arm_head_5" reduction="1.0" offset_value="${arm_left_5_joint_offset}" />
         <xacro:ros2_control_arm name="arm_head_6" reduction="1.0" offset_value="${arm_left_6_joint_offset}" />
         <xacro:ros2_control_arm name="arm_head_7" reduction="1.0" offset_value="${arm_left_7_joint_offset}" />
-        <!--xacro:if value="${has_ft_sensor_left}">
+        <xacro:if value="${has_ft_sensor_left}">
           <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/sensors.ros2_control.xacro"/>
-          <xacro:ros2_control_force_torque_sensor name="wrist_left_ft_sensor"/>
-        </xacro:if-->
+          <xacro:ros2_control_force_torque_sensor name="wrist_head_sensor"/>
+        </xacro:if>
 
         <xacro:if value="${end_effector_head == 'pal-pro-gripper'}">
           <xacro:ros2_control_pal_pro_gripper name="gripper" reduction="1.0" />

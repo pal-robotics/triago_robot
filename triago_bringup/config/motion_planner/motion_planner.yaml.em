@@ -15,6 +15,15 @@
         - arm_head_torso
         - arm_head
 @[end if]@
+@[if has_arm_left and has_arm_right]@
+        - left_right_torso
+@[end if]@
+@[if has_arm_left and has_arm_head]@
+        - left_head_torso
+@[end if]@
+@[if has_arm_right and has_arm_head]@
+        - right_head_torso   
+@[end if]@     
 @[if has_arm_left and has_arm_right and has_arm_head]@
         - all_arms_torso
 @[end if]@

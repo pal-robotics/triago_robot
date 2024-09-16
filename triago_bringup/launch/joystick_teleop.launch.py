@@ -36,9 +36,6 @@ class LaunchArguments(LaunchArgumentsBase):
     end_effector_right: DeclareLaunchArgument = TriagoArgs.end_effector_right
     end_effector_left: DeclareLaunchArgument = TriagoArgs.end_effector_left
     end_effector_head: DeclareLaunchArgument = TriagoArgs.end_effector_head
-    ft_sensor_right: DeclareLaunchArgument = TriagoArgs.ft_sensor_right
-    ft_sensor_left: DeclareLaunchArgument = TriagoArgs.ft_sensor_left
-    ft_sensor_head: DeclareLaunchArgument = TriagoArgs.ft_sensor_head
 
     cmd_vel: DeclareLaunchArgument = DeclareLaunchArgument(
         name='cmd_vel',
@@ -84,7 +81,6 @@ def create_joy_teleop_filename(context):
     hw_suffix = get_single_arm_hw_suffix(
         arm=read_launch_argument('arm_type_right', context),
         end_effector=read_launch_argument('end_effector_right', context),
-        ft_sensor=read_launch_argument('ft_sensor_right', context),
     )
 
     joy_teleop_file = f"joy_teleop{hw_suffix}.yaml"

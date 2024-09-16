@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.substitutions import PathJoinSubstitution, LaunchConfiguration
@@ -23,6 +24,7 @@ from launch_pal.robot_arguments import CommonArgs
 
 from triago_description.launch_arguments import TriagoArgs
 from triago_description.triago_launch_utils import get_triago_hw_suffix
+from launch_pal.param_utils import merge_param_files
 from dataclasses import dataclass
 
 
@@ -70,21 +72,45 @@ def create_play_motion_filename(context):
         end_effector_head=read_launch_argument('end_effector_head', context),
     )
 
-    base_motions_file = 'triago_motions_general.yaml'
+    arm_right=read_launch_argument('arm_type_right', context)
+    arm_left=read_launch_argument('arm_type_left', context)
+    arm_head=read_launch_argument('arm_type_head', context)
+    end_effector_right=read_launch_argument('end_effector_right', context)
+    end_effector_left=read_launch_argument('end_effector_left', context)
+    end_effector_head=read_launch_argument('end_effector_head', context)
+    
+    motions_folder = os.path.join(pkg_share_dir, 'config', 'motions')
+    base_motions_file = 'tiago_pro_motions_no_arms.yaml'
+    if arm_right != 'no-arm'  and arm_left != 'no-arm' and arm_head != 'no-arm':
+        base_motions_file = 'triago_motions_general.yaml'
 
-    if read_launch_argument('arm_type_right', context) == 'no-arm':
+    elif arm_right == 'no-arm'  and arm_left != 'no-arm' and arm_head != 'no-arm':
         base_motions_file = 'triago_motions_general_arm_left_arm_head.yaml'
 
-    if read_launch_argument('arm_type_left', context) == 'no-arm':
+    elif arm_left == 'no-arm' and arm_right != 'no-arm' and arm_head != 'no-arm':
         base_motions_file = 'triago_motions_general_arm_right_arm_head.yaml'
 
-    if read_launch_argument('arm_type_head', context) == 'no-arm':
+    elif arm_head == 'no-arm' and arm_right != 'no-arm' and arm_left != 'no-arm' :
         base_motions_file = 'triago_motions_general_arm_left_arm_right.yaml'
+
+    elif arm_head == 'no-arm' and arm_right == 'no-arm' and arm_left != 'no-arm' :
+        base_motions_file = 'triago_motions_general_arm_left.yaml'   
+    
+    elif arm_right == 'no-arm'  and arm_left == 'no-arm' and arm_head != 'no-arm':
+        base_motions_file = 'triago_motions_general_arm_head.yaml'
+
+    elif arm_left == 'no-arm' and arm_head == 'no-arm' and arm_right != 'no-arm':
+        base_motions_file = 'triago_motions_general_arm_right.yaml'
+    
+
 
     base_motions_yaml = PathJoinSubstitution(
         [pkg_share_dir, 'config', 'motions', base_motions_file])
 
-    combined_yaml = base_motions_yaml
+    motion_files = [base_motions_file]
+
+    motion_yamls = [os.path.join(motions_folder, f) for f in motion_files]
+    combined_yaml = merge_param_files(motion_yamls)
     # combined_yaml = merge_param_files(
     #     [base_motions_yaml.perform(context), hw_config_specific_yaml.perform(context)])
 

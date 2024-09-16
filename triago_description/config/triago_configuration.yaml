@@ -9,7 +9,7 @@ arm_type_left:
 arm_type_head:
   description: 'Arm type head'
   choices: ['tiago-pro', 'no-arm']
-  default_value: 'no-arm'
+  default_value: 'tiago-pro'
 wrist_model_right:
   description: 'Wrist model right'
   choices: ['spherical-wrist', 'wrist-2023']

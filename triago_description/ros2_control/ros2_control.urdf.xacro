@@ -172,11 +172,11 @@
         </xacro:if>
 
         <xacro:if value="${end_effector_head == 'pal-pro-gripper'}">
-          <xacro:ros2_control_pal_pro_gripper name="gripper" reduction="1.0" />
+          <xacro:ros2_control_pal_pro_gripper name="gripper_head" reduction="1.0" />
         </xacro:if>
 
         <xacro:if value="${end_effector_head == 'allegro-hand'}">
-          <xacro:ros2_control_allegro_hand name="gripper" pid_controllers="$(arg pid_controllers)" reduction="1.0" />
+          <xacro:ros2_control_allegro_hand name="gripper_head" pid_controllers="$(arg pid_controllers)" reduction="1.0" />
         </xacro:if>
 
       </xacro:if>

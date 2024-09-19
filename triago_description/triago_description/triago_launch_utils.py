@@ -33,9 +33,11 @@ def get_triago_hw_suffix(
     right_suffix = get_single_arm_hw_suffix(
         arm_right, end_effector_right, ft_sensor_right
     )
-    left_suffix = get_single_arm_hw_suffix(arm_left, end_effector_left, ft_sensor_left)
+    left_suffix = get_single_arm_hw_suffix(
+        arm_left, end_effector_left, ft_sensor_left)
 
-    head_suffix = get_single_arm_hw_suffix(arm_head, end_effector_head, ft_sensor_head)
+    head_suffix = get_single_arm_hw_suffix(
+        arm_head, end_effector_head, ft_sensor_head)
 
     suffix = left_suffix + right_suffix + head_suffix
     return suffix
@@ -50,7 +52,7 @@ def get_single_arm_hw_suffix(
 
     The arguments are read as string
 
-    For instance, the suffix for: arm=tiago-pro, end_effector='pal-pro-gripper', ft_sensor='ati-mini45'
+    For instance, the suffix for: arm=tiago-pro, end_effector='pal-pro-gripper', ft_sensor='ati'
     would be '_pal-pro-gripper_ati_mini45'
     """
     if arm in ['no-arm']:

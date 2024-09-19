@@ -259,7 +259,7 @@
 
     <!-- FT sensors -->
     <xacro:if value="${has_ft_sensor_head}">
-      <xacro:ft_sensor type="${ft_sensor_left}" name="wrist_head" parent="arm_head_tool_link"/>
+      <xacro:ft_sensor type="${ft_sensor_right}" name="wrist_head" parent="arm_head_tool_link"/>
     </xacro:if>
     
 

@@ -56,7 +56,7 @@
     <xacro:include filename="$(find pal_sea_arm_description)/urdf/arm/arm.ros2_control.xacro" />
 
     <xacro:if value="${end_effector_left == 'pal-pro-gripper' or end_effector_right == 'pal-pro-gripper' or end_effector_head== 'pal-pro-gripper'}">
-      <xacro:include filename="$(find pal_pro_gripper_description)/urdf/pal_pro_gripper.ros2_control.xacro" />
+      <xacro:include filename="$(find pal_pro_gripper_description)/urdf/gripper.ros2_control.xacro" />
     </xacro:if>
 
     <xacro:if value="${end_effector_left == 'allegro-hand' or end_effector_right == 'allegro-hand' or end_effector_head== 'allegro-hand'}">

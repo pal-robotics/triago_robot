@@ -12,16 +12,16 @@ arm_type_head:
   default_value: 'tiago-pro'
 wrist_model_right:
   description: 'Wrist model right'
-  choices: ['spherical-wrist', 'wrist-2023']
-  default_value: 'wrist-2023'
+  choices: ['spherical-wrist', 'straight-wrist']
+  default_value: 'spherical-wrist'
 wrist_model_left:
   description: 'Wrist model left'
-  choices: ['spherical-wrist', 'wrist-2023']
-  default_value: 'wrist-2023'
+  choices: ['spherical-wrist', 'straight-wrist']
+  default_value: 'spherical-wrist'
 wrist_model_head:
   description: 'Wrist model head'
-  choices: ['spherical-wrist', 'wrist-2023']
-  default_value: 'wrist-2023'
+  choices: ['spherical-wrist', 'straight-wrist']
+  default_value: 'spherical-wrist'
 laser_model:
   description: 'Base laser model'
   choices: ['no-laser', 'sick-571']
@@ -44,16 +44,16 @@ hand_head_type:
   default_value: 'right'
 ft_sensor_right:
   description: 'FT sensor model right arm'
-  choices: ['ati-mini45', 'no-ft-sensor']
-  default_value: 'ati-mini45'
+  choices: ['ati', 'no-ft-sensor']
+  default_value: 'ati'
 ft_sensor_left:
   description: 'FT sensor model left arm'
-  choices: ['ati-mini45', 'no-ft-sensor']
-  default_value: 'ati-mini45'
+  choices: ['ati', 'no-ft-sensor']
+  default_value: 'ati'
 ft_sensor_head:
   description: 'FT sensor model head arm'
-  choices: ['ati-mini45', 'no-ft-sensor']
-  default_value: 'ati-mini45'
+  choices: ['ati', 'no-ft-sensor']
+  default_value: 'ati'
 base_type:
   description: 'Base type'
   choices: ['omni_base']

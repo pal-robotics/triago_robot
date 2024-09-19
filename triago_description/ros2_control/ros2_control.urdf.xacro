@@ -114,7 +114,7 @@
         <xacro:ros2_control_arm name="arm_left_7" reduction="1.0" offset_value="${arm_left_7_joint_offset}" />
 
         <xacro:if value="${has_ft_sensor_left}">
-          <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/sensors.ros2_control.xacro"/>
+          <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/ft_sensor/sensor.ros2_control.xacro"/>
           <xacro:ros2_control_force_torque_sensor name="wrist_left_sensor"/>
         </xacro:if>
 
@@ -141,7 +141,7 @@
         <xacro:ros2_control_arm name="arm_right_7" reduction="1.0" offset_value="${arm_right_7_joint_offset}" />
 
         <xacro:if value="${has_ft_sensor_right}">
-          <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/sensors.ros2_control.xacro"/>
+          <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/ft_sensor/sensor.ros2_control.xacro"/>
           <xacro:ros2_control_force_torque_sensor name="wrist_right_sensor"/>
         </xacro:if>
 
@@ -166,8 +166,8 @@
         <xacro:ros2_control_arm name="arm_head_5" reduction="1.0" offset_value="${arm_left_5_joint_offset}" />
         <xacro:ros2_control_arm name="arm_head_6" reduction="1.0" offset_value="${arm_left_6_joint_offset}" />
         <xacro:ros2_control_arm name="arm_head_7" reduction="1.0" offset_value="${arm_left_7_joint_offset}" />
-        <xacro:if value="${has_ft_sensor_left}">
-          <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/sensors.ros2_control.xacro"/>
+        <xacro:if value="${has_ft_sensor_head}">
+          <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/ft_sensor/sensor.ros2_control.xacro"/>
           <xacro:ros2_control_force_torque_sensor name="wrist_head_sensor"/>
         </xacro:if>
 

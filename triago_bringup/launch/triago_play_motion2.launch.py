@@ -72,40 +72,32 @@ def create_play_motion_filename(context):
         end_effector_head=read_launch_argument('end_effector_head', context),
     )
 
-    arm_right=read_launch_argument('arm_type_right', context)
-    arm_left=read_launch_argument('arm_type_left', context)
-    arm_head=read_launch_argument('arm_type_head', context)
-    end_effector_right=read_launch_argument('end_effector_right', context)
-    end_effector_left=read_launch_argument('end_effector_left', context)
-    end_effector_head=read_launch_argument('end_effector_head', context)
-    
+    arm_right = read_launch_argument('arm_type_right', context)
+    arm_left = read_launch_argument('arm_type_left', context)
+    arm_head = read_launch_argument('arm_type_head', context)
+
     motions_folder = os.path.join(pkg_share_dir, 'config', 'motions')
     base_motions_file = 'tiago_pro_motions_no_arms.yaml'
-    if arm_right != 'no-arm'  and arm_left != 'no-arm' and arm_head != 'no-arm':
+    if arm_right != 'no-arm' and arm_left != 'no-arm' and arm_head != 'no-arm':
         base_motions_file = 'triago_motions_general.yaml'
 
-    elif arm_right == 'no-arm'  and arm_left != 'no-arm' and arm_head != 'no-arm':
+    elif arm_right == 'no-arm' and arm_left != 'no-arm' and arm_head != 'no-arm':
         base_motions_file = 'triago_motions_general_arm_left_arm_head.yaml'
 
     elif arm_left == 'no-arm' and arm_right != 'no-arm' and arm_head != 'no-arm':
         base_motions_file = 'triago_motions_general_arm_right_arm_head.yaml'
 
-    elif arm_head == 'no-arm' and arm_right != 'no-arm' and arm_left != 'no-arm' :
+    elif arm_head == 'no-arm' and arm_right != 'no-arm' and arm_left != 'no-arm':
         base_motions_file = 'triago_motions_general_arm_left_arm_right.yaml'
 
-    elif arm_head == 'no-arm' and arm_right == 'no-arm' and arm_left != 'no-arm' :
-        base_motions_file = 'triago_motions_general_arm_left.yaml'   
-    
-    elif arm_right == 'no-arm'  and arm_left == 'no-arm' and arm_head != 'no-arm':
+    elif arm_head == 'no-arm' and arm_right == 'no-arm' and arm_left != 'no-arm':
+        base_motions_file = 'triago_motions_general_arm_left.yaml'
+
+    elif arm_right == 'no-arm' and arm_left == 'no-arm' and arm_head != 'no-arm':
         base_motions_file = 'triago_motions_general_arm_head.yaml'
 
     elif arm_left == 'no-arm' and arm_head == 'no-arm' and arm_right != 'no-arm':
         base_motions_file = 'triago_motions_general_arm_right.yaml'
-    
-
-
-    base_motions_yaml = PathJoinSubstitution(
-        [pkg_share_dir, 'config', 'motions', base_motions_file])
 
     motion_files = [base_motions_file]
 

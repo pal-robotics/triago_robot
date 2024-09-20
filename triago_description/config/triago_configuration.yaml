@@ -45,7 +45,7 @@ hand_head_type:
 ft_sensor_right:
   description: 'FT sensor model right arm'
   choices: ['ati', 'no-ft-sensor']
-  default_value: 'ati'
+  default_value: 'no-ft-sensor'
 ft_sensor_left:
   description: 'FT sensor model left arm'
   choices: ['ati', 'no-ft-sensor']

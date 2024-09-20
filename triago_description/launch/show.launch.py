@@ -84,9 +84,8 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
     launch_description.add_action(joint_state_pub_gui)
 
-    rviz_config_file = PathJoinSubstitution(
-        [FindPackageShare('triago_description'), 'config', 'show.rviz'])
-    
+    rviz_config_file = PathJoinSubstitution([FindPackageShare('triago_description'), 'config',
+                                            'show.rviz'])
     rviz = Node(
         package='rviz2',
         executable='rviz2',

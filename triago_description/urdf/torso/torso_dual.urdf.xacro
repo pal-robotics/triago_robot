@@ -1,0 +1,318 @@
+<?xml version="1.0" ?>
+<!--
+
+  Copyright (c) 2024 PAL Robotics S.L. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--Constant parameters-->
+  <xacro:property name="torso_max_vel"  value="0.07" />
+  <xacro:property name="torso_eps"      value="0.02" />
+
+  <xacro:macro name="triago_torso" params="name parent">
+
+  <!-- Bottom fixed part of column -->
+  <link name="${name}_fixed_link">
+    <inertial>
+      <origin  xyz="0.0014857 -0.0077054 0.14693" rpy="0 0 0" />
+      <mass
+        value="14.56648" />
+      <inertia
+        ixx="499.42373004E-03" ixy="1.75882948E-03" ixz="11.19298375E-03"
+        iyy="526.82969543E-03" iyz="6.04744042E-03" izz="132.79782947E-03" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://triago_description/meshes/torso/torso_fixed.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.298039215686275 0.298039215686275 0.298039215686275 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0.0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://triago_description/meshes/torso/torso_fixed.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <gazebo reference="${name}_fixed_link">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <joint name="${name}_fixed_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.0245 0 0.215" />
+    <parent link="${parent}" />
+    <child link="${name}_fixed_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <!-- Middle extending  -->
+  <link name="${name}_fixed_column_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="0.000001" ixy="0" ixz="0"
+               iyy="0.000001" iyz="0"
+               izz="0.000001" />
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.275" />
+      <geometry>
+        <box size="0.18 0.2 0.55"/>
+      </geometry>
+      <material name="pal/DarkGrey"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.275" />
+      <geometry>
+        <box size="0.23 0.253 0.45"/>
+      </geometry>
+      <material name="pal/DarkGrey"/>
+    </collision>
+  </link>
+  <gazebo reference="${name}_fixed_column_link">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <joint name="${name}_fixed_column_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.028 0 0.205" />
+    <parent link="${parent}" />
+    <child link="${name}_fixed_column_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+
+  <link
+    name="${name}_lift_link">
+    <inertial>
+      <origin
+        xyz="-29.57E-03 2.01E-03 371.47E-03"
+        rpy="0 0 0" />
+      <mass
+        value="12.11844" />
+      <inertia
+        ixx="377.29243241E-03"
+        ixy="2.00311792E-03"
+        ixz="-103.51344863E-03"
+        iyy="449.91209878E-03"
+        iyz="0.27176838E-03"
+        izz="224.52741499E-03" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://triago_description/meshes/torso/torso_lift_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.29804 0.29804 0.29804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://triago_description/meshes/torso/torso_lift_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="${name}_lift_joint" type="prismatic">
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+    <parent link="${name}_fixed_link" />
+    <child link="${name}_lift_link" />
+    <axis xyz="0 0 1" />
+    <limit effort="0" lower="0" upper="0.35" velocity="${torso_max_vel}" />
+  </joint>
+
+  <link
+    name="${name}_arm_left_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.23047" />
+      <inertia
+        ixx="0.00026511"
+        ixy="1.3047E-06"
+        ixz="7.8189E-05"
+        iyy="0.00035859"
+        iyz="-5.3396E-05"
+        izz="0.00040319" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://triago_description/meshes/torso/arm_left_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.25098 0.25098 0.25098 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://triago_description/meshes/torso/arm_left_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="${name}_arm_left_joint"
+    type="fixed">
+    <origin xyz="0.0898413194899453 0.159181203216899 0.46245" rpy="-2.06788770984932 0 -1.22173047639603" />
+    <parent
+      link="${name}_lift_link" />
+    <child
+      link="${name}_arm_left_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+ <link
+    name="${name}_arm_right_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.23047" />
+      <inertia
+        ixx="0.00026509"
+        ixy="-3.1836E-07"
+        ixz="-7.8741E-05"
+        iyy="0.00035861"
+        iyz="-5.257E-05"
+        izz="0.00040319" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://triago_description/meshes/torso/arm_right_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.25098 0.25098 0.25098 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://triago_description/meshes/torso/arm_right_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="${name}_arm_right_joint"
+    type="fixed">
+    <origin xyz="0.0898413194899453 -0.1591812032169 0.46245" rpy="-2.06788770984932 0 -1.91986217719377" />
+    <parent
+      link="${name}_lift_link" />
+    <child
+      link="${name}_arm_right_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+ <link
+    name="${name}_arm_head_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.18229" />
+      <inertia
+        ixx="0.00027537"
+        ixy="7.4919E-10"
+        ixz="7.2758E-06"
+        iyy="0.00018169"
+        iyz="-2.2164E-10"
+        izz="0.00037953" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://triago_description/meshes/torso/arm_head_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.25098 0.25098 0.25098 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://triago_description/meshes/torso/arm_head_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="${name}_arm_head_joint"
+    type="fixed">
+    <origin
+      xyz="0.00733452377915612 0 0.630632193308821"
+      rpy="0 0.785398163397445 0" />
+    <parent
+      link="${name}_lift_link" />
+    <child
+      link="${name}_arm_head_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  </xacro:macro>
+</robot>

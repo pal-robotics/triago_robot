@@ -2,8 +2,8 @@
 Changelog for package triago_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.4 (2024-09-30)
+------------------
 * Adjus tool_changer
 * Adjus tool_changer
 * Adjust config head

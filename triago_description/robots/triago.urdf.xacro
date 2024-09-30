@@ -172,10 +172,13 @@
   <xacro:include filename="$(arg description_calibration_dir)/calibration_constants.urdf.xacro" />
 
   <!-- Arm -->
-  <xacro:if value="${has_arm_right or has_arm_left or has_arm_head}">
+  <xacro:if value="${has_arm_right or has_arm_left }">
     <xacro:include filename="$(find pal_sea_arm_description)/urdf/arm/arm.urdf.xacro" />
   </xacro:if>
 
+  <xacro:if value="${has_arm_head}">
+    <xacro:include filename="$(find triago_description)/urdf/head_arm/arm.urdf.xacro" />
+  </xacro:if>
   <!-- End effector -->
   <xacro:if value="${(has_arm_right or has_arm_left or has_arm_head) and (has_end_effector_right or has_end_effector_left or has_end_effector_head)}">
     <xacro:include filename="$(find triago_description)/urdf/end_effector/end_effector.urdf.xacro" />
@@ -205,7 +208,7 @@
   <xacro:if value="${has_arm_left}">
 
     <!-- Arm -->
-    <xacro:pal_sea_arm name="arm_left" parent="torso_lift_link" arm_type="${arm_type_left}" wrist_model="${wrist_model_left}" tool_changer="${tool_changer_left}" reflect="1" arm_1_offset="${arm_left_1_joint_offset}" arm_2_offset="${arm_left_2_joint_offset}" arm_3_offset="${arm_left_3_joint_offset}" arm_4_offset="${arm_left_4_joint_offset}" arm_5_offset="${arm_left_5_joint_offset}" arm_6_offset="${arm_left_6_joint_offset}" arm_7_offset="${arm_left_7_joint_offset}">
+    <xacro:pal_sea_arm name="arm_left" parent="torso_lift_link" arm_type="${arm_type_left}" wrist_model="${wrist_model_left}" tool_changer="${tool_changer_left}" reflect="1" first_joint_reflect="-1" arm_1_offset="${arm_left_1_joint_offset}" arm_2_offset="${arm_left_2_joint_offset}" arm_3_offset="${arm_left_3_joint_offset}" arm_4_offset="${arm_left_4_joint_offset}" arm_5_offset="${arm_left_5_joint_offset}" arm_6_offset="${arm_left_6_joint_offset}" arm_7_offset="${arm_left_7_joint_offset}">
       <origin xyz="$(arg arm_x) $(arg arm_y) $(arg arm_z)" rpy="$(arg arm_roll) $(arg arm_pitch) $(arg arm_yaw)"/>
     </xacro:pal_sea_arm>
 
@@ -225,7 +228,7 @@
   <xacro:if value="${has_arm_right}">
 
     <!-- Arm -->
-    <xacro:pal_sea_arm name="arm_right" parent="torso_lift_link" arm_type="${arm_type_right}" wrist_model="${wrist_model_right}" tool_changer="${tool_changer_right}" reflect="1" arm_1_offset="${arm_right_1_joint_offset}" arm_2_offset="${arm_right_2_joint_offset}" arm_3_offset="${arm_right_3_joint_offset}" arm_4_offset="${arm_right_4_joint_offset}" arm_5_offset="${arm_right_5_joint_offset}" arm_6_offset="${arm_right_6_joint_offset}" arm_7_offset="${arm_right_7_joint_offset}">
+    <xacro:pal_sea_arm name="arm_right" parent="torso_lift_link" arm_type="${arm_type_right}" wrist_model="${wrist_model_right}" tool_changer="${tool_changer_right}" reflect="1" first_joint_reflect="1" arm_1_offset="${arm_right_1_joint_offset}" arm_2_offset="${arm_right_2_joint_offset}" arm_3_offset="${arm_right_3_joint_offset}" arm_4_offset="${arm_right_4_joint_offset}" arm_5_offset="${arm_right_5_joint_offset}" arm_6_offset="${arm_right_6_joint_offset}" arm_7_offset="${arm_right_7_joint_offset}">
       <origin xyz="$(arg arm_x) ${-1.0*$(arg arm_y)} $(arg arm_z)" rpy="$(arg arm_roll) ${-1.0*$(arg arm_pitch)} ${-3.14159 -$(arg arm_yaw)}"/>
     </xacro:pal_sea_arm>
 
@@ -248,9 +251,9 @@
   <xacro:if value="${has_arm_head}">
 
     <!-- Arm -->
-    <xacro:pal_sea_arm name="arm_head" parent="torso_lift_link" arm_type="${arm_type_head}" wrist_model="${wrist_model_head}" tool_changer="${tool_changer_head}" reflect="1" arm_1_offset="${arm_right_1_joint_offset}" arm_2_offset="${arm_right_2_joint_offset}" arm_3_offset="${arm_right_3_joint_offset}" arm_4_offset="${arm_right_4_joint_offset}" arm_5_offset="${arm_right_5_joint_offset}" arm_6_offset="${arm_right_6_joint_offset}" arm_7_offset="${arm_right_7_joint_offset}">
+    <xacro:head_arm name="arm_head" parent="torso_lift_link" wrist_model="${wrist_model_head}" tool_changer="${tool_changer_head}" reflect="1" arm_1_offset="${arm_right_1_joint_offset}" arm_2_offset="${arm_right_2_joint_offset}" arm_3_offset="${arm_right_3_joint_offset}" arm_4_offset="${arm_right_4_joint_offset}" arm_5_offset="${arm_right_5_joint_offset}" arm_6_offset="${arm_right_6_joint_offset}" arm_7_offset="${arm_right_7_joint_offset}">
       <origin xyz="0.00733452377915612 0 0.630632193308821" rpy="0 0.785398163397445 0" />
-    </xacro:pal_sea_arm>
+    </xacro:head_arm>
 
     <!-- End effector -->
     <xacro:if value="${has_end_effector_head}">

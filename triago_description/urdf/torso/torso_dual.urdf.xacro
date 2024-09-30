@@ -138,12 +138,18 @@
     </visual>
     <collision>
       <origin
-        xyz="0 0 0"
+        xyz="0.0 0.0 0.5545"
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://triago_description/meshes/torso/torso_lift_link.STL" />
+          filename="package://triago_description/meshes/torso/torso_lift_link_collision.stl" />
       </geometry>
+    </collision>
+    <collision>
+          <origin xyz="-0.226436438571948 3.12797385809451E-05 0.55984038105676683" rpy="0 0 -1.5707963267949" />
+          <geometry>
+            <mesh filename="package://triago_description/meshes/torso/laptop_tray_collision.stl" />
+          </geometry>
     </collision>
   </link>
 
@@ -191,7 +197,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://triago_description/meshes/torso/arm_left_link.STL" />
+          filename="package://triago_description/meshes/torso/arm_left_link_collision.stl" />
       </geometry>
     </collision>
   </link>
@@ -243,7 +249,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://triago_description/meshes/torso/arm_right_link.STL" />
+          filename="package://triago_description/meshes/torso/arm_right_link_collision.stl" />
       </geometry>
     </collision>
   </link>

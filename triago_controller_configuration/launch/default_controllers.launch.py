@@ -146,8 +146,8 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
         skip_empty=True)
 
     arm_controller = include_scoped_launch_py_description(
-        pkg_name='pal_sea_arm_controller_configuration',
-        paths=['launch', 'arm_controller.launch.py'],
+        pkg_name='triago_controller_configuration',
+        paths=['launch', 'arm_controller', 'arm_controller.launch.py'],
         launch_arguments={"side": end_effector_side},
         condition=LaunchConfigurationNotEquals(arm_arg_name, 'no-arm'))
 
@@ -171,12 +171,12 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
 
     # Setup ft-sensor controller
     ft_sensor = read_launch_argument(ft_sensor_arg_name, context)
-    ft_pkg_name = 'pal_sea_arm_controller_configuration'
+    ft_pkg_name = 'triago_controller_configuration'
     ft_launch_file = 'ft_sensor_controller.launch.py'
 
     ft_sensor_controller = include_scoped_launch_py_description(
         pkg_name=ft_pkg_name,
-        paths=['launch', ft_launch_file],
+        paths=['launch', 'arm_controller', ft_launch_file],
         launch_arguments={"side": end_effector_side,
                           "ft_sensor": ft_sensor},
         condition=IfCondition(

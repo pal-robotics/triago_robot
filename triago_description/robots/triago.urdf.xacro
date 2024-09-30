@@ -101,7 +101,7 @@
   <xacro:property name="has_end_effector_left" value="${end_effector_left not in ['no-end-effector']}" />
   <xacro:property name="end_effector_left_link" value="${'wrist_left_ft_tool_link' if has_ft_sensor_left else 'arm_left_tool_link'}" />
   <xacro:property name="end_effector_left_name" value="gripper_left" />
-  <xacro:property name="tool_changer_left" value="${has_end_effector_left}"/>
+  <xacro:property name="tool_changer_left" value="${has_end_effector_left or has_ft_sensor_left}"/>
 
 
   <xacro:property name="has_arm_right" value="${arm_type_right not in ['no-arm']}"/>
@@ -109,7 +109,7 @@
   <xacro:property name="has_end_effector_right" value="${end_effector_right not in ['no-end-effector']}" />
   <xacro:property name="end_effector_right_link" value="${'wrist_right_ft_tool_link' if has_ft_sensor_right else 'arm_right_tool_link'}" />
   <xacro:property name="end_effector_right_name" value="gripper_right" />
-  <xacro:property name="tool_changer_right" value="${has_end_effector_right}"/>
+  <xacro:property name="tool_changer_right" value="${has_end_effector_right or has_ft_sensor_right }"/>
 
   <xacro:property name="has_arm_head" value="${arm_type_head not in ['no-arm']}"/>
   <xacro:property name="has_ft_sensor_head" value="${ft_sensor_head not in ['no-ft-sensor']}"/>
@@ -117,7 +117,7 @@
   <xacro:property name="end_effector_head_link" value="${'wrist_head_ft_tool_link' if has_ft_sensor_head else 'arm_head_tool_link'}" />
   <xacro:property name="hand_head_type" value="$(arg hand_head_type)" />
   <xacro:property name="end_effector_head_name" value="gripper" />
-  <xacro:property name="tool_changer_head" value="${has_end_effector_head}"/>
+  <xacro:property name="tool_changer_head" value="${has_end_effector_head or has_ft_sensor_head}"/>
   <xacro:if value="${hand_head_type == 'left'}">
     <xacro:property name="head_hand_reflect" value="-1" />
   </xacro:if>

@@ -176,7 +176,7 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
 
     ft_sensor_controller = include_scoped_launch_py_description(
         pkg_name=ft_pkg_name,
-        paths=['launch','arm_controller', ft_launch_file],
+        paths=['launch', 'arm_controller', ft_launch_file],
         launch_arguments={"side": end_effector_side,
                           "ft_sensor": ft_sensor},
         condition=IfCondition(

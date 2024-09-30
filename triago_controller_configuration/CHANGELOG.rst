@@ -2,8 +2,8 @@
 Changelog for package triago_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.3 (2024-09-30)
+------------------
 * Merge branch 'vmo/adapting_arm' into 'humble-devel'
   Vmo/adapting arm
   See merge request robots/triago_robot!7

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>triago_bringup</name>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <description>Launch files to upload the TRIAGo robot description and start the controllers</description>
   <maintainer email="viviana.morlando@pal-robotics.com">Viviana Morlando</maintainer>
   <author email="viviana.morlando@pal-robotics.com">Viviana Morlando</author>

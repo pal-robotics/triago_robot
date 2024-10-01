@@ -157,6 +157,10 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
     ee_pkg_name = f'{end_effector_underscore}_controller_configuration'
     ee_launch_file = f'{end_effector_underscore}_controller.launch.py'
 
+    if end_effector == 'pal-pro-gripper':
+        ee_pkg_name = 'triago_controller_configuration'
+        ee_launch_file = 'pal_pro_gripper_controller.launch.py'
+
     end_effector_controller = include_scoped_launch_py_description(
         pkg_name=ee_pkg_name,
         paths=['launch', ee_launch_file],

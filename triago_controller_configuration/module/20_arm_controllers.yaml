@@ -1,0 +1,10 @@
+arm_controllers:
+  launch: "triago_controller_configuration arm_controllers.launch.py
+           arm_type_right:=@arm_type_right@
+           arm_type_left:=@arm_type_left@
+           end_effector_right:=@end_effector_right@
+           end_effector_left:=@end_effector_left@
+           ft_sensor_right:=@ft_sensor_right@
+           ft_sensor_left:=@ft_sensor_left@"
+  waits: ["torso_up"]
+  finishes: True

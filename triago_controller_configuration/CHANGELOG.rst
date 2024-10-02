@@ -14,6 +14,9 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+
 0.0.3 (2024-09-30)
 ------------------
 * Merge branch 'vmo/adapting_arm' into 'humble-devel'

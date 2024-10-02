@@ -24,8 +24,8 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.0.6 (2024-10-02)
+------------------
 
 0.0.3 (2024-09-30)
 ------------------

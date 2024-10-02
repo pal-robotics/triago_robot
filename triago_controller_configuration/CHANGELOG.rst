@@ -2,8 +2,8 @@
 Changelog for package triago_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.4 (2024-10-02)
+------------------
 * Merge branch 'vmo/fix_modules' into 'humble-devel'
   Checking all modules
   See merge request robots/triago_robot!10

@@ -116,7 +116,7 @@
     </joint>
 
     <xacro:allegro_hand name="${name}" parent="${name}_allegro_tc_out_link" reflect="${reflect}">
-      <origin xyz="-0.00956 -0.001 0.094" rpy="0.0 0.0 ${-180.0 * deg_to_rad}"/>
+      <origin xyz="0.00956 0.001 0.094" rpy="0.0 0.0 0"/>
     </xacro:allegro_hand>
   </xacro:if>
 

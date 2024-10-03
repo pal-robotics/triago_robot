@@ -16,6 +16,93 @@
  -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="triago">
 
+  <xacro:macro name="ros2_control_wheels">
+    <xacro:ros2_control_wheel side="front_right" />
+    <xacro:ros2_control_wheel side="front_left" />
+    <xacro:ros2_control_wheel side="rear_right" />
+    <xacro:ros2_control_wheel side="rear_left" />
+  </xacro:macro>
+
+  <xacro:macro name="ros2_control_arms">
+    <!-- arm left -->
+    <xacro:if value="${has_arm_left}">
+      <xacro:ros2_control_arm name="arm_left_1" reduction="1.0" offset_value="${arm_left_1_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_left_2" reduction="1.0" offset_value="${arm_left_2_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_left_3" reduction="1.0" offset_value="${arm_left_3_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_left_4" reduction="1.0" offset_value="${arm_left_4_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_left_5" reduction="1.0" offset_value="${arm_left_5_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_left_6" reduction="1.0" offset_value="${arm_left_6_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_left_7" reduction="1.0" offset_value="${arm_left_7_joint_offset}" />
+
+      <xacro:if value="${has_ft_sensor_left}">
+        <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/ft_sensor/sensor.ros2_control.xacro"/>
+        <xacro:ros2_control_force_torque_sensor name="wrist_left_sensor"/>
+      </xacro:if>
+
+      <xacro:if value="${end_effector_left == 'pal-pro-gripper'}">
+        <xacro:ros2_control_pal_pro_gripper name="gripper_left" reduction="1.0" />
+      </xacro:if>
+
+
+      <xacro:if value="${end_effector_left == 'allegro-hand'}">
+        <!-- allegro-hand -->
+        <xacro:ros2_control_allegro_hand name="gripper_left" pid_controllers="$(arg pid_controllers)" reduction="1.0" />
+      </xacro:if>
+
+    </xacro:if>
+
+    <!-- arm right -->
+    <xacro:if value="${has_arm_right}">
+      <xacro:ros2_control_arm name="arm_right_1" reduction="1.0" offset_value="${arm_right_1_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_right_2" reduction="1.0" offset_value="${arm_right_2_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_right_3" reduction="1.0" offset_value="${arm_right_3_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_right_4" reduction="1.0" offset_value="${arm_right_4_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_right_5" reduction="1.0" offset_value="${arm_right_5_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_right_6" reduction="1.0" offset_value="${arm_right_6_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_right_7" reduction="1.0" offset_value="${arm_right_7_joint_offset}" />
+
+      <xacro:if value="${has_ft_sensor_right}">
+        <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/ft_sensor/sensor.ros2_control.xacro"/>
+        <xacro:ros2_control_force_torque_sensor name="wrist_right_sensor"/>
+      </xacro:if>
+
+      <xacro:if value="${end_effector_right == 'pal-pro-gripper'}">
+        <!-- pal-pro-gripper -->
+        <xacro:ros2_control_pal_pro_gripper name="gripper_right" reduction="1.0" />
+      </xacro:if>
+
+      <xacro:if value="${end_effector_right == 'allegro-hand'}">
+        <!-- allegro-hand -->
+        <xacro:ros2_control_allegro_hand name="gripper_right" pid_controllers="$(arg pid_controllers)" reduction="1.0" />
+      </xacro:if>
+
+    </xacro:if>
+
+      <!-- arm head -->
+    <xacro:if value="${has_arm_head}">
+      <xacro:ros2_control_arm name="arm_head_1" reduction="1.0" offset_value="${arm_head_1_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_head_2" reduction="1.0" offset_value="${arm_head_2_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_head_3" reduction="1.0" offset_value="${arm_head_3_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_head_4" reduction="1.0" offset_value="${arm_head_4_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_head_5" reduction="1.0" offset_value="${arm_head_5_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_head_6" reduction="1.0" offset_value="${arm_head_6_joint_offset}" />
+      <xacro:ros2_control_arm name="arm_head_7" reduction="1.0" offset_value="${arm_head_7_joint_offset}" />
+      <xacro:if value="${has_ft_sensor_head}">
+        <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/ft_sensor/sensor.ros2_control.xacro"/>
+        <xacro:ros2_control_force_torque_sensor name="wrist_head_sensor"/>
+      </xacro:if>
+
+      <xacro:if value="${end_effector_head == 'pal-pro-gripper'}">
+        <xacro:ros2_control_pal_pro_gripper name="gripper_head" reduction="1.0" />
+      </xacro:if>
+
+      <xacro:if value="${end_effector_head == 'allegro-hand'}">
+        <xacro:ros2_control_allegro_hand name="gripper_head" pid_controllers="$(arg pid_controllers)" reduction="1.0" />
+      </xacro:if>
+
+    </xacro:if>
+  </xacro:macro>
+
   <xacro:macro name="triago_ros2_control" params="use_sim_time:=^|false">
 
     <xacro:arg name="arm_type_left" default="triago"/>
@@ -66,121 +153,67 @@
     <!-- calibration offsets -->
     <xacro:include filename="$(arg description_calibration_dir)/calibration_constants.urdf.xacro" />
 
-
-    <!-- Init the ROS 2 control gazebo interface -->
-    <xacro:if value="${use_sim_time}">
+    <!-- Simulation -->
+    <xacro:if value="$(arg use_sim_time)">
+      <!-- Init the ROS 2 control gazebo interface -->
       <gazebo>
         <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
           <parameters>$(find triago_description)/ros2_control/gazebo_controller_manager_cfg.yaml</parameters>
         </plugin>
       </gazebo>
+
+      <ros2_control name="ros2_control_gazebo_system" type="system">
+        <hardware>
+          <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+        </hardware>
+
+        <!-- wheels -->
+        <xacro:ros2_control_wheels/>
+
+        <!-- IMU -->
+        <xacro:ros2_control_imu name="base_imu_sensor"/>
+
+        <!-- torso -->
+        <xacro:ros2_control_torso name="torso_lift" reduction="1.0" />
+
+        <xacro:arg name="pid_controllers" default="false"/>
+
+        <!-- arms -->
+        <xacro:ros2_control_arms />
+
+      </ros2_control>
     </xacro:if>
 
-    <ros2_control name="ros2_control_triago_system" type="system">
-      <hardware>
-        <xacro:if value="$(arg use_sim_time)">
-          <plugin>gazebo_ros2_control/GazeboSystem</plugin>
-        </xacro:if>
-        <xacro:unless value="$(arg use_sim_time)">
+    <!-- Hardware -->
+    <xacro:unless value="$(arg use_sim_time)">
+      <ros2_control name="ros2_control_triago_system_can" type="system" rw_rate="100">
+        <hardware>
           <plugin>robot_control/RobotControl</plugin>
-        </xacro:unless>
+          <param name="group">can</param>
+        </hardware>
 
-      </hardware>
+        <!-- wheels -->
+        <xacro:ros2_control_wheels/>
 
-      <!-- wheels -->
-      <xacro:ros2_control_wheel side="front_right" />
-      <xacro:ros2_control_wheel side="front_left" />
-      <xacro:ros2_control_wheel side="rear_right" />
-      <xacro:ros2_control_wheel side="rear_left" />
+        <!-- IMU -->
+        <!-- <xacro:ros2_control_imu name="base_imu_sensor"/> -->
+      </ros2_control>
 
-      <!-- IMU -->
-      <xacro:if value="$(arg use_sim_time)">
-        <xacro:ros2_control_imu name="base_imu_sensor"/>
-      </xacro:if>
+      <ros2_control name="ros2_control_triago_system_ethercat" type="system" rw_rate="1000">
+        <hardware>
+          <plugin>robot_control/RobotControl</plugin>
+          <param name="group">ethercat</param>
+        </hardware>
 
-      <!-- torso -->
-      <xacro:ros2_control_torso name="torso_lift" reduction="1.0" />
+        <!-- torso -->
+        <xacro:ros2_control_torso name="torso_lift" reduction="1.0" />
 
-      <xacro:arg name="pid_controllers" default="false"/>
+        <xacro:arg name="pid_controllers" default="true"/>
 
-      <!-- arm left -->
-      <xacro:if value="${has_arm_left}">
-        <xacro:ros2_control_arm name="arm_left_1" reduction="1.0" offset_value="${arm_left_1_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_left_2" reduction="1.0" offset_value="${arm_left_2_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_left_3" reduction="1.0" offset_value="${arm_left_3_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_left_4" reduction="1.0" offset_value="${arm_left_4_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_left_5" reduction="1.0" offset_value="${arm_left_5_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_left_6" reduction="1.0" offset_value="${arm_left_6_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_left_7" reduction="1.0" offset_value="${arm_left_7_joint_offset}" />
+        <!-- arms -->
+        <xacro:ros2_control_arms />
 
-        <xacro:if value="${has_ft_sensor_left}">
-          <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/ft_sensor/sensor.ros2_control.xacro"/>
-          <xacro:ros2_control_force_torque_sensor name="wrist_left_sensor"/>
-        </xacro:if>
-
-        <xacro:if value="${end_effector_left == 'pal-pro-gripper'}">
-          <xacro:ros2_control_pal_pro_gripper name="gripper_left" reduction="1.0" />
-        </xacro:if>
-
-
-        <xacro:if value="${end_effector_left == 'allegro-hand'}">
-          <!-- allegro-hand -->
-          <xacro:ros2_control_allegro_hand name="gripper_left" pid_controllers="$(arg pid_controllers)" reduction="1.0" />
-        </xacro:if>
-
-      </xacro:if>
-
-      <!-- arm right -->
-      <xacro:if value="${has_arm_right}">
-        <xacro:ros2_control_arm name="arm_right_1" reduction="1.0" offset_value="${arm_right_1_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_right_2" reduction="1.0" offset_value="${arm_right_2_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_right_3" reduction="1.0" offset_value="${arm_right_3_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_right_4" reduction="1.0" offset_value="${arm_right_4_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_right_5" reduction="1.0" offset_value="${arm_right_5_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_right_6" reduction="1.0" offset_value="${arm_right_6_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_right_7" reduction="1.0" offset_value="${arm_right_7_joint_offset}" />
-
-        <xacro:if value="${has_ft_sensor_right}">
-          <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/ft_sensor/sensor.ros2_control.xacro"/>
-          <xacro:ros2_control_force_torque_sensor name="wrist_right_sensor"/>
-        </xacro:if>
-
-        <xacro:if value="${end_effector_right == 'pal-pro-gripper'}">
-          <!-- pal-pro-gripper -->
-          <xacro:ros2_control_pal_pro_gripper name="gripper_right" reduction="1.0" />
-        </xacro:if>
-
-        <xacro:if value="${end_effector_right == 'allegro-hand'}">
-          <!-- allegro-hand -->
-          <xacro:ros2_control_allegro_hand name="gripper_right" pid_controllers="$(arg pid_controllers)" reduction="1.0" />
-        </xacro:if>
-
-      </xacro:if>
-
-       <!-- arm head -->
-      <xacro:if value="${has_arm_head}">
-        <xacro:ros2_control_arm name="arm_head_1" reduction="1.0" offset_value="${arm_head_1_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_head_2" reduction="1.0" offset_value="${arm_head_2_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_head_3" reduction="1.0" offset_value="${arm_head_3_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_head_4" reduction="1.0" offset_value="${arm_head_4_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_head_5" reduction="1.0" offset_value="${arm_head_5_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_head_6" reduction="1.0" offset_value="${arm_head_6_joint_offset}" />
-        <xacro:ros2_control_arm name="arm_head_7" reduction="1.0" offset_value="${arm_head_7_joint_offset}" />
-        <xacro:if value="${has_ft_sensor_head}">
-          <xacro:include filename="$(find pal_sea_arm_description)/urdf/sensors/ft_sensor/sensor.ros2_control.xacro"/>
-          <xacro:ros2_control_force_torque_sensor name="wrist_head_sensor"/>
-        </xacro:if>
-
-        <xacro:if value="${end_effector_head == 'pal-pro-gripper'}">
-          <xacro:ros2_control_pal_pro_gripper name="gripper_head" reduction="1.0" />
-        </xacro:if>
-
-        <xacro:if value="${end_effector_head == 'allegro-hand'}">
-          <xacro:ros2_control_allegro_hand name="gripper_head" pid_controllers="$(arg pid_controllers)" reduction="1.0" />
-        </xacro:if>
-
-      </xacro:if>
-
-    </ros2_control>
+      </ros2_control>
+    </xacro:unless>
   </xacro:macro>
 </robot>

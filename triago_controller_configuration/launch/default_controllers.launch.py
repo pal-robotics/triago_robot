@@ -112,7 +112,6 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
                           "namespace": launch_args.namespace,
                           "use_sim_time": launch_args.use_sim_time
                           },
-        condition=IfCondition(LaunchConfiguration('use_sim_time'))
     )
 
     launch_description.add_action(arm_controllers)

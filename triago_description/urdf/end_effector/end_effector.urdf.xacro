@@ -52,7 +52,7 @@
         </inertial>
         <visual>
             <geometry>
-                <mesh filename="package://allegro_hand_description/meshes/allegro_coupler_link.STL" scale="${reflect} 1 1" />
+                <mesh filename="package://pal_sea_arm_description/meshes/arm_tiago_pro/allegro_coupler_link.STL" scale="${reflect} 1 1" />
             </geometry>
             <origin rpy="0 0 0" xyz="0 0 0 "/>
             <material name="pal/DarkGrey"/>
@@ -89,7 +89,7 @@
         </inertial>
         <visual>
             <geometry>
-                <mesh filename="package://allegro_hand_description/meshes/allegro_tc_out_link.STL" scale="${reflect} 1 1" />
+                <mesh filename="package://pal_sea_arm_description/meshes/arm_tiago_pro/allegro_tc_out_link.STL" scale="${reflect} 1 1" />
             </geometry>
             <origin rpy="0 0 0" xyz="0 0 0 "/>
             <material name="pal/DarkGrey"/>

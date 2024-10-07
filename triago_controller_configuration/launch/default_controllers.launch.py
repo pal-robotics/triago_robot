@@ -66,13 +66,14 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
     else:
         params_file = default_config
 
-    mobile_base_controller = GroupAction(
-        [generate_load_controller_launch_description(
-            controller_name='mobile_base_controller',
-            controller_params_file=params_file)
-         ],
-        forwarding=False,
-        condition=UnlessCondition(LaunchConfiguration('use_sim_time')))
+    mobile_base_controller = include_scoped_launch_py_description(
+        pkg_name=base_share_folder,
+        paths=["launch", "mobile_base_controller.launch.py"],
+        launch_arguments={
+            "use_sim_time": use_sim_time,
+            "is_public_sim": is_public_sim,
+        }
+    )
 
     launch_description.add_action(mobile_base_controller)
 

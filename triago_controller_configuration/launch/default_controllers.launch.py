@@ -67,10 +67,10 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         params_file = default_config
 
     mobile_base_controller = include_scoped_launch_py_description(
-        pkg_name=base_share_folder,
-        paths=["launch", "mobile_base_controller.launch.py"],
+        pkg_name= 'omni_base_controller_configuration',
+        paths=['launch', 'mobile_base_controller.launch.py'],
         launch_arguments={
-            "use_sim_time": use_sim_time,
+            "use_sim_time": launch_args.use_sim_time
         }
     )
 

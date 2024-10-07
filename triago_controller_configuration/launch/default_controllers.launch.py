@@ -71,7 +71,6 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         paths=["launch", "mobile_base_controller.launch.py"],
         launch_arguments={
             "use_sim_time": use_sim_time,
-            "is_public_sim": is_public_sim,
         }
     )
 

@@ -101,9 +101,9 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
             PythonExpression(
                 ["'", LaunchConfiguration(arm_arg_name), "' != 'no-arm' and '",
                  LaunchConfiguration(end_effector_arg_name), "' != 'no-end-effector'"]
-                 )
             )
         )
+    )
 
     # Setup ft-sensor controller
     ft_sensor = read_launch_argument(ft_sensor_arg_name, context)

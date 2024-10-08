@@ -113,7 +113,7 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
     )
 
     launch_description.add_action(arm_controllers)
-    
+
     # Gravity compensation controller
     gravity_compensation_controller = include_scoped_launch_py_description(
         pkg_name="triago_controller_configuration",
@@ -121,7 +121,6 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
     )
 
     launch_description.add_action(gravity_compensation_controller)
-
 
     return
 

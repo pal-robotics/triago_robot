@@ -16,9 +16,8 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import GroupAction
-from launch.conditions import IfCondition, UnlessCondition
+from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration
-from launch_pal.param_utils import merge_param_files
 from launch.actions import DeclareLaunchArgument
 from controller_manager.launch_utils import generate_load_controller_launch_description
 from launch_pal.include_utils import include_scoped_launch_py_description
@@ -52,27 +51,15 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         'triago_controller_configuration')
 
     # Mobile base controller
-    base_share_folder = get_package_share_directory(
-        'omni_base_controller_configuration')
+    base_controller_package = 'omni_base_controller_configuration'
 
-    default_config = os.path.join(
-        base_share_folder,
-        'config', 'mobile_base_controller.yaml')
-
-    calibration_config = '/etc/calibration/master_calibration.yaml'
-
-    if os.path.exists(calibration_config):
-        params_file = merge_param_files([default_config, calibration_config])
-    else:
-        params_file = default_config
-
-    mobile_base_controller = GroupAction(
-        [generate_load_controller_launch_description(
-            controller_name='mobile_base_controller',
-            controller_params_file=params_file)
-         ],
-        forwarding=False,
-        condition=UnlessCondition(LaunchConfiguration('use_sim_time')))
+    mobile_base_controller = include_scoped_launch_py_description(
+        pkg_name=base_controller_package,
+        paths=['launch', 'mobile_base_controller.launch.py'],
+        launch_arguments={
+            "use_sim_time": launch_args.use_sim_time
+        }
+    )
 
     launch_description.add_action(mobile_base_controller)
 

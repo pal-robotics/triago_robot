@@ -118,7 +118,6 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
     gravity_compensation_controller = include_scoped_launch_py_description(
         pkg_name="triago_controller_configuration",
         paths=["launch", "gravity_compensation_controller.launch.py"],
-        condition=UnlessCondition(LaunchConfiguration("use_sim_time"))
     )
 
     launch_description.add_action(gravity_compensation_controller)

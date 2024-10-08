@@ -36,7 +36,8 @@ class LaunchArguments(LaunchArgumentsBase):
 
 def declare_actions(launch_description: LaunchDescription, launch_args: LaunchArguments):
 
-    launch_description.add_action(OpaqueFunction(function=setup_controller_configuration))
+    launch_description.add_action(OpaqueFunction(
+        function=setup_controller_configuration))
 
     launch_controller = generate_load_controller_launch_description(
         controller_name=LaunchConfiguration("controller_name"),
@@ -57,10 +58,12 @@ def setup_controller_configuration(context: LaunchContext):
     controller_name = f"{ee_prefix}_controller"
     remappings = {"EE_SIDE_PREFIX": ee_prefix}
     param_file = os.path.join(
-        get_package_share_directory('pal_pro_gripper_controller_configuration'),
+        get_package_share_directory(
+            'pal_pro_gripper_controller_configuration'),
         'config', 'gripper_controller.yaml')
 
-    parsed_yaml = parse_parametric_yaml(source_files=[param_file], param_rewrites=remappings)
+    parsed_yaml = parse_parametric_yaml(
+        source_files=[param_file], param_rewrites=remappings)
 
     return [SetLaunchConfiguration('controller_name', controller_name),
             SetLaunchConfiguration('controller_config', parsed_yaml)]

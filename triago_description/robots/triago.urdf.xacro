@@ -252,7 +252,7 @@
 
     <!-- Arm -->
     <xacro:head_arm name="arm_head" parent="torso_lift_link" wrist_model="${wrist_model_head}" tool_changer="${tool_changer_head}" reflect="1" arm_1_offset="${arm_right_1_joint_offset}" arm_2_offset="${arm_right_2_joint_offset}" arm_3_offset="${arm_right_3_joint_offset}" arm_4_offset="${arm_right_4_joint_offset}" arm_5_offset="${arm_right_5_joint_offset}" arm_6_offset="${arm_right_6_joint_offset}" arm_7_offset="${arm_right_7_joint_offset}">
-      <origin xyz="0.00733452377915612 0 0.630632193308821" rpy="0 0.785398163397445 0" />
+      <origin xyz="0.00733452377915612 0 0.630632193308821" rpy="0 -0.785398163397445 3.14" />
     </xacro:head_arm>
 
     <!-- End effector -->

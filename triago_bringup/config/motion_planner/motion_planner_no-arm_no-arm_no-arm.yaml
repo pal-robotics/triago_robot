@@ -4,10 +4,12 @@
     motion_planner:
       disable_motion_planning: false
       planning_groups: # Sorted by order of preference
-    
-        - torso
-      joint_tolerance: 0.01
+        - all_arms_torso
+
+######    
+##        - torso
+#      joint_tolerance: 0.01
 
       # Parameters for non-planned approach
-      approach_velocity: 0.5
-      approach_min_duration: 0.5
+#      approach_velocity: 0.5
+#       approach_min_duration: 0.5

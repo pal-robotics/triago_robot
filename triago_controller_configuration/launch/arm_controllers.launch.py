@@ -16,7 +16,7 @@ import os
 from typing import List
 from launch import LaunchDescription
 from launch.actions import OpaqueFunction
-from launch.conditions import LaunchConfigurationNotEquals, IfCondition
+from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration, PythonExpression
 from launch.actions import DeclareLaunchArgument
 from launch_pal.include_utils import include_scoped_launch_py_description
@@ -24,7 +24,6 @@ from launch_pal.arg_utils import LaunchArgumentsBase, read_launch_argument
 from launch_pal.robot_arguments import CommonArgs
 from triago_description.launch_arguments import TriagoArgs
 from launch_ros.actions import Node
-from controller_manager.launch_utils import generate_load_controller_launch_description
 from ament_index_python.packages import get_package_share_directory
 
 
@@ -55,7 +54,8 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         executable="spawner",
         arguments=["arm_right_controller", "arm_left_controller",
                    "arm_head_controller", "--activate-as-group", "--param-file", os.path.join(
-                       get_package_share_directory('triago_controller_configuration'), 'config/arm_controller.yaml')],
+                       get_package_share_directory('triago_controller_configuration'),
+                       'config/arm_controller.yaml')],
     )
 
     launch_description.add_action(arm_controller)

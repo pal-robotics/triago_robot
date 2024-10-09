@@ -20,8 +20,6 @@ from launch.substitutions import LaunchConfiguration
 from launch.actions import DeclareLaunchArgument, OpaqueFunction, SetLaunchConfiguration
 from launch_ros.actions import Node
 
-from triago_description.triago_launch_utils import get_single_arm_hw_suffix
-
 from launch_pal.arg_utils import LaunchArgumentsBase, read_launch_argument
 from triago_description.launch_arguments import TriagoArgs
 
@@ -78,11 +76,6 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
 
 def create_joy_teleop_filename(context):
-    hw_suffix = get_single_arm_hw_suffix(
-        arm=read_launch_argument('arm_type_right', context),
-        end_effector=read_launch_argument('end_effector_right', context),
-    )
-
     joy_teleop_file = "joy_teleop.yaml"
 
     joy_teleop_path = os.path.join(

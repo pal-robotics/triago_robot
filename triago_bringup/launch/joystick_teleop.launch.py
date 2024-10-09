@@ -20,7 +20,7 @@ from launch.substitutions import LaunchConfiguration
 from launch.actions import DeclareLaunchArgument, OpaqueFunction, SetLaunchConfiguration
 from launch_ros.actions import Node
 
-from launch_pal.arg_utils import LaunchArgumentsBase, read_launch_argument
+from launch_pal.arg_utils import LaunchArgumentsBase
 from triago_description.launch_arguments import TriagoArgs
 
 from dataclasses import dataclass

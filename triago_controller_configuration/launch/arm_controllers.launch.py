@@ -11,17 +11,21 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import os
 
 from typing import List
 from launch import LaunchDescription
 from launch.actions import OpaqueFunction
-from launch.conditions import LaunchConfigurationNotEquals, IfCondition
+from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration, PythonExpression
 from launch.actions import DeclareLaunchArgument
 from launch_pal.include_utils import include_scoped_launch_py_description
 from launch_pal.arg_utils import LaunchArgumentsBase, read_launch_argument
 from launch_pal.robot_arguments import CommonArgs
 from triago_description.launch_arguments import TriagoArgs
+from launch_ros.actions import Node
+from ament_index_python.packages import get_package_share_directory
+
 
 from dataclasses import dataclass
 
@@ -45,6 +49,16 @@ class LaunchArguments(LaunchArgumentsBase):
 
 def declare_actions(launch_description: LaunchDescription, launch_args: LaunchArguments):
 
+    arm_controller = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["arm_right_controller", "arm_left_controller",
+                   "arm_head_controller", "--activate-as-group", "--param-file", os.path.join(
+                       get_package_share_directory('triago_controller_configuration'),
+                       'config/arm_controller.yaml')],
+    )
+
+    launch_description.add_action(arm_controller)
     # Add controller of right arm, end-effector and ft-sensor
     launch_description.add_action(OpaqueFunction(
         function=configure_side_controllers, args=['right']))
@@ -76,12 +90,6 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
         strings=['ft_sensor', end_effector_side],
         delimiter='_',
         skip_empty=True)
-
-    arm_controller = include_scoped_launch_py_description(
-        pkg_name='triago_controller_configuration',
-        paths=['launch', 'arm_controller', 'triago_arm_controller.launch.py'],
-        launch_arguments={"side": end_effector_side},
-        condition=LaunchConfigurationNotEquals(arm_arg_name, 'no-arm'))
 
     end_effector = read_launch_argument(end_effector_arg_name, context)
     end_effector_underscore = end_effector.replace('-', '_')
@@ -123,7 +131,7 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
         )
     )
 
-    return [arm_controller, end_effector_controller, ft_sensor_controller]
+    return [end_effector_controller, ft_sensor_controller]
 
 
 def concatenate_strings(strings: List[str], delimiter: str = '', skip_empty: bool = False):

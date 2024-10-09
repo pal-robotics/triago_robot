@@ -83,7 +83,7 @@ def create_joy_teleop_filename(context):
         end_effector=read_launch_argument('end_effector_right', context),
     )
 
-    joy_teleop_file = f"joy_teleop.yaml"
+    joy_teleop_file = "joy_teleop.yaml"
 
     joy_teleop_path = os.path.join(
         get_package_share_directory('triago_bringup'), 'config', 'joy_teleop', joy_teleop_file)

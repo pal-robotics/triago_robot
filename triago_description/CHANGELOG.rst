@@ -24,8 +24,8 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.0.7 (2024-10-10)
+------------------
 * Merge branch 'tpe/fix_inertia_wrist' into 'humble-devel'
   Fix wrist inertia
   See merge request robots/triago_robot!24

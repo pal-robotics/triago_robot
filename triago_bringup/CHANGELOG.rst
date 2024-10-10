@@ -20,8 +20,8 @@ Changelog for package triago_bringup
 * Fix wrist + update joint 6 limit + update motions
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.0.7 (2024-10-10)
+------------------
 * Merge branch 'air/feat/merge_arm_controllers' into 'humble-devel'
   Air/feat/merge arm controllers
   See merge request robots/triago_robot!23

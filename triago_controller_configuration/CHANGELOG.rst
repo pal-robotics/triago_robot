@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.0.7 (2024-10-10)
+------------------
 * Merge branch 'vmo/add_open_loop' into 'humble-devel'
   Adding open loop control to jt
   See merge request robots/triago_robot!27

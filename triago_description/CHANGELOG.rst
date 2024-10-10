@@ -24,6 +24,47 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Merge branch 'tpe/fix_inertia_wrist' into 'humble-devel'
+  Fix wrist inertia
+  See merge request robots/triago_robot!24
+* Fix wrist inertia
+* Merge branch 'tpe/update-vel-lim' into 'humble-devel'
+  update joint max velocity limit for tiago head arm
+  See merge request robots/triago_robot!26
+* update joint max velocity limit for tiago head arm
+* Merge branch 'tpe/fix_5th_joint_reflect' into 'humble-devel'
+  Add reflect on the 5th joint
+  See merge request robots/triago_robot!22
+* Add reflect on the 5th joint
+* reduce joint limits according to test with robot
+* Lift torso_lift link of 5mm because a part was added to prevent collsion due the the 3rd arm + modify range of torso_lift
+* Merge branch 'abr/fix/use-omni-base-controller' into 'humble-devel'
+  Use omni_base mobile_base_controller
+  See merge request robots/triago_robot!17
+* Fix inertias
+* Fix inertias
+* Merge branch 'tpe/fix_joint_6' into 'humble-devel'
+  Inverse joint 6 rotation + update motions accordingly
+  See merge request robots/triago_robot!15
+* Change joint 3 limits to match real configuration
+* Modify coupler path
+* Revert hand to not be bothered by the wrist while grasping objects
+* Add missing coupler link for the allegro hand
+* add material + fix 7th joint
+* Flip 1st joint for the head + adapt motions
+* Inverse joint 6 rotation + update motions accordingly
+* Merge branch 'feat/multiple_hardware_components' into 'humble-devel'
+  Split ros2_control hardware into two RobotControl components
+  See merge request robots/triago_robot!13
+* Split ros2_control hardware into two RobotControl components
+* Merge branch 'fix/arm_head_offset' into 'humble-devel'
+  Use arm_head_offset for arm_head
+  See merge request robots/triago_robot!12
+* Use arm_head_offset for arm_head
+* Contributors: Aina, Noel Jimenez, thomas.peyrucain, thomaspeyrucain, vivianamorlando
+
 0.0.6 (2024-10-02)
 ------------------
 

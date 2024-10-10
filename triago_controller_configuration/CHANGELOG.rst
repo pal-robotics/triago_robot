@@ -14,6 +14,46 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Merge branch 'vmo/add_open_loop' into 'humble-devel'
+  Adding open loop control to jt
+  See merge request robots/triago_robot!27
+* Adding open loop control to jt
+* Merge branch 'air/feat/merge_arm_controllers' into 'humble-devel'
+  Air/feat/merge arm controllers
+  See merge request robots/triago_robot!23
+* Fix flake8
+* Merge the 3 arm controllers
+* Merge branch 'ipe/add-gravity' into 'humble-devel'
+  Ipe/add gravity
+  See merge request robots/triago_robot!18
+* Fix flake 8
+* delete condition on the gravity controller
+* fix typo for use_sim_time
+* add gravity compensation as default (only loaded)
+* update motor torque constants with datasheet values
+* Add gravity dependency
+* add gravity compensation controller
+* Merge branch 'ipe/fix/module-arms' into 'humble-devel'
+  Ipe/fix/module arms
+  See merge request robots/triago_robot!16
+* Fix flake8 for launch file
+* delete if sim condition on the arm position ctrl
+* Update triago_controller_configuration/module/20_default_controllers.yaml
+* Merge branch 'vmo/add_depend' into 'humble-devel'
+  Adding dependency
+  See merge request robots/triago_robot!20
+* Adding dependency
+* Merge branch 'abr/fix/use-omni-base-controller' into 'humble-devel'
+  Use omni_base mobile_base_controller
+  See merge request robots/triago_robot!17
+* removed unused variables
+* suggestions
+* remove public_sim
+* Use omni_base mobile_base_controller
+* Contributors: Aina, antoniobrandi, ileniaperrella, martinaannicelli, thomas.peyrucain, thomaspeyrucain, vivianamorlando
+
 0.0.6 (2024-10-02)
 ------------------
 

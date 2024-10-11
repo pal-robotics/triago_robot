@@ -37,7 +37,7 @@ end_effector_left:
 end_effector_head:
   description: 'End effector model head arm'
   choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector', 'camera-tools']
-  default_value: 'pal-pro-gripper'
+  default_value: 'no-end-effector'
 hand_head_type:
   description: 'If the head arm has allegro hand specify if it is right or left'
   choices: ['right' , 'left' , '']

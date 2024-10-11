@@ -4,14 +4,12 @@
     motion_planner:
       disable_motion_planning: false
       planning_groups: # Sorted by order of preference
-        - arm_right_torso
-        - arm_right
-        - arm_head_torso
-        - arm_head
-        - right_head_torso   
-    
-        - torso
+        - all_arms_torso
+
       joint_tolerance: 0.01
+
+      #TO DO: Add exclude_from_planning_joints for end effectors 
+
 
       # Parameters for non-planned approach
       approach_velocity: 0.5

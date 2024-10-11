@@ -3,32 +3,12 @@
     motion_planner:
       disable_motion_planning: false
       planning_groups: # Sorted by order of preference
-@[if has_arm_left]@
-        - arm_left_torso
-        - arm_left
-@[end if]@
-@[if has_arm_right]@
-        - arm_right_torso
-        - arm_right
-@[end if]@
-@[if has_arm_head]@
-        - arm_head_torso
-        - arm_head
-@[end if]@
-@[if has_arm_left and has_arm_right]@
-        - left_right_torso
-@[end if]@
-@[if has_arm_left and has_arm_head]@
-        - left_head_torso
-@[end if]@
-@[if has_arm_right and has_arm_head]@
-        - right_head_torso   
-@[end if]@     
-@[if has_arm_left and has_arm_right and has_arm_head]@
         - all_arms_torso
-@[end if]@
-        - torso
+
       joint_tolerance: 0.01
+
+      #TO DO: Add exclude_from_planning_joints for end effectors 
+
 
       # Parameters for non-planned approach
       approach_velocity: 0.5

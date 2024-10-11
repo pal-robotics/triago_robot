@@ -35,10 +35,10 @@
           description: Go home
       
       home_head:
-        joints: [torso_lift_joint, arm_head_1_joint, arm_head_2_joint, arm_head_3_joint, arm_head_4_joint, arm_head_5_joint, arm_head_6_joint, arm_head_7_joint ]
+        joints: [arm_head_1_joint, arm_head_2_joint, arm_head_3_joint, arm_head_4_joint, arm_head_5_joint, arm_head_6_joint, arm_head_7_joint ]
         times_from_start: [0.0, 5.0]
-        positions: [0.17202, -1.57, -1.6008, 0.0, -1.9818, 0.0, -1.20, 0.0,
-                    0.1, -1.57, -2.3, 0.0, -2.1, -0.0, -1.20, 0.0]
+        positions: [-1.57, -1.6008, 0.0, -1.9818, 0.0, -1.20, 0.0,
+                    -1.57, -2.3, 0.0, -2.1, -0.0, -1.20, 0.0]
         meta:
           name: Home head
           usage: demo
@@ -152,8 +152,8 @@
           description: reach floor right
       torso_up:
         joints: [torso_lift_joint]
-        positions: [0.1, 0.34]
-        times_from_start: [0.0, 5.0]
+        positions: [0.32]
+        times_from_start: [5.0]
         meta:
           name: Torso Up
           usage: Demo
@@ -166,10 +166,3 @@
           name: Torso Down
           usage: Demo
           description: torso down
-      # hug:
-      #   joints: [arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint, arm_right_6_joint, arm_right_7_joint, arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_left_6_joint, arm_left_7_joint, arm_head_1_joint, arm_head_2_joint, arm_head_3_joint, arm_head_4_joint, arm_head_5_joint, arm_head_6_joint, arm_head_7_joint, torso_lift_joint]
-      #   positions: [-0.7167, -1.83, -0.1158, -2.35, -0.0, -1.2, 0.0, 0.7167, -1.83, 0.1158, -2.35, 0.0, -1.2, 0.0, -1.57, -2.3, 0.0, -2.1, -0.0, -1.2, 0.0, 0.23, -1.75, -1.83, -0.47, -2.35, -0.0, -1.2, 0.0, 1.75, -1.83, 0.47, -2.35, 0.0, -1.2, 0.0, -1.57, -2.3, 0.0, -2.1, -0.0, -1.2, 0.0, 0.23, -1.75, -1.27, 0.0, 0.0, 0.0, 0.0, 0.0, 1.75, -1.27, 0.0, 0.0, 0.0, 0.0, 0.0, -1.57, -2.3, 0.0, -2.1, -0.0, -1.2, 0.0, 0.23, -1.5692, -1.2697, 0.30393, -1.7506, -0.00013616, -1.0555, 0.0003981, 1.5698, -0.77204, 0.2902, -1.2573, 0.00062608, -1.0003, 0.50521, -1.5709, -0.00012876, -0.00053172, -0.97547, 0.00062916, -0.00014815, 0.00013445, 0.23085, -1.57, -1.27, 0.3, -1.75, 1.0178e-07, -1.0554, 7.3519e-06, 1.57, -0.83995, 0.29, -1.758, 3.0417e-06, -0.99999, 0.50436, -1.57, -1.8497e-07, -2.5044e-07, -0.97595, 5.997e-08, -1.1146, -3.3921e-08, 0.22999]        times_from_start: [0.0, 3.0, 8.0, 13.0, 18.0]
-      #   meta:
-      #     name: Hug
-      #     usage: Demo
-      #     description: hug

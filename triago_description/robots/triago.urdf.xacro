@@ -36,7 +36,7 @@
   <!-- pal-pro-gripper, custom-->
   <xacro:arg name="end_effector_right" default="allegro-hand" />
 
-  <xacro:arg name="end_effector_head" default="pal-pro-gripper" />
+  <xacro:arg name="end_effector_head" default="no-end-effector" />
   <xacro:arg name="hand_head_type" default="" />
 
   <!-- straight-wrist, spherical-wrist -->

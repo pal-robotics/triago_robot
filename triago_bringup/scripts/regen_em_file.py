@@ -27,7 +27,8 @@ no_extension_path = os.path.splitext(no_em_extension_path)[0]
 extension = os.path.splitext(no_em_extension_path)[1]
 
 end_effectors = ["pal-pro-gripper", "custom",
-                 "no-end-effector", "allegro-hand"]
+                 "no-end-effector", "allegro-hand",
+                 "camera-tools"]
 arm_types = ['tiago-pro', 'no-arm']
 
 for end_effector_left in end_effectors:

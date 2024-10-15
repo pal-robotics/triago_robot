@@ -37,7 +37,7 @@ end_effector_left:
 end_effector_head:
   description: 'End effector model head arm'
   choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector', 'camera-tools']
-  default_value: 'no-end-effector'
+  default_value: 'camera-tools'
 hand_head_type:
   description: 'If the head arm has allegro hand specify if it is right or left'
   choices: ['right' , 'left' , '']
@@ -66,3 +66,7 @@ wheel_model:
   description: 'Wheel model'
   choices: ['moog']
   default_value: 'moog'
+camera_position:
+  description: 'Camera position'
+  choices: ['up', 'down']
+  default_value: 'down'

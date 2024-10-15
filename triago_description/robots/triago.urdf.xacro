@@ -36,7 +36,7 @@
   <!-- pal-pro-gripper, custom-->
   <xacro:arg name="end_effector_right" default="allegro-hand" />
 
-  <xacro:arg name="end_effector_head" default="no-end-effector" />
+  <xacro:arg name="end_effector_head" default="camera-tools" />
   <xacro:arg name="hand_head_type" default="" />
 
   <!-- straight-wrist, spherical-wrist -->
@@ -75,6 +75,7 @@
   <xacro:arg name="arm_roll" default="-2.0679" />
   <xacro:arg name="arm_pitch" default="0.0" />
   <xacro:arg name="arm_yaw" default="-1.2217" />
+  <xacro:arg name="camera_position" default="down" />
 
   <!-- PROPERTIES -->
 
@@ -95,9 +96,10 @@
   <xacro:property name="wrist_model_head" value="$(arg wrist_model_head)" />
   <xacro:property name="description_calibration_dir" value="${arg description_calibration_dir}"/>
   <xacro:property name="is_public_sim" value="$(arg is_public_sim)" />
+  <xacro:property name="camera_position" value="$(arg camera_position)"/>
 
   <xacro:property name="has_arm_left" value="${arm_type_left not in ['no-arm']}"/>
-  <xacro:property name="has_ft_sensor_left" value="${ft_sensor_left not in ['no-ft-sensor']}"/>
+  <xacro:property name="has_ft_sensor_left" value="${ft_sensor_left not in ['no-ft-sensor'] and end_effector_left not in ['camera-tools']}"/>
   <xacro:property name="has_end_effector_left" value="${end_effector_left not in ['no-end-effector']}" />
   <xacro:property name="end_effector_left_link" value="${'wrist_left_ft_tool_link' if has_ft_sensor_left else 'arm_left_tool_link'}" />
   <xacro:property name="end_effector_left_name" value="gripper_left" />
@@ -105,14 +107,14 @@
 
 
   <xacro:property name="has_arm_right" value="${arm_type_right not in ['no-arm']}"/>
-  <xacro:property name="has_ft_sensor_right" value="${ft_sensor_right not in ['no-ft-sensor']}"/>
+  <xacro:property name="has_ft_sensor_right" value="${ft_sensor_right not in ['no-ft-sensor'] and end_effector_right not in ['camera-tools']}"/>
   <xacro:property name="has_end_effector_right" value="${end_effector_right not in ['no-end-effector']}" />
   <xacro:property name="end_effector_right_link" value="${'wrist_right_ft_tool_link' if has_ft_sensor_right else 'arm_right_tool_link'}" />
   <xacro:property name="end_effector_right_name" value="gripper_right" />
   <xacro:property name="tool_changer_right" value="${has_end_effector_right or has_ft_sensor_right }"/>
 
   <xacro:property name="has_arm_head" value="${arm_type_head not in ['no-arm']}"/>
-  <xacro:property name="has_ft_sensor_head" value="${ft_sensor_head not in ['no-ft-sensor']}"/>
+  <xacro:property name="has_ft_sensor_head" value="${ft_sensor_head not in ['no-ft-sensor'] and end_effector_head not in ['camera-tools']}"/>
   <xacro:property name="has_end_effector_head" value="${end_effector_head not in ['no-end-effector']}" />
   <xacro:property name="end_effector_head_link" value="${'wrist_head_ft_tool_link' if has_ft_sensor_head else 'arm_head_tool_link'}" />
   <xacro:property name="hand_head_type" value="$(arg hand_head_type)" />
@@ -124,6 +126,8 @@
   <xacro:unless value="${hand_head_type == 'left'}">
     <xacro:property name="head_hand_reflect" value="1" />
   </xacro:unless>
+  
+
 
   <!-- Properties check -->
   <xacro:if value="${arm_type_left not in ['tiago-pro', 'no-arm']}">
@@ -135,13 +139,13 @@
   <xacro:if value="${arm_type_head not in ['tiago-pro', 'no-arm']}">
     <xacro:wrong_arm_type_head />
   </xacro:if>
-  <xacro:if value="${end_effector_left not in ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector']}">
+  <xacro:if value="${end_effector_left not in ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector', 'camera-tools']}">
     <xacro:wrong_end_effector_left />
   </xacro:if>
-  <xacro:if value="${end_effector_right not in ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector']}">
+  <xacro:if value="${end_effector_right not in ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector', 'camera-tools']}">
     <xacro:wrong_end_effector_right />
   </xacro:if>
-  <xacro:if value="${end_effector_head not in ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector']}">
+  <xacro:if value="${end_effector_head not in ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector', 'camera-tools']}">
     <xacro:wrong_end_effector_head />
   </xacro:if>
   <xacro:if value="${ft_sensor_left not in ['no-ft-sensor', 'ati']}">
@@ -214,7 +218,7 @@
 
     <!-- End effector -->
     <xacro:if value="${has_end_effector_left}">
-      <xacro:triago_end_effector name="gripper_left" parent="${end_effector_left_link}" type="${end_effector_left}" has_end_effector="${has_end_effector_left}" reflect="-1" is_dual="true"/>
+      <xacro:triago_end_effector name="gripper_left" parent="${end_effector_left_link}" type="${end_effector_left}" has_end_effector="${has_end_effector_left}" reflect="-1" is_dual="true" camera_position="${camera_position}"/>
     </xacro:if>
 
     <!-- FT sensors -->
@@ -235,7 +239,7 @@
     <!-- End effector -->
 
     <xacro:if value="${has_end_effector_right}">
-      <xacro:triago_end_effector name="gripper_right" parent="${end_effector_right_link}" type="${end_effector_right}" has_end_effector="${has_end_effector_right}" reflect="1" is_dual="true"/>
+      <xacro:triago_end_effector name="gripper_right" parent="${end_effector_right_link}" type="${end_effector_right}" has_end_effector="${has_end_effector_right}" reflect="1" is_dual="true" camera_position="${camera_position}"/>
     </xacro:if>
 
     
@@ -257,7 +261,7 @@
 
     <!-- End effector -->
     <xacro:if value="${has_end_effector_head}">
-      <xacro:triago_end_effector name="gripper_head" parent="${end_effector_head_link}" type="${end_effector_head}" has_end_effector="${has_end_effector_head}" reflect="${head_hand_reflect}" is_dual="true"/>
+      <xacro:triago_end_effector name="gripper_head" parent="${end_effector_head_link}" type="${end_effector_head}" has_end_effector="${has_end_effector_head}" reflect="${head_hand_reflect}" is_dual="true" camera_position="${camera_position}"/>
     </xacro:if>
 
     <!-- FT sensors -->

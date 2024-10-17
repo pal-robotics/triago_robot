@@ -75,7 +75,9 @@
   <xacro:arg name="arm_roll" default="-2.0679" />
   <xacro:arg name="arm_pitch" default="0.0" />
   <xacro:arg name="arm_yaw" default="-1.2217" />
-  <xacro:arg name="camera_position" default="down" />
+  <xacro:arg name="camera_position_right" default="up" />
+  <xacro:arg name="camera_position_left" default="up" />
+  <xacro:arg name="camera_position_head" default="down" />
 
   <!-- PROPERTIES -->
 
@@ -96,7 +98,9 @@
   <xacro:property name="wrist_model_head" value="$(arg wrist_model_head)" />
   <xacro:property name="description_calibration_dir" value="${arg description_calibration_dir}"/>
   <xacro:property name="is_public_sim" value="$(arg is_public_sim)" />
-  <xacro:property name="camera_position" value="$(arg camera_position)"/>
+  <xacro:property name="camera_position_right" value="$(arg camera_position_right)"/>
+  <xacro:property name="camera_position_left" value="$(arg camera_position_left)"/>
+  <xacro:property name="camera_position_head" value="$(arg camera_position_head)"/>
 
   <xacro:property name="has_arm_left" value="${arm_type_left not in ['no-arm']}"/>
   <xacro:property name="has_ft_sensor_left" value="${ft_sensor_left not in ['no-ft-sensor'] and end_effector_left not in ['camera-tools']}"/>
@@ -218,7 +222,7 @@
 
     <!-- End effector -->
     <xacro:if value="${has_end_effector_left}">
-      <xacro:triago_end_effector name="gripper_left" parent="${end_effector_left_link}" type="${end_effector_left}" has_end_effector="${has_end_effector_left}" reflect="-1" is_dual="true" camera_position="${camera_position}"/>
+      <xacro:triago_end_effector name="gripper_left" parent="${end_effector_left_link}" type="${end_effector_left}" has_end_effector="${has_end_effector_left}" reflect="-1" is_dual="true" camera_position="${camera_position_left}"/>
     </xacro:if>
 
     <!-- FT sensors -->
@@ -239,7 +243,7 @@
     <!-- End effector -->
 
     <xacro:if value="${has_end_effector_right}">
-      <xacro:triago_end_effector name="gripper_right" parent="${end_effector_right_link}" type="${end_effector_right}" has_end_effector="${has_end_effector_right}" reflect="1" is_dual="true" camera_position="${camera_position}"/>
+      <xacro:triago_end_effector name="gripper_right" parent="${end_effector_right_link}" type="${end_effector_right}" has_end_effector="${has_end_effector_right}" reflect="1" is_dual="true" camera_position="${camera_position_right}"/>
     </xacro:if>
 
     
@@ -261,7 +265,7 @@
 
     <!-- End effector -->
     <xacro:if value="${has_end_effector_head}">
-      <xacro:triago_end_effector name="gripper_head" parent="${end_effector_head_link}" type="${end_effector_head}" has_end_effector="${has_end_effector_head}" reflect="${head_hand_reflect}" is_dual="true" camera_position="${camera_position}"/>
+      <xacro:triago_end_effector name="gripper_head" parent="${end_effector_head_link}" type="${end_effector_head}" has_end_effector="${has_end_effector_head}" reflect="${head_hand_reflect}" is_dual="true" camera_position="${camera_position_head}"/>
     </xacro:if>
 
     <!-- FT sensors -->

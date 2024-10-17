@@ -66,7 +66,15 @@ wheel_model:
   description: 'Wheel model'
   choices: ['moog']
   default_value: 'moog'
-camera_position:
-  description: 'Camera position'
+camera_position_head:
+  description: 'Camera position Head'
+  choices: ['up', 'down']
+  default_value: 'down'
+camera_position_right:
+  description: 'Camera position Right'
+  choices: ['up', 'down']
+  default_value: 'down'
+camera_position_left:
+  description: 'Camera position Left'
   choices: ['up', 'down']
   default_value: 'down'

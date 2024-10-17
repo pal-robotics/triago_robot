@@ -47,7 +47,9 @@ class LaunchArguments(LaunchArgumentsBase):
     wrist_model_left: DeclareLaunchArgument = TriagoArgs.wrist_model_left
     wrist_model_head: DeclareLaunchArgument = TriagoArgs.wrist_model_head
     camera_model: DeclareLaunchArgument = TriagoArgs.camera_model
-    camera_position: DeclareLaunchArgument = TriagoArgs.camera_position
+    camera_position_right: DeclareLaunchArgument = TriagoArgs.camera_position_right
+    camera_position_left: DeclareLaunchArgument = TriagoArgs.camera_position_left
+    camera_position_head: DeclareLaunchArgument = TriagoArgs.camera_position_head
     laser_model: DeclareLaunchArgument = TriagoArgs.laser_model
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
     namespace: DeclareLaunchArgument = CommonArgs.namespace
@@ -95,7 +97,9 @@ def create_robot_description_param(context, *args, **kwargs):
         'use_sim_time': read_launch_argument('use_sim_time', context),
         'namespace': read_launch_argument('namespace', context),
         'is_public_sim': read_launch_argument('is_public_sim', context),
-        'camera_position': read_launch_argument('camera_position', context),
+        'camera_position_right': read_launch_argument('camera_position_right', context),
+        'camera_position_left': read_launch_argument('camera_position_left', context),
+        'camera_position_head': read_launch_argument('camera_position_head', context)
     }
     robot_description = load_xacro(xacro_file_path, xacro_input_args)
 

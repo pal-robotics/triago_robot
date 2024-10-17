@@ -43,7 +43,9 @@ class LaunchArguments(LaunchArgumentsBase):
     ft_sensor_head: DeclareLaunchArgument = TriagoArgs.ft_sensor_head
     wrist_model_right: DeclareLaunchArgument = TriagoArgs.wrist_model_right
     wrist_model_left: DeclareLaunchArgument = TriagoArgs.wrist_model_left
-    camera_position: DeclareLaunchArgument = TriagoArgs.camera_position
+    camera_position_right: DeclareLaunchArgument = TriagoArgs.camera_position_right
+    camera_position_left: DeclareLaunchArgument = TriagoArgs.camera_position_left
+    camera_position_head: DeclareLaunchArgument = TriagoArgs.camera_position_head
     wrist_model_head: DeclareLaunchArgument = TriagoArgs.wrist_model_head
     camera_model: DeclareLaunchArgument = TriagoArgs.camera_model
     laser_model: DeclareLaunchArgument = TriagoArgs.laser_model
@@ -73,7 +75,9 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
                           "base_type": launch_args.base_type,
                           "namespace": launch_args.namespace,
                           "use_sim_time": launch_args.use_sim_time,
-                          "camera_position": launch_args.camera_position
+                          "camera_position_right": launch_args.camera_position_right,
+                          "camera_position_left": launch_args.camera_position_left,
+                          "camera_position_head": launch_args.camera_position_head
                           })
 
     launch_description.add_action(robot_state_publisher)

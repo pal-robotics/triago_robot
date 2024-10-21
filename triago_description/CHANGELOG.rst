@@ -24,6 +24,26 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Merge branch 'tpe/fix_joint_limit' into 'humble-devel'
+  fix joint limit deleting the safety threshold
+  See merge request robots/triago_robot!31
+* fix joint limit deleting the safety threshold
+* Add correct mesh for head arm
+* Add posibility of having 3 cameras at the same time
+* Add camera position as an argument
+* Revert inertias
+* Merge branch 'air/feat/head-no-ee' into 'humble-devel'
+  Fix no-ee by default
+  See merge request robots/triago_robot!29
+* Fix no-ee by default
+* Merge branch 'air/fix/vel_limits' into 'humble-devel'
+  Air/fix/vel limits
+  See merge request robots/triago_robot!28
+* Fix vel in urdf
+* Contributors: Aina, ileniaperrella, thomaspeyrucain, vivianamorlando
+
 0.0.7 (2024-10-10)
 ------------------
 * Merge branch 'tpe/fix_inertia_wrist' into 'humble-devel'

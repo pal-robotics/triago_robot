@@ -20,6 +20,29 @@ Changelog for package triago_bringup
 * Fix wrist + update joint 6 limit + update motions
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Merge branch 'tpe/fix_joint_limit' into 'humble-devel'
+  fix joint limit deleting the safety threshold
+  See merge request robots/triago_robot!31
+* Add camera_position arguments
+* Comment for now hw_suffix
+* Create a general motion_planner file for all the configurations and delete the end_effector related
+* Add motion_planner config files for camera-tools end effector
+* Add camera position as an argument
+* Merge branch 'air/add_motions' into 'humble-devel'
+  Air/add motions
+  See merge request robots/triago_robot!25
+* Modify groups used to plan the motions
+* delete non existing posibilities of configuration for motions
+* Fix reach_floor
+* add motion_planner for allegro-allegro-pal-pro-gripper
+* Add torso up and down
+* Comment torso motions
+* Add motion torso and feat for reach_floor
+* Add motions
+* Contributors: Aina, thomaspeyrucain, vivianamorlando
+
 0.0.7 (2024-10-10)
 ------------------
 * Merge branch 'air/feat/merge_arm_controllers' into 'humble-devel'

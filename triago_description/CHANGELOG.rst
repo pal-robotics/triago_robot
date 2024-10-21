@@ -24,8 +24,8 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.0.8 (2024-10-21)
+------------------
 * Merge branch 'tpe/fix_joint_limit' into 'humble-devel'
   fix joint limit deleting the safety threshold
   See merge request robots/triago_robot!31

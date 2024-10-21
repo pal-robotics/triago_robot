@@ -108,7 +108,8 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
         condition=IfCondition(
             PythonExpression(
                 ["'", LaunchConfiguration(arm_arg_name), "' != 'no-arm' and '",
-                 LaunchConfiguration(end_effector_arg_name), "' != 'no-end-effector'"]
+                 LaunchConfiguration(end_effector_arg_name), "' != 'no-end-effector' and '",
+                 LaunchConfiguration(end_effector_arg_name), "' != 'camera-tools'"]
             )
         )
     )

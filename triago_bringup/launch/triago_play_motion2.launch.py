@@ -23,7 +23,7 @@ from launch_pal.arg_utils import LaunchArgumentsBase, read_launch_argument
 from launch_pal.robot_arguments import CommonArgs
 
 from triago_description.launch_arguments import TriagoArgs
-from triago_description.triago_launch_utils import get_triago_hw_suffix
+# from triago_description.triago_launch_utils import get_triago_hw_suffix
 from launch_pal.param_utils import merge_param_files
 from dataclasses import dataclass
 
@@ -63,14 +63,14 @@ def create_play_motion_filename(context):
     pkg_name = 'triago_bringup'
     pkg_share_dir = get_package_share_directory(pkg_name)
 
-    hw_suffix = get_triago_hw_suffix(
-        arm_right=read_launch_argument('arm_type_right', context),
-        arm_left=read_launch_argument('arm_type_left', context),
-        arm_head=read_launch_argument('arm_type_head', context),
-        end_effector_right=read_launch_argument('end_effector_right', context),
-        end_effector_left=read_launch_argument('end_effector_left', context),
-        end_effector_head=read_launch_argument('end_effector_head', context),
-    )
+    # hw_suffix = get_triago_hw_suffix(
+    #     arm_right=read_launch_argument('arm_type_right', context),
+    #     arm_left=read_launch_argument('arm_type_left', context),
+    #     arm_head=read_launch_argument('arm_type_head', context),
+    #     end_effector_right=read_launch_argument('end_effector_right', context),
+    #     end_effector_left=read_launch_argument('end_effector_left', context),
+    #     end_effector_head=read_launch_argument('end_effector_head', context),
+    # )
 
     arm_right = read_launch_argument('arm_type_right', context)
     arm_left = read_launch_argument('arm_type_left', context)
@@ -106,10 +106,10 @@ def create_play_motion_filename(context):
     # combined_yaml = merge_param_files(
     #     [base_motions_yaml.perform(context), hw_config_specific_yaml.perform(context)])
 
-    motion_planner_file = f"motion_planner{hw_suffix}.yaml"
+    # motion_planner_file = f"motion_planner{hw_suffix}.yaml"
     motion_planner_config = PathJoinSubstitution([
         pkg_share_dir,
-        'config', 'motion_planner', motion_planner_file])
+        'config', 'motion_planner', 'motion_planner_general.yaml'])
 
     return [SetLaunchConfiguration("motions_file", combined_yaml),
             SetLaunchConfiguration("motion_planner_config", motion_planner_config)]

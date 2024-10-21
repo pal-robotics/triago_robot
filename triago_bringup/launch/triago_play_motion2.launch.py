@@ -106,10 +106,10 @@ def create_play_motion_filename(context):
     # combined_yaml = merge_param_files(
     #     [base_motions_yaml.perform(context), hw_config_specific_yaml.perform(context)])
 
-    motion_planner_file = f"motion_planner{hw_suffix}.yaml"
+    # motion_planner_file = f"motion_planner{hw_suffix}.yaml"
     motion_planner_config = PathJoinSubstitution([
         pkg_share_dir,
-        'config', 'motion_planner', motion_planner_file])
+        'config', 'motion_planner', 'motion_planner_general.yaml'])
 
     return [SetLaunchConfiguration("motions_file", combined_yaml),
             SetLaunchConfiguration("motion_planner_config", motion_planner_config)]

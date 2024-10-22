@@ -60,8 +60,8 @@ base_type:
   default_value: 'omni_base'
 camera_model:
   description: 'Arm camera model'
-  choices: ['realsense-d435']
-  default_value: 'realsense-d435'
+  choices: ['realsense-d405']
+  default_value: 'realsense-d405'
 wheel_model:
   description: 'Wheel model'
   choices: ['moog']

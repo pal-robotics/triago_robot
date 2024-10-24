@@ -24,8 +24,8 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.0.9 (2024-10-24)
+------------------
 * Merge branch 'vmo/camera_model' into 'humble-devel'
   Modifying the camera model
   See merge request robots/triago_robot!32

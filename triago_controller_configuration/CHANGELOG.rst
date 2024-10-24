@@ -14,6 +14,9 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+
 0.0.8 (2024-10-21)
 ------------------
 * Merge branch 'tpe/fix_joint_limit' into 'humble-devel'

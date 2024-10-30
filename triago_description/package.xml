@@ -22,6 +22,7 @@
   <exec_depend>triago_controller_configuration</exec_depend>
   <exec_depend>allegro_hand_description</exec_depend>
 
+  <test_depend>ament_cmake_pytest</test_depend>
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
   <test_depend>launch_testing_ament_cmake</test_depend>

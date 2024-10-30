@@ -20,9 +20,9 @@ from triago_description.launch_arguments import TriagoArgs
 from urdf_test.xacro_test import define_xacro_test
 
 xacro_file_path = Path(
-    get_package_share_directory('tiago_pro_description'),
+    get_package_share_directory('triago_description'),
     'robots',
-    'tiago_pro.urdf.xacro',
+    'triago.urdf.xacro',
 )
 
 arm_args = (
@@ -63,10 +63,10 @@ test_xacro_wrist_right = define_xacro_test(
 test_xacro_wrist_head = define_xacro_test(
     xacro_file_path, TriagoArgs.arm_type_head, wrist_args_head)
 
-# test_xacro_ee_left = define_xacro_test(
-#     xacro_file_path, TriagoArgs.end_effector_left, wrist_args_left)
-# test_xacro_ee_right = define_xacro_test(
-#     xacro_file_path, TriagoArgs.end_effector_right, wrist_args_right)
+test_xacro_ee_left = define_xacro_test(
+    xacro_file_path, TriagoArgs.end_effector_left, wrist_args_left)
+test_xacro_ee_right = define_xacro_test(
+    xacro_file_path, TriagoArgs.end_effector_right, wrist_args_right)
 test_xacro_ee_head = define_xacro_test(
     xacro_file_path, TriagoArgs.end_effector_head, wrist_args_head)
 
@@ -80,9 +80,9 @@ test_xacro_camera_right = define_xacro_test(
 test_xacro_camera_head = define_xacro_test(
     xacro_file_path, TriagoArgs.arm_type_head, TriagoArgs.camera_position_head)
 
-# test_xacro_ee_arm = define_xacro_test(
-#     xacro_file_path, TriagoArgs.arm_type_left, TriagoArgs.end_effector_left)
-# test_xacro_ee_arm = define_xacro_test(
-#     xacro_file_path, TriagoArgs.arm_type_right, TriagoArgs.end_effector_right)
+test_xacro_ee_arm = define_xacro_test(
+    xacro_file_path, TriagoArgs.arm_type_left, TriagoArgs.end_effector_left)
+test_xacro_ee_arm = define_xacro_test(
+    xacro_file_path, TriagoArgs.arm_type_right, TriagoArgs.end_effector_right)
 test_xacro_ee_arm = define_xacro_test(
     xacro_file_path, TriagoArgs.arm_type_head, TriagoArgs.end_effector_head)

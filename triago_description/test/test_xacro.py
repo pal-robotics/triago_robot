@@ -18,6 +18,7 @@ from ament_index_python.packages import get_package_share_directory
 from triago_description.launch_arguments import TriagoArgs
 
 from urdf_test.xacro_test import define_xacro_test
+from launch.actions import DeclareLaunchArgument
 
 xacro_file_path = Path(
     get_package_share_directory('triago_description'),
@@ -52,6 +53,10 @@ camera_position_args = (
     TriagoArgs.camera_position_left,
     TriagoArgs.camera_position_head
 )
+camera_tool_ee = DeclareLaunchArgument(
+    name='camera-tools',
+    choices=['camera-tools'])
+
 
 test_xacro_base = define_xacro_test(xacro_file_path, arm_args, TriagoArgs.base_type)
 test_xacro_laser = define_xacro_test(xacro_file_path, arm_args, TriagoArgs.laser_model)
@@ -72,6 +77,13 @@ test_xacro_ee_head = define_xacro_test(
 
 test_xacro_hand_type = define_xacro_test(
     xacro_file_path, TriagoArgs.end_effector_head, TriagoArgs.hand_head_type)
+
+test_xacro_camera_left_ee = define_xacro_test(
+    xacro_file_path, camera_tool_ee, TriagoArgs.camera_position_left)
+test_xacro_camera_right_ee = define_xacro_test(
+    xacro_file_path, camera_tool_ee, TriagoArgs.camera_position_right)
+test_xacro_camera_head_ee = define_xacro_test(
+    xacro_file_path, camera_tool_ee, TriagoArgs.camera_position_head)
 
 test_xacro_camera_left = define_xacro_test(
     xacro_file_path, TriagoArgs.arm_type_left, TriagoArgs.camera_position_left)

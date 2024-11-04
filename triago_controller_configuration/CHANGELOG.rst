@@ -14,6 +14,11 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Set update_rate for joint_state_broadcaster
+* Contributors: Noel Jimenez
+
 0.0.9 (2024-10-24)
 ------------------
 

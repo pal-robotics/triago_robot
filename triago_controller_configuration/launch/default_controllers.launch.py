@@ -39,6 +39,7 @@ class LaunchArguments(LaunchArgumentsBase):
     ft_sensor_right: DeclareLaunchArgument = TriagoArgs.ft_sensor_right
     ft_sensor_left: DeclareLaunchArgument = TriagoArgs.ft_sensor_left
     ft_sensor_head: DeclareLaunchArgument = TriagoArgs.ft_sensor_head
+    is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
     namespace: DeclareLaunchArgument = CommonArgs.namespace
 
@@ -55,7 +56,8 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         pkg_name=base_controller_package,
         paths=['launch', 'mobile_base_controller.launch.py'],
         launch_arguments={
-            "use_sim_time": launch_args.use_sim_time
+            "use_sim_time": launch_args.use_sim_time,
+            "is_public_sim": launch_args.is_public_sim,
         }
     )
 

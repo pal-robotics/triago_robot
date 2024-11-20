@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.1.1 (2024-11-20)
+------------------
 * Merge branch 'abr/fix/triago-cmd-vel' into 'humble-devel'
   passing is_public_sim to mobile_base_controller
   See merge request robots/triago_robot!36

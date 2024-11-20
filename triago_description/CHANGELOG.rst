@@ -24,6 +24,9 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+
 0.1.0 (2024-11-04)
 ------------------
 * Add ee camera tool test

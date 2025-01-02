@@ -101,6 +101,9 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
         ee_pkg_name = 'triago_controller_configuration'
         ee_launch_file = 'pal_pro_gripper_controller.launch.py'
 
+    if end_effector == 'allegro-hand':
+        ee_launch_file = 'allegro_hand_chain_controllers.launch.py'
+
     end_effector_controller = include_scoped_launch_py_description(
         pkg_name=ee_pkg_name,
         paths=['launch', ee_launch_file],

@@ -136,7 +136,6 @@
     <xacro:property name="has_arm_head" value="${arm_type_head != 'no-arm'}" />
 
     <xacro:property name="can_device_name" value="can_device" />
-    <xacro:property name="can_device" value="can2" />
 
     <xacro:include filename="$(find omni_base_description)/urdf/sensors/sensors.ros2_control.xacro" />
     <xacro:include filename="$(find omni_base_description)/urdf/wheels/wheel.ros2_control.xacro" />

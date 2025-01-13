@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.2.0 (2025-01-13)
+------------------
 * Add allegro hand as different system
 * Contributors: Aina
 

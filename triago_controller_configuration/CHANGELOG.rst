@@ -14,6 +14,11 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Add allegro hand as different system
+* Contributors: Aina
+
 0.1.1 (2024-11-20)
 ------------------
 * Merge branch 'abr/fix/triago-cmd-vel' into 'humble-devel'

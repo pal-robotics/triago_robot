@@ -24,6 +24,14 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Remove unnecessary variable for can
+* Add macro for allegro hand system and xela
+* Add head end effector allegro hand and remove comments
+* Add allegro hand as different system
+* Contributors: Aina
+
 0.1.1 (2024-11-20)
 ------------------
 

@@ -221,6 +221,12 @@
         </geometry>
         <material name="pal/DarkGrey"/>
       </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="0.0375" length="0.0366"/>
+        </geometry>
+      </collision>
     </link>
 
     <!-- ARM 7 JOINT -->

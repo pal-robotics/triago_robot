@@ -24,6 +24,15 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Merge branch 'vmo/fix_collision' into 'humble-devel'
+  Removing collision arm 7 link
+  See merge request robots/triago_robot!40
+* Adding simplified mesh
+* Removing collision arm 7 link
+* Contributors: vivianamorlando
+
 0.2.0 (2025-01-13)
 ------------------
 * Remove unnecessary variable for can

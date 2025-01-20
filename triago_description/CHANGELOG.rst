@@ -24,8 +24,8 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.2.1 (2025-01-20)
+------------------
 * Merge branch 'vmo/fix_collision' into 'humble-devel'
   Removing collision arm 7 link
   See merge request robots/triago_robot!40

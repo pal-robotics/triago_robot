@@ -24,8 +24,8 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.2.2 (2025-01-21)
+------------------
 * Merge branch 'tpe/simplify_3d_models' into 'humble-devel'
   Add simplify models + remove unecessary models
   See merge request robots/triago_robot!42

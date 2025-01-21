@@ -24,6 +24,19 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Merge branch 'tpe/simplify_3d_models' into 'humble-devel'
+  Add simplify models + remove unecessary models
+  See merge request robots/triago_robot!42
+* Remove straight wrist option
+* Add simplify models + remove unecessary models
+* Merge branch 'air/feat/allegro_ros2control' into 'humble-devel'
+  Allegro ros2control
+  See merge request robots/triago_robot!43
+* Add allegro hand ros2 control macro for simulation
+* Contributors: Aina, thomas.peyrucain, vivianamorlando
+
 0.2.1 (2025-01-20)
 ------------------
 * Merge branch 'vmo/fix_collision' into 'humble-devel'

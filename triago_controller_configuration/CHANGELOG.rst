@@ -14,6 +14,15 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Merge branch 'air/feat/allegro_ros2control' into 'humble-devel'
+  Allegro ros2control
+  See merge request robots/triago_robot!43
+* Add head arguments for controllers
+* Add allegro hand ros2 control macro for simulation
+* Contributors: Aina, vivianamorlando
+
 0.2.1 (2025-01-20)
 ------------------
 

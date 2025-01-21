@@ -182,6 +182,15 @@
         <!-- arms -->
         <xacro:ros2_control_arms />
 
+        <xacro:if value="${end_effector_right == 'allegro-hand'}">
+          <xacro:ros2_control_allegro_hand name="gripper_right" pid_controllers="$(arg pid_controllers)" reduction="1.0" />
+        </xacro:if>
+        <xacro:if value="${end_effector_left == 'allegro-hand'}">
+          <xacro:ros2_control_allegro_hand name="gripper_left" pid_controllers="$(arg pid_controllers)" reduction="1.0" />
+        </xacro:if>
+        <xacro:if value="${end_effector_head == 'allegro-hand'}">
+          <xacro:ros2_control_allegro_hand name="gripper_head" pid_controllers="$(arg pid_controllers)" reduction="1.0" />
+        </xacro:if>
       </ros2_control>
     </xacro:if>
 

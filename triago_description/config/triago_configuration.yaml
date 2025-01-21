@@ -12,15 +12,15 @@ arm_type_head:
   default_value: 'tiago-pro'
 wrist_model_right:
   description: 'Wrist model right'
-  choices: ['spherical-wrist', 'straight-wrist']
+  choices: ['spherical-wrist']
   default_value: 'spherical-wrist'
 wrist_model_left:
   description: 'Wrist model left'
-  choices: ['spherical-wrist', 'straight-wrist']
+  choices: ['spherical-wrist']
   default_value: 'spherical-wrist'
 wrist_model_head:
   description: 'Wrist model head'
-  choices: ['spherical-wrist', 'straight-wrist']
+  choices: ['spherical-wrist']
   default_value: 'spherical-wrist'
 laser_model:
   description: 'Base laser model'

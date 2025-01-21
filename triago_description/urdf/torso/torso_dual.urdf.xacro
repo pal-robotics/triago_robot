@@ -37,7 +37,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://triago_description/meshes/torso/torso_fixed.STL" />
+          filename="package://triago_description/meshes/torso/torso_fixed.stl" />
       </geometry>
       <material
         name="">
@@ -51,7 +51,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://triago_description/meshes/torso/torso_fixed.STL" />
+          filename="package://triago_description/meshes/torso/torso_fixed_collision.stl" />
       </geometry>
     </collision>
   </link>
@@ -69,13 +69,6 @@
 
   <!-- Middle extending  -->
   <link name="${name}_fixed_column_link">
-    <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0" />
-      <mass value="0.01" />
-      <inertia ixx="0.000001" ixy="0" ixz="0"
-               iyy="0.000001" iyz="0"
-               izz="0.000001" />
-    </inertial>
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0.275" />
       <geometry>
@@ -83,14 +76,8 @@
       </geometry>
       <material name="pal/DarkGrey"/>
     </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0.275" />
-      <geometry>
-        <box size="0.23 0.253 0.45"/>
-      </geometry>
-      <material name="pal/DarkGrey"/>
-    </collision>
   </link>
+
   <gazebo reference="${name}_fixed_column_link">
     <material>Gazebo/DarkGrey</material>
   </gazebo>
@@ -103,10 +90,9 @@
   </joint>
 
 
-  <link
-    name="${name}_lift_link">
+  <link name="${name}_lift_link">
      <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0.5545" rpy="0 0 0" />
         <mass value="3.24266045177967" />
         <inertia ixx="0.0295369723560087" ixy="-7.85101789883696E-07" ixz="-8.58576921315497E-05" iyy="0.0170989395656347" iyz="-8.17944373020342E-06" izz="0.0290055792681799" />
     </inertial>
@@ -116,7 +102,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://triago_description/meshes/torso/torso_lift_link.STL" />
+          filename="package://triago_description/meshes/torso/torso_lift_link.stl" />
       </geometry>
       <material
         name="">
@@ -126,7 +112,7 @@
     </visual>
     <collision>
       <origin
-        xyz="0.0 0.0 0.5545"
+        xyz="0.0 0.0 0.0"
         rpy="0 0 0" />
       <geometry>
         <mesh
@@ -149,46 +135,8 @@
     <limit effort="0" lower="0" upper="0.34" velocity="${torso_max_vel}" />
   </joint>
 
-  <link
-    name="${name}_arm_left_link">
-    <inertial>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <mass
-        value="0.23047" />
-      <inertia
-        ixx="0.00026511"
-        ixy="1.3047E-06"
-        ixz="7.8189E-05"
-        iyy="0.00035859"
-        iyz="-5.3396E-05"
-        izz="0.00040319" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://triago_description/meshes/torso/arm_left_link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.25098 0.25098 0.25098 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://triago_description/meshes/torso/arm_left_link_collision.stl" />
-      </geometry>
-    </collision>
-  </link>
+  <link name="${name}_arm_left_link"/>
+
   <joint
     name="${name}_arm_left_joint"
     type="fixed">
@@ -201,46 +149,8 @@
       xyz="0 0 0" />
   </joint>
 
- <link
-    name="${name}_arm_right_link">
-    <inertial>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <mass
-        value="0.23047" />
-      <inertia
-        ixx="0.00026509"
-        ixy="-3.1836E-07"
-        ixz="-7.8741E-05"
-        iyy="0.00035861"
-        iyz="-5.257E-05"
-        izz="0.00040319" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://triago_description/meshes/torso/arm_right_link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.25098 0.25098 0.25098 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://triago_description/meshes/torso/arm_right_link_collision.stl" />
-      </geometry>
-    </collision>
-  </link>
+ <link name="${name}_arm_right_link"/>
+
   <joint
     name="${name}_arm_right_joint"
     type="fixed">
@@ -254,46 +164,8 @@
   </joint>
 
 
- <link
-    name="${name}_arm_head_link">
-    <inertial>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <mass
-        value="0.18229" />
-      <inertia
-        ixx="0.00027537"
-        ixy="7.4919E-10"
-        ixz="7.2758E-06"
-        iyy="0.00018169"
-        iyz="-2.2164E-10"
-        izz="0.00037953" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://triago_description/meshes/torso/arm_head_link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.25098 0.25098 0.25098 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://triago_description/meshes/torso/arm_head_link.STL" />
-      </geometry>
-    </collision>
-  </link>
+ <link name="${name}_arm_head_link"/>
+
   <joint
     name="${name}_arm_head_joint"
     type="fixed">

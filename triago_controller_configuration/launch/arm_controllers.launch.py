@@ -90,6 +90,7 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
         strings=['ft_sensor', end_effector_side],
         delimiter='_',
         skip_empty=True)
+    use_sim_time = read_launch_argument('use_sim_time', context)
 
     end_effector = read_launch_argument(end_effector_arg_name, context)
     end_effector_underscore = end_effector.replace('-', '_')
@@ -99,10 +100,10 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
 
     if end_effector == 'pal-pro-gripper':
         ee_pkg_name = 'triago_controller_configuration'
-        ee_launch_file = 'pal_pro_gripper_controller.launch.py'
 
     if end_effector == 'allegro-hand':
-        ee_launch_file = 'allegro_hand_chain_controllers.launch.py'
+        if use_sim_time == 'false':
+            ee_launch_file = 'allegro_hand_chain_controllers.launch.py'
 
     end_effector_controller = include_scoped_launch_py_description(
         pkg_name=ee_pkg_name,

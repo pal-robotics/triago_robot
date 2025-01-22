@@ -14,6 +14,9 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+
 0.2.2 (2025-01-21)
 ------------------
 * Merge branch 'air/feat/allegro_ros2control' into 'humble-devel'

@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.3.0 (2025-01-22)
+------------------
 
 0.2.2 (2025-01-21)
 ------------------

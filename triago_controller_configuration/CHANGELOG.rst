@@ -14,6 +14,11 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Fix capital letter
+* Contributors: Aina
+
 0.3.1 (2025-01-23)
 ------------------
 

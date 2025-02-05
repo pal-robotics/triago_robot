@@ -24,6 +24,12 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Use ft_sensor suffix for force-torque sensor name
+* Fix how to send variables on xacro and macro call
+* Contributors: Aina, Noel Jimenez
+
 0.3.1 (2025-01-23)
 ------------------
 * Merge branch 'tpe/simplify_3d_models' into 'humble-devel'

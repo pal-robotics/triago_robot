@@ -24,8 +24,8 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.3.2 (2025-02-05)
+------------------
 * Use ft_sensor suffix for force-torque sensor name
 * Fix how to send variables on xacro and macro call
 * Contributors: Aina, Noel Jimenez

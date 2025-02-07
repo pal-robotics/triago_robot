@@ -98,6 +98,7 @@
       <hardware>
         <plugin>xela_uskin_sensor/XelaUskinSensor</plugin>
         <param name="${can_device_name}">${xela_can}</param>
+        <param name="side">${side}</param>
       </hardware>
     </ros2_control>
   </xacro:macro>

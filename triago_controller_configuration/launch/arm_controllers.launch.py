@@ -103,7 +103,7 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
 
     if end_effector == 'allegro-hand':
         if use_sim_time == 'False':
-            ee_launch_file = 'allegro_hand_chain_controllers.launch.py'
+            ee_launch_file = 'allegro_hand_controller_libhand.launch.py'
 
     end_effector_controller = include_scoped_launch_py_description(
         pkg_name=ee_pkg_name,

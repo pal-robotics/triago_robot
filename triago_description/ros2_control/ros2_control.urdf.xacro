@@ -92,7 +92,7 @@
         <param name="${can_device_name}">${allegro_can}</param>
         <param name="side">${side}</param>
       </hardware>
-      <xacro:ros2_control_allegro_hand name="gripper_left" pid_controllers="$(arg pid_controllers)" reduction="1.0" />
+      <xacro:ros2_control_allegro_hand name="gripper_${side}" pid_controllers="$(arg pid_controllers)" reduction="1.0" />
     </ros2_control>
     <ros2_control name="ros2_control_xela_sensor_${side}" type="sensor" rw_rate="1000">
       <hardware>

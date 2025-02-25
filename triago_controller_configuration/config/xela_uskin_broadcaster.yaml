@@ -1,0 +1,6 @@
+${XELA_SIDE}_broadcaster:
+  ros__parameters:
+    type: xela_uskin_broadcaster/XelaUskinBroadcaster
+    frame_id: "skin"
+    sensor_name: ${XELA_SIDE}
+    update_rate: 50

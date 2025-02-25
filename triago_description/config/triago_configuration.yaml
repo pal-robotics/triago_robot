@@ -53,7 +53,7 @@ ft_sensor_left:
 ft_sensor_head:
   description: 'FT sensor model head arm'
   choices: ['ati', 'no-ft-sensor']
-  default_value: 'ati'
+  default_value: 'no-ft-sensor'
 base_type:
   description: 'Base type'
   choices: ['omni_base']

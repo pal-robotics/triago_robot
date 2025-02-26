@@ -101,30 +101,22 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
     if end_effector == 'pal-pro-gripper':
         ee_pkg_name = 'triago_controller_configuration'
 
+    xela_broadcaster = None
     if end_effector == 'allegro-hand':
         if use_sim_time == 'False':
             ee_launch_file = 'allegro_hand_controller_libhand.launch.py'
 
             # TODO: Use an argument that defines if the xela is active
-            param_file = os.path.join(get_package_share_directory(
-                'triago_controller_configuration'),
-                'config/xela_uskin_broadcaster.yaml'
-            )
-            broadcaster_name = f"xela_{end_effector_side}_broadcaster"
-            remappings = {"XELA_SIDE": f"xela_{end_effector_side}"}
-
-            xela_spawner = Node(
-                package="controller_manager",
-                executable="spawner",
-                arguments=[broadcaster_name, "--param-file", param_file],
-                remappings=remappings,
+            xela_broadcaster = include_scoped_launch_py_description(
+                pkg_name="xela_uskin_broadcaster_configuration",
+                paths=['launch', 'xela_broadcaster.launch.py'],
+                launch_arguments={"side": end_effector_side},
                 condition=IfCondition(
-                    PythonExpression([
-                        "'",
-                        LaunchConfiguration(arm_arg_name), "' != 'no-arm' and '",
-                        LaunchConfiguration(end_effector_arg_name), "' != 'no-end-effector' and '",
-                        LaunchConfiguration(end_effector_arg_name), "' != 'camera-tools'"
-                    ])
+                    PythonExpression(
+                     ["'", LaunchConfiguration(arm_arg_name), "' != 'no-arm' and '",
+                      LaunchConfiguration(end_effector_arg_name), "' != 'no-end-effector' and '",
+                      LaunchConfiguration(end_effector_arg_name), "' != 'camera-tools'"]
+                    )
                 )
             )
 
@@ -159,7 +151,7 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
         )
     )
 
-    return [end_effector_controller, ft_sensor_controller, xela_spawner]
+    return [end_effector_controller, ft_sensor_controller, xela_broadcaster]
 
 
 def concatenate_strings(strings: List[str], delimiter: str = '', skip_empty: bool = False):

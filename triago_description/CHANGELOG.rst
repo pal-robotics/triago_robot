@@ -24,6 +24,17 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* expose velocity interface for torso joint
+* Remove __pycache\_\_
+* Modify tests to match new behavior
+* Set ft_sensor_head default value to no-ft-sensor to match xacro
+* Handle properly invalid simultaneous camera-tools and ft sensor
+* Fix side on ros2_control for allegro
+* Add side as an argument for xela
+* Contributors: Aina, Noel Jimenez, ileniaperrella
+
 0.3.2 (2025-02-05)
 ------------------
 * Use ft_sensor suffix for force-torque sensor name

@@ -57,6 +57,29 @@ camera_tool_ee = DeclareLaunchArgument(
     name='camera-tools',
     choices=['camera-tools'])
 
+other_ee_left = DeclareLaunchArgument(
+    name='end_effector_left',
+    choices=['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector'])
+
+other_ee_right = DeclareLaunchArgument(
+    name='end_effector_right',
+    choices=['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector'])
+
+other_ee_head = DeclareLaunchArgument(
+    name='end_effector_head',
+    choices=['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector'])
+
+no_ft_sensor_left = DeclareLaunchArgument(
+    name='ft_sensor_left',
+    choices=['no-ft-sensor'])
+
+no_ft_sensor_right = DeclareLaunchArgument(
+    name='ft_sensor_right',
+    choices=['no-ft-sensor'])
+
+no_ft_sensor_head = DeclareLaunchArgument(
+    name='ft_sensor_head',
+    choices=['no-ft-sensor'])
 
 test_xacro_base = define_xacro_test(xacro_file_path, arm_args, TriagoArgs.base_type)
 test_xacro_laser = define_xacro_test(xacro_file_path, arm_args, TriagoArgs.laser_model)
@@ -66,14 +89,29 @@ test_xacro_wrist_left = define_xacro_test(
 test_xacro_wrist_right = define_xacro_test(
     xacro_file_path, TriagoArgs.arm_type_right, wrist_args_right)
 test_xacro_wrist_head = define_xacro_test(
-    xacro_file_path, TriagoArgs.arm_type_head, wrist_args_head)
+    xacro_file_path, TriagoArgs.arm_type_head, TriagoArgs.wrist_model_head, no_ft_sensor_head)
 
+# Force no-ft-sensor to avoid incompatibility with camera-tools end effector
 test_xacro_ee_left = define_xacro_test(
-    xacro_file_path, TriagoArgs.end_effector_left, wrist_args_left)
+    xacro_file_path, TriagoArgs.end_effector_left,
+    TriagoArgs.wrist_model_left, no_ft_sensor_left)
 test_xacro_ee_right = define_xacro_test(
-    xacro_file_path, TriagoArgs.end_effector_right, wrist_args_right)
+    xacro_file_path, TriagoArgs.end_effector_right,
+    TriagoArgs.wrist_model_right, no_ft_sensor_right)
 test_xacro_ee_head = define_xacro_test(
-    xacro_file_path, TriagoArgs.end_effector_head, wrist_args_head)
+    xacro_file_path, TriagoArgs.end_effector_head,
+    TriagoArgs.wrist_model_head, no_ft_sensor_head)
+
+# Test with ft-sensor but without camera-tools
+test_xacro_ee_left = define_xacro_test(
+    xacro_file_path, other_ee_left,
+    TriagoArgs.wrist_model_left, no_ft_sensor_left)
+test_xacro_ee_right = define_xacro_test(
+    xacro_file_path, other_ee_right,
+    TriagoArgs.wrist_model_right, no_ft_sensor_right)
+test_xacro_ee_head = define_xacro_test(
+    xacro_file_path, other_ee_head,
+    TriagoArgs.wrist_model_head, no_ft_sensor_head)
 
 test_xacro_hand_type = define_xacro_test(
     xacro_file_path, TriagoArgs.end_effector_head, TriagoArgs.hand_head_type)

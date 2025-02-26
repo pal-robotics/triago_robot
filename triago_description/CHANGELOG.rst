@@ -24,8 +24,8 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.4.0 (2025-02-26)
+------------------
 * expose velocity interface for torso joint
 * Remove __pycache\_\_
 * Modify tests to match new behavior

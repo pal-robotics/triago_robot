@@ -76,6 +76,7 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
 def configure_side_controllers(context, end_effector_side='right', *args, **kwargs):
 
+    list_controllers = []
     end_effector_arg_name = concatenate_strings(
         strings=['end_effector', end_effector_side],
         delimiter='_',
@@ -101,12 +102,13 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
     if end_effector == 'pal-pro-gripper':
         ee_pkg_name = 'triago_controller_configuration'
 
-    xela_broadcaster = None
     if end_effector == 'allegro-hand':
         if use_sim_time == 'False':
             ee_launch_file = 'allegro_hand_controller_libhand.launch.py'
 
-            # TODO: Use an argument that defines if the xela is active
+    # TODO: Use an argument that defines if the xela is active
+    if end_effector == 'allegro-hand':
+        if use_sim_time == 'False':
             xela_broadcaster = include_scoped_launch_py_description(
                 pkg_name="xela_uskin_broadcaster_configuration",
                 paths=['launch', 'xela_broadcaster.launch.py'],
@@ -119,6 +121,7 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
                     )
                 )
             )
+            list_controllers.append(xela_broadcaster)
 
     end_effector_controller = include_scoped_launch_py_description(
         pkg_name=ee_pkg_name,
@@ -132,6 +135,7 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
             )
         )
     )
+    list_controllers.append(end_effector_controller)
 
     # Setup ft-sensor controller
     ft_sensor = read_launch_argument(ft_sensor_arg_name, context)
@@ -150,8 +154,9 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
             )
         )
     )
+    list_controllers.append(ft_sensor_controller)
 
-    return [end_effector_controller, ft_sensor_controller, xela_broadcaster]
+    return list_controllers
 
 
 def concatenate_strings(strings: List[str], delimiter: str = '', skip_empty: bool = False):

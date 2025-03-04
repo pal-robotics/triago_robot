@@ -106,9 +106,7 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
         if use_sim_time == 'False':
             ee_launch_file = 'allegro_hand_controller_libhand.launch.py'
 
-    # TODO: Use an argument that defines if the xela is active
-    if end_effector == 'allegro-hand':
-        if use_sim_time == 'False':
+            # TODO: Use an argument that defines if the xela is active
             xela_broadcaster = include_scoped_launch_py_description(
                 pkg_name="xela_uskin_broadcaster_configuration",
                 paths=['launch', 'xela_broadcaster.launch.py'],

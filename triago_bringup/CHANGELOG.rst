@@ -20,8 +20,8 @@ Changelog for package triago_bringup
 * Fix wrist + update joint 6 limit + update motions
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.5.0 (2025-03-04)
+------------------
 * update locks and topics to integrate assisted_teleop
 * Contributors: andreacapodacqua
 

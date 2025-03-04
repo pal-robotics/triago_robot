@@ -24,6 +24,11 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* update max velocity for the torso lift
+* Contributors: ileniaperrella
+
 0.4.0 (2025-02-26)
 ------------------
 * expose velocity interface for torso joint

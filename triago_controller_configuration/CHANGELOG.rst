@@ -14,6 +14,9 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+
 0.4.0 (2025-02-26)
 ------------------
 * Use libhand as default controller

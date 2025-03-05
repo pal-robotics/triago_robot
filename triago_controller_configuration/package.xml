@@ -22,6 +22,7 @@
   <exec_depend>omni_base_controller_configuration</exec_depend>
   
   <exec_depend condition="$PAL_DISTRO > 0">gravity_compensation_controller2</exec_depend>
+  <exec_depend condition="$PAL_DISTRO > 0">tsid_controllers</exec_depend>
 
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_pal</exec_depend>

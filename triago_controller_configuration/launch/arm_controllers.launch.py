@@ -76,6 +76,7 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
 def configure_side_controllers(context, end_effector_side='right', *args, **kwargs):
 
+    list_controllers = []
     end_effector_arg_name = concatenate_strings(
         strings=['end_effector', end_effector_side],
         delimiter='_',
@@ -105,6 +106,20 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
         if use_sim_time == 'False':
             ee_launch_file = 'allegro_hand_controller_libhand.launch.py'
 
+            xela_broadcaster = include_scoped_launch_py_description(
+                pkg_name="xela_uskin_broadcaster_configuration",
+                paths=['launch', 'xela_broadcaster.launch.py'],
+                launch_arguments={"side": end_effector_side},
+                condition=IfCondition(
+                    PythonExpression(
+                     ["'", LaunchConfiguration(arm_arg_name), "' != 'no-arm' and '",
+                      LaunchConfiguration(end_effector_arg_name), "' != 'no-end-effector' and '",
+                      LaunchConfiguration(end_effector_arg_name), "' != 'camera-tools'"]
+                    )
+                )
+            )
+            list_controllers.append(xela_broadcaster)
+
     end_effector_controller = include_scoped_launch_py_description(
         pkg_name=ee_pkg_name,
         paths=['launch', ee_launch_file],
@@ -117,6 +132,7 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
             )
         )
     )
+    list_controllers.append(end_effector_controller)
 
     # Setup ft-sensor controller
     ft_sensor = read_launch_argument(ft_sensor_arg_name, context)
@@ -135,8 +151,9 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
             )
         )
     )
+    list_controllers.append(ft_sensor_controller)
 
-    return [end_effector_controller, ft_sensor_controller]
+    return list_controllers
 
 
 def concatenate_strings(strings: List[str], delimiter: str = '', skip_empty: bool = False):

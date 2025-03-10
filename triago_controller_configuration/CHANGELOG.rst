@@ -14,6 +14,16 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Remove TODO for handling optional xela
+* Xela controller simplification
+* Add xela configuration dependency
+* Preparation fot using xela condition
+* Pass the cfg to the xela package
+* Add xela broadcaster configuration
+* Contributors: Isaac Acevedo
+
 0.5.0 (2025-03-04)
 ------------------
 

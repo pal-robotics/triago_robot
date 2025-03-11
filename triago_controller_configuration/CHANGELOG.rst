@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.6.1 (2025-03-11)
+------------------
 * Add xela and allegro controller dependencies
 * Contributors: Aina
 

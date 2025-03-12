@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.7.0 (2025-03-12)
+------------------
 * Adding separate gravity controller for each arm
 * Contributors: vivianamorlando
 

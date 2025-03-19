@@ -172,9 +172,6 @@
         <!-- wheels -->
         <xacro:ros2_control_wheels/>
 
-        <!-- IMU -->
-        <xacro:ros2_control_imu name="base_imu_sensor"/>
-
         <!-- torso -->
         <xacro:ros2_control_torso name="torso_lift" reduction="1.0" />
 
@@ -205,9 +202,6 @@
 
         <!-- wheels -->
         <xacro:ros2_control_wheels/>
-
-        <!-- IMU -->
-        <!-- <xacro:ros2_control_imu name="base_imu_sensor"/> -->
       </ros2_control>
 
       <ros2_control name="ros2_control_triago_system_ethercat" type="system" rw_rate="1000">

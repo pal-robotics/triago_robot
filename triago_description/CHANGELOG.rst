@@ -24,6 +24,11 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Remove unused imu and broadcaster
+* Contributors: Noel Jimenez
+
 0.7.0 (2025-03-12)
 ------------------
 

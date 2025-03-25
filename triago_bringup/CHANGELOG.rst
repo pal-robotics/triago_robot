@@ -20,8 +20,8 @@ Changelog for package triago_bringup
 * Fix wrist + update joint 6 limit + update motions
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.8.0 (2025-03-25)
+------------------
 * removed marker_vel
 * added tab_vel to twist_mux
 * Contributors: andreacapodacqua

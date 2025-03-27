@@ -1,4 +1,4 @@
-${ARM_SIDE_PREFIX}_joint_space_vel_controller:
+${ARM_SIDE_PREFIX}_joint_space_controller_vel:
   ros__parameters:
     type: tsid_controllers/JointSpaceVelTsidController
     update_rate: 1000

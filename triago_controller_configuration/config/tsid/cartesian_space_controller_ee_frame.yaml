@@ -1,4 +1,4 @@
-${ARM_SIDE_PREFIX}_cartesian_space_controller:
+${ARM_SIDE_PREFIX}_cartesian_space_controller_ee_frame:
   ros__parameters:
     type: tsid_controllers/CartesianSpaceController
     update_rate: 1000

@@ -61,6 +61,12 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
 def setup_arm_controllers(context, arm_side, *args, **kwargs):
 
+    cartesian_space_controller_ee_frame = setup_arm_side_controller(
+        context, 'cartesian_space_controller_ee_frame', arm_side)
+    
+    cartesian_space_controller_robot_frame = setup_arm_side_controller(
+        context, 'cartesian_space_controller_robot_frame', arm_side)
+    
     cartesian_vel = setup_arm_side_controller(
         context, 'cartesian_vel_controller', arm_side)
     joint_space_controller_vel = setup_arm_side_controller(
@@ -71,10 +77,12 @@ def setup_arm_controllers(context, arm_side, *args, **kwargs):
         context, 'sin_joint_controller', arm_side, load_gains_separately=True)
 
     return [
-        cartesian_vel,
-        # joint_space_controller_vel, # TODO: Not loading properly yet
+        # cartesian_vel,
+        joint_space_controller_vel,
         joint_space_controller,
-        sin_joint_controller
+        sin_joint_controller,
+        cartesian_space_controller_ee_frame,
+        cartesian_space_controller_robot_frame
     ]
 
 

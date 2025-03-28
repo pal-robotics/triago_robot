@@ -106,18 +106,18 @@ def setup_torso_controller(context, controller_name):
 def setup_arm_controllers(context, arm_side, *args, **kwargs):
 
     cartesian_space_controller_ee_frame = setup_arm_side_controller(
-        context, "cartesian_space_controller_ee_frame", arm_side
+        context, "cartesian_space_controller_ee_frame", arm_side, load_gains_separately=True
     )
 
     cartesian_space_controller_robot_frame = setup_arm_side_controller(
-        context, "cartesian_space_controller_robot_frame", arm_side
+        context, "cartesian_space_controller_robot_frame", arm_side, load_gains_separately=True
     )
 
     cartesian_vel = setup_arm_side_controller(
-        context, "cartesian_vel_controller", arm_side
+        context, "cartesian_vel_controller", arm_side, load_gains_separately=True
     )
     joint_space_controller_vel = setup_arm_side_controller(
-        context, "joint_space_controller_vel", arm_side
+        context, "joint_space_controller_vel", arm_side, load_gains_separately=True
     )
     joint_space_controller = setup_arm_side_controller(
         context, "joint_space_controller", arm_side, load_gains_separately=True
@@ -127,7 +127,7 @@ def setup_arm_controllers(context, arm_side, *args, **kwargs):
     )
 
     return [
-        cartesian_vel,
+        # cartesian_vel,
         joint_space_controller_vel,
         joint_space_controller,
         sin_joint_controller,
@@ -158,7 +158,7 @@ def setup_arm_side_controller(
 
     use_sim_time = read_launch_argument("use_sim_time", context)
     if load_gains_separately:
-        sim_postfix = "_sim" if use_sim_time else ""
+        sim_postfix = "_sim" if use_sim_time == "True" else ""
 
         gains_file = os.path.join(
             get_package_share_directory("triago_controller_configuration"),

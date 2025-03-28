@@ -36,57 +36,109 @@ class LaunchArguments(LaunchArgumentsBase):
     namespace: DeclareLaunchArgument = CommonArgs.namespace
 
 
-def declare_actions(launch_description: LaunchDescription, launch_args: LaunchArguments):
+def declare_actions(
+    launch_description: LaunchDescription, launch_args: LaunchArguments
+):
 
-    right_arm_controller = OpaqueFunction(function=setup_arm_controllers,
-                                          kwargs={"arm_side": "right"},
-                                          condition=LaunchConfigurationNotEquals(
-                                              'arm_type_right', 'no-arm'))
+    right_arm_controller = OpaqueFunction(
+        function=setup_arm_controllers,
+        kwargs={"arm_side": "right"},
+        condition=LaunchConfigurationNotEquals("arm_type_right", "no-arm"),
+    )
     launch_description.add_action(right_arm_controller)
 
-    left_arm_controller = OpaqueFunction(function=setup_arm_controllers,
-                                         kwargs={"arm_side": "left"},
-                                         condition=LaunchConfigurationNotEquals(
-                                             'arm_type_left', 'no-arm'))
+    left_arm_controller = OpaqueFunction(
+        function=setup_arm_controllers,
+        kwargs={"arm_side": "left"},
+        condition=LaunchConfigurationNotEquals("arm_type_left", "no-arm"),
+    )
     launch_description.add_action(left_arm_controller)
 
-    head_arm_controller = OpaqueFunction(function=setup_arm_controllers,
-                                         kwargs={"arm_side": "head"},
-                                         condition=LaunchConfigurationNotEquals(
-                                             'arm_type_head', 'no-arm'))
+    head_arm_controller = OpaqueFunction(
+        function=setup_arm_controllers,
+        kwargs={"arm_side": "head"},
+        condition=LaunchConfigurationNotEquals("arm_type_head", "no-arm"),
+    )
     launch_description.add_action(head_arm_controller)
 
+    torso_controller = OpaqueFunction(function=setup_torso_controllers)
+    launch_description.add_action(torso_controller)
+
     return
+
+
+def setup_torso_controllers(context, *args, **kwargs):
+    torso_joint_space_controller = setup_torso_controller(
+        context, "torso_joint_space_controller"
+    )
+
+    torso_joint_space_controller_vel = setup_torso_controller(
+        context, "torso_joint_space_vel_controller"
+    )
+
+    return [torso_joint_space_controller, torso_joint_space_controller_vel]
+
+
+def setup_torso_controller(context, controller_name):
+    param_file = os.path.join(
+        get_package_share_directory("triago_controller_configuration"),
+        "config",
+        "tsid",
+        f"{controller_name}.yaml",
+    )
+
+    parsed_yaml = parse_parametric_yaml(source_files=[param_file], param_rewrites={})
+
+    launch_controller = GroupAction(
+        [
+            generate_load_controller_launch_description(
+                controller_name=controller_name,
+                controller_params_file=parsed_yaml,
+                extra_spawner_args=["--inactive"],
+            )
+        ],
+        forwarding=False,
+    )
+
+    return launch_controller
 
 
 def setup_arm_controllers(context, arm_side, *args, **kwargs):
 
     cartesian_space_controller_ee_frame = setup_arm_side_controller(
-        context, 'cartesian_space_controller_ee_frame', arm_side)
-    
+        context, "cartesian_space_controller_ee_frame", arm_side
+    )
+
     cartesian_space_controller_robot_frame = setup_arm_side_controller(
-        context, 'cartesian_space_controller_robot_frame', arm_side)
-    
+        context, "cartesian_space_controller_robot_frame", arm_side
+    )
+
     cartesian_vel = setup_arm_side_controller(
-        context, 'cartesian_vel_controller', arm_side)
+        context, "cartesian_vel_controller", arm_side
+    )
     joint_space_controller_vel = setup_arm_side_controller(
-        context, 'joint_space_controller_vel', arm_side)
+        context, "joint_space_controller_vel", arm_side
+    )
     joint_space_controller = setup_arm_side_controller(
-        context, 'joint_space_controller', arm_side, load_gains_separately=True)
+        context, "joint_space_controller", arm_side, load_gains_separately=True
+    )
     sin_joint_controller = setup_arm_side_controller(
-        context, 'sin_joint_controller', arm_side, load_gains_separately=True)
+        context, "sin_joint_controller", arm_side, load_gains_separately=True
+    )
 
     return [
-        # cartesian_vel,
+        cartesian_vel,
         joint_space_controller_vel,
         joint_space_controller,
         sin_joint_controller,
         cartesian_space_controller_ee_frame,
-        cartesian_space_controller_robot_frame
+        cartesian_space_controller_robot_frame,
     ]
 
 
-def setup_arm_side_controller(context, controller_name, arm_side='right', load_gains_separately=False):
+def setup_arm_side_controller(
+    context, controller_name, arm_side="right", load_gains_separately=False
+):
 
     arm_prefix = f"arm_{arm_side}"
 
@@ -94,27 +146,44 @@ def setup_arm_side_controller(context, controller_name, arm_side='right', load_g
     remappings = {"ARM_SIDE_PREFIX": arm_prefix}
 
     param_file = os.path.join(
-        get_package_share_directory('triago_controller_configuration'),
-        'config', 'tsid', f'{controller_name}.yaml')
+        get_package_share_directory("triago_controller_configuration"),
+        "config",
+        "tsid",
+        f"{controller_name}.yaml",
+    )
 
-    parsed_yaml = parse_parametric_yaml(source_files=[param_file], param_rewrites=remappings)
+    parsed_yaml = parse_parametric_yaml(
+        source_files=[param_file], param_rewrites=remappings
+    )
 
-    use_sim_time = read_launch_argument('use_sim_time', context)
+    use_sim_time = read_launch_argument("use_sim_time", context)
     if load_gains_separately:
-        sim_postfix = '_sim' if use_sim_time else ''
+        sim_postfix = "_sim" if use_sim_time else ""
 
         gains_file = os.path.join(
-            get_package_share_directory('triago_controller_configuration'),
-            'config', 'tsid', 'gains', f'{controller_name}{sim_postfix}.yaml')
+            get_package_share_directory("triago_controller_configuration"),
+            "config",
+            "tsid",
+            "gains",
+            f"{controller_name}{sim_postfix}.yaml",
+        )
 
-        parsed_gains = parse_parametric_yaml(source_files=[gains_file], param_rewrites=remappings)
+        parsed_gains = parse_parametric_yaml(
+            source_files=[gains_file], param_rewrites=remappings
+        )
 
         parsed_yaml = merge_param_files([parsed_yaml, parsed_gains])
 
-    launch_controller = GroupAction([generate_load_controller_launch_description(
-        controller_name=side_controller_name,
-        controller_params_file=parsed_yaml,
-        extra_spawner_args=["--inactive"])], forwarding=False)
+    launch_controller = GroupAction(
+        [
+            generate_load_controller_launch_description(
+                controller_name=side_controller_name,
+                controller_params_file=parsed_yaml,
+                extra_spawner_args=["--inactive"],
+            )
+        ],
+        forwarding=False,
+    )
 
     return launch_controller
 

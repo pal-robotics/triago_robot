@@ -179,3 +179,11 @@
           name: Reach Floor Three Arms 
           usage: Demo
           description: reach floor three arms
+      grasping:
+        joints: [torso_lift_joint, arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_left_6_joint, arm_left_7_joint, arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint, arm_right_6_joint, arm_right_7_joint]
+        positions: [0.14,  -0.25843, -0.57522, 0.50314, -2.0337, 0.0, 0.2, 0.0, 0.25843, -0.57522, -0.50314, -2.0337, 0.0, 0.2, 0.0]
+        times_from_start: [0.0]
+        meta:
+          name: Grasping
+          usage: Demo
+          description: grasping

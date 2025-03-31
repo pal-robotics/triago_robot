@@ -1,15 +1,15 @@
 arm_type_right:
   description: 'Arm type right'
-  choices: ['tiago-pro', 'no-arm']
-  default_value: 'tiago-pro'
+  choices: ['tiago-pro', 'tiago-pro-s', 'no-arm']
+  default_value: 'tiago-pro-s'
 arm_type_left:
   description: 'Arm type left'
-  choices: ['tiago-pro', 'no-arm']
-  default_value: 'tiago-pro'
+  choices: ['tiago-pro', 'tiago-pro-s', 'no-arm']
+  default_value: 'tiago-pro-s'
 arm_type_head:
   description: 'Arm type head'
-  choices: ['tiago-pro', 'no-arm']
-  default_value: 'tiago-pro'
+  choices: ['tiago-pro', 'tiago-pro-s', 'no-arm']
+  default_value: 'tiago-pro-s'
 wrist_model_right:
   description: 'Wrist model right'
   choices: ['spherical-wrist']

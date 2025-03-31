@@ -134,13 +134,13 @@
 
 
   <!-- Properties check -->
-  <xacro:if value="${arm_type_left not in ['tiago-pro', 'no-arm']}">
+  <xacro:if value="${arm_type_left not in ['tiago-pro', 'tiago-pro-s', 'no-arm']}">
     <xacro:wrong_arm_type_left />
   </xacro:if>
-  <xacro:if value="${arm_type_right not in ['tiago-pro', 'no-arm']}">
+  <xacro:if value="${arm_type_right not in ['tiago-pro', 'tiago-pro-s', 'no-arm']}">
     <xacro:wrong_arm_type_right />
   </xacro:if>
-  <xacro:if value="${arm_type_head not in ['tiago-pro', 'no-arm']}">
+  <xacro:if value="${arm_type_head not in ['tiago-pro', 'tiago-pro-s', 'no-arm']}">
     <xacro:wrong_arm_type_head />
   </xacro:if>
   <xacro:if value="${end_effector_left not in ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector', 'camera-tools']}">

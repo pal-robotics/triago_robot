@@ -44,6 +44,7 @@ class TriagoArgs:
     ft_sensor_head: DLA = __arg_creator.get_argument("ft_sensor_head")
     camera_model: DLA = __arg_creator.get_argument("camera_model")
     laser_model: DLA = __arg_creator.get_argument("laser_model")
+    torque_estimation: DLA = __arg_creator.get_argument("torque_estimation")
     camera_position_right: DLA = __arg_creator.get_argument("camera_position_right")
     camera_position_left: DLA = __arg_creator.get_argument("camera_position_left")
     camera_position_head: DLA = __arg_creator.get_argument("camera_position_head")

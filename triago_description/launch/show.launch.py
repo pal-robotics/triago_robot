@@ -49,6 +49,7 @@ class LaunchArguments(LaunchArgumentsBase):
     wrist_model_head: DeclareLaunchArgument = TriagoArgs.wrist_model_head
     camera_model: DeclareLaunchArgument = TriagoArgs.camera_model
     laser_model: DeclareLaunchArgument = TriagoArgs.laser_model
+    torque_estimation: DeclareLaunchArgument = TriagoArgs.torque_estimation
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
     namespace: DeclareLaunchArgument = CommonArgs.namespace
 
@@ -74,6 +75,7 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
                           "camera_model": launch_args.camera_model,
                           "base_type": launch_args.base_type,
                           "namespace": launch_args.namespace,
+                          'torque_estimation': launch_args.torque_estimation,
                           "use_sim_time": launch_args.use_sim_time,
                           "camera_position_right": launch_args.camera_position_right,
                           "camera_position_left": launch_args.camera_position_left,

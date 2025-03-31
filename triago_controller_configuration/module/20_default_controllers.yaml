@@ -8,6 +8,7 @@ default_controllers:
            end_effector_head:=@end_effector_head@
            ft_sensor_right:=@ft_sensor_right@
            ft_sensor_left:=@ft_sensor_left@
-           ft_sensor_head:=@ft_sensor_head@"
+           ft_sensor_head:=@ft_sensor_head@
+           torque_estimation:=@has_torque_estimation@"
   finishes: True
   

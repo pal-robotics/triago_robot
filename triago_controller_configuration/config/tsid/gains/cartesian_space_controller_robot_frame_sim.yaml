@@ -24,15 +24,15 @@ ${ARM_SIDE_PREFIX}_cartesian_space_controller_robot_frame:
         kd: 50.0
     cartesian_gain:
          ${ARM_SIDE_PREFIX}_7_link:
-          kp_x: 300.0
-          kp_y: 300.0
-          kp_z: 300.0
-          kp_roll: 100.0
-          kp_pitch: 100.0
-          kp_yaw: 100.0
-          kd_x: 2100.0
-          kd_y: 2100.0
-          kd_z: 2100.0
-          kd_roll: 500.0
-          kd_pitch: 500.0
-          kd_yaw: 500.0
+          kp_x: 200.0
+          kp_y: 200.0
+          kp_z: 200.0
+          kp_roll: 70.0
+          kp_pitch: 70.0
+          kp_yaw: 70.0
+          kd_x: 20.0
+          kd_y: 20.0
+          kd_z: 20.0
+          kd_roll: 7.0
+          kd_pitch: 70.0
+          kd_yaw: 70.0

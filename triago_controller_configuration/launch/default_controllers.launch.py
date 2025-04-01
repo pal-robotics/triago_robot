@@ -13,13 +13,16 @@
 # limitations under the License.
 
 import os
+from typing import List
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
+from launch.conditions import LaunchConfigurationNotEquals, IfCondition
 from launch.actions import GroupAction
-from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration, PythonExpression
+from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from controller_manager.launch_utils import generate_load_controller_launch_description
 from launch_pal.include_utils import include_scoped_launch_py_description
-from launch_pal.arg_utils import LaunchArgumentsBase
+from launch_pal.arg_utils import LaunchArgumentsBase, read_launch_argument
 from launch_pal.robot_arguments import CommonArgs
 from triago_description.launch_arguments import TriagoArgs
 from launch.conditions import IfCondition
@@ -102,25 +105,20 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
     launch_description.add_action(torso_controller)
 
-    # Add controller of arms, end-effector and ft-sensor
-    arm_controllers = include_scoped_launch_py_description(
-        pkg_name='triago_controller_configuration',
-        paths=['launch', 'arm_controllers.launch.py'],
-        launch_arguments={'arm_type_right': launch_args.arm_type_right,
-                          'arm_type_left': launch_args.arm_type_left,
-                          'arm_type_head': launch_args.arm_type_left,
-                          "end_effector_right": launch_args.end_effector_right,
-                          "end_effector_left": launch_args.end_effector_left,
-                          "end_effector_head": launch_args.end_effector_head,
-                          "ft_sensor_right": launch_args.ft_sensor_right,
-                          "ft_sensor_left": launch_args.ft_sensor_left,
-                          "ft_sensor_head": launch_args.ft_sensor_head,
-                          "namespace": launch_args.namespace,
-                          "use_sim_time": launch_args.use_sim_time
-                          },
-    )
+    # Add controller of right arm, end-effector and ft-sensor
+    launch_description.add_action(OpaqueFunction(
+        function=configure_side_controllers, args=['right'],
+        condition=LaunchConfigurationNotEquals('arm_type_right', 'no-arm')))
 
-    launch_description.add_action(arm_controllers)
+    # Add controller of left arm, end-effector and ft-sensor
+    launch_description.add_action(OpaqueFunction(
+        function=configure_side_controllers, args=['left'],
+        condition=LaunchConfigurationNotEquals('arm_type_left', 'no-arm')))
+
+    # Add controller of head arm, end-effector and ft-sensor
+    launch_description.add_action(OpaqueFunction(
+        function=configure_side_controllers, args=['head'],
+        condition=LaunchConfigurationNotEquals('arm_type_head', 'no-arm')))
 
     # Gravity compensation controller
     gravity_compensation_controller = include_scoped_launch_py_description(
@@ -131,6 +129,85 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
     launch_description.add_action(gravity_compensation_controller)
 
     return
+
+
+def configure_side_controllers(context, end_effector_side='right', *args, **kwargs):
+
+    end_effector_arg_name = concatenate_strings(
+        strings=['end_effector', end_effector_side],
+        delimiter='_',
+        skip_empty=True)
+
+    ft_sensor_arg_name = concatenate_strings(
+        strings=['ft_sensor', end_effector_side],
+        delimiter='_',
+        skip_empty=True)
+
+    arm_controller = include_scoped_launch_py_description(
+        pkg_name='pal_sea_arm_controller_configuration',
+        paths=['launch', 'arm_controller.launch.py'],
+        launch_arguments={"side": end_effector_side})
+
+    end_effector = read_launch_argument(end_effector_arg_name, context)
+    end_effector_underscore = end_effector.replace('-', '_')
+
+    ee_pkg_name = f'{end_effector_underscore}_controller_configuration'
+    ee_launch_file = f'{end_effector_underscore}_controller.launch.py'
+
+    if end_effector == 'allegro-hand':
+        ee_launch_file = 'allegro_hand_controller_libhand.launch.py'
+
+    end_effector_controller = include_scoped_launch_py_description(
+        pkg_name=ee_pkg_name,
+        paths=['launch', ee_launch_file],
+        launch_arguments={"side": end_effector_side},
+        condition=IfCondition(
+            PythonExpression(
+                ["'", LaunchConfiguration(
+                    end_effector_arg_name), "' != 'no-end-effector' and '",
+                 LaunchConfiguration(end_effector_arg_name), "' != 'camera-tools'"]
+            )
+        )
+    )
+
+    xela_broadcaster = include_scoped_launch_py_description(
+        pkg_name="xela_uskin_broadcaster_configuration",
+        paths=['launch', 'xela_broadcaster.launch.py'],
+        launch_arguments={"side": end_effector_side},
+        condition=IfCondition(
+            PythonExpression(
+                ["'", LaunchConfiguration(
+                    end_effector_arg_name), "' == 'allegro-hand' and '",
+                 LaunchConfiguration('use_sim_time'), "' != 'True'"]
+            )
+        )
+    )
+
+    # Setup ft-sensor controller
+    ft_sensor = read_launch_argument(ft_sensor_arg_name, context)
+    ft_pkg_name = 'pal_sea_arm_controller_configuration'
+    ft_launch_file = 'ft_sensor_controller.launch.py'
+
+    ft_sensor_controller = include_scoped_launch_py_description(
+        pkg_name=ft_pkg_name,
+        paths=['launch', ft_launch_file],
+        launch_arguments={"side": end_effector_side,
+                          "ft_sensor": ft_sensor},
+        condition=LaunchConfigurationNotEquals(ft_sensor_arg_name, 'no-ft-sensor'))
+
+    return [arm_controller, end_effector_controller, xela_broadcaster, ft_sensor_controller]
+
+
+def concatenate_strings(strings: List[str], delimiter: str = '', skip_empty: bool = False):
+
+    concatenated_string = ''
+
+    if skip_empty:
+        concatenated_string = delimiter.join(filter(None, strings))
+    else:
+        concatenated_string = delimiter.join(strings)
+
+    return concatenated_string
 
 
 def generate_launch_description():

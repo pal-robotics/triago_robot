@@ -25,8 +25,6 @@ from launch_pal.include_utils import include_scoped_launch_py_description
 from launch_pal.arg_utils import LaunchArgumentsBase, read_launch_argument
 from launch_pal.robot_arguments import CommonArgs
 from triago_description.launch_arguments import TriagoArgs
-from launch.conditions import IfCondition
-from launch.substitutions import LaunchConfiguration
 
 from dataclasses import dataclass
 
@@ -120,14 +118,6 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         function=configure_side_controllers, args=['head'],
         condition=LaunchConfigurationNotEquals('arm_type_head', 'no-arm')))
 
-    # Gravity compensation controller
-    gravity_compensation_controller = include_scoped_launch_py_description(
-        pkg_name="triago_controller_configuration",
-        paths=["launch", "gravity_compensation_controller.launch.py"],
-    )
-
-    launch_description.add_action(gravity_compensation_controller)
-
     return
 
 
@@ -146,6 +136,11 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
     arm_controller = include_scoped_launch_py_description(
         pkg_name='pal_sea_arm_controller_configuration',
         paths=['launch', 'arm_controller.launch.py'],
+        launch_arguments={"side": end_effector_side})
+
+    gravity_compensation_controller = include_scoped_launch_py_description(
+        pkg_name='pal_sea_arm_controller_configuration',
+        paths=['launch', 'gravity_compensation_controller.launch.py'],
         launch_arguments={"side": end_effector_side})
 
     end_effector = read_launch_argument(end_effector_arg_name, context)
@@ -195,7 +190,8 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
                           "ft_sensor": ft_sensor},
         condition=LaunchConfigurationNotEquals(ft_sensor_arg_name, 'no-ft-sensor'))
 
-    return [arm_controller, end_effector_controller, xela_broadcaster, ft_sensor_controller]
+    return [arm_controller, gravity_compensation_controller,
+            end_effector_controller, xela_broadcaster, ft_sensor_controller]
 
 
 def concatenate_strings(strings: List[str], delimiter: str = '', skip_empty: bool = False):

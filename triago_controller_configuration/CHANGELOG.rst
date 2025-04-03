@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.8.1 (2025-04-03)
+------------------
 * Add has_torque_estimation
 * Contributors: David ter Kuile
 

@@ -63,6 +63,9 @@
 
   <xacro:arg name="tool_changer_head" default="true" />
 
+  <!-- False, True -->
+  <xacro:arg name="torque_estimation" default="False" />
+
 
   <xacro:arg name="use_sim_time" default="false"/>
   <xacro:arg name="is_public_sim" default="false"/>
@@ -81,6 +84,7 @@
 
   <!-- PROPERTIES -->
 
+  <xacro:property name="torque_estimation" value="$(arg torque_estimation)" />
   <xacro:property name="use_sim_time" value="$(arg use_sim_time)" />
   <xacro:property name="is_multiple" value="$(arg is_multiple)" />
   <xacro:property name="laser_model" value="$(arg laser_model)" />

@@ -14,4 +14,5 @@ robot_state_publisher:
           wrist_model_left:=@wrist_model_left@
           wrist_model_head:=@wrist_model_head@
           camera_model:=@camera_model@
-          laser_model:=@laser_model@"
+          laser_model:=@laser_model@
+          torque_estimation:=@has_torque_estimation@"

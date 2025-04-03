@@ -22,6 +22,8 @@ from launch_pal.include_utils import include_scoped_launch_py_description
 from launch_pal.arg_utils import LaunchArgumentsBase
 from launch_pal.robot_arguments import CommonArgs
 from triago_description.launch_arguments import TriagoArgs
+from launch.conditions import IfCondition
+from launch.substitutions import LaunchConfiguration
 
 from dataclasses import dataclass
 
@@ -39,6 +41,7 @@ class LaunchArguments(LaunchArgumentsBase):
     ft_sensor_right: DeclareLaunchArgument = TriagoArgs.ft_sensor_right
     ft_sensor_left: DeclareLaunchArgument = TriagoArgs.ft_sensor_left
     ft_sensor_head: DeclareLaunchArgument = TriagoArgs.ft_sensor_head
+    torque_estimation: DeclareLaunchArgument = TriagoArgs.torque_estimation
     is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
     namespace: DeclareLaunchArgument = CommonArgs.namespace
@@ -74,6 +77,18 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         forwarding=False)
 
     launch_description.add_action(joint_state_broadcaster)
+
+    joint_torque_state_broadcaster = GroupAction(
+        [generate_load_controller_launch_description(
+            controller_name='joint_torque_state_broadcaster',
+            controller_params_file=os.path.join(
+                pkg_share_folder,
+                'config', 'joint_torque_state_broadcaster.yaml'))
+         ],
+        forwarding=False,
+        condition=IfCondition(LaunchConfiguration("torque_estimation"))
+    )
+    launch_description.add_action(joint_torque_state_broadcaster)
 
     # Torso controller
     torso_controller = GroupAction(

@@ -66,6 +66,10 @@ wheel_model:
   description: 'Wheel model'
   choices: ['moog']
   default_value: 'moog'
+torque_estimation:
+  description: 'The arms have torque estimation'
+  choices: ['False', 'True']
+  default_value: 'False'
 camera_position_head:
   description: 'Camera position Head'
   choices: ['up', 'down']

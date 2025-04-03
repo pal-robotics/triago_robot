@@ -20,6 +20,15 @@ Changelog for package triago_bringup
 * Fix wrist + update joint 6 limit + update motions
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Add grasping motion
+* Add has_torque_estimation
+* Fix last position
+* Fix 2 joint position for head arm
+* Add motions for 3 arms floor
+* Contributors: Aina, David ter Kuile
+
 0.8.0 (2025-03-25)
 ------------------
 * removed marker_vel

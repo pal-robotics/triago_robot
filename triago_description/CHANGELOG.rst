@@ -24,6 +24,12 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Add has_torque_estimation
+* Add arm type tiago-pro-s
+* Contributors: David ter Kuile
+
 0.8.0 (2025-03-25)
 ------------------
 

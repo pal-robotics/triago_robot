@@ -24,8 +24,8 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.8.2 (2025-04-04)
+------------------
 * add no-camera choice for camera_model
 * Contributors: ileniaperrella
 

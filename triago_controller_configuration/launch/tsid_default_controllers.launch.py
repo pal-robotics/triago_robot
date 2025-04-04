@@ -69,25 +69,43 @@ def declare_actions(
 
 def setup_torso_controllers(context, *args, **kwargs):
     torso_joint_space_controller = setup_torso_controller(
-        context, "torso_joint_space_controller"
+        context, "torso_joint_space_controller", load_gains_separately=True
     )
 
     torso_joint_space_controller_vel = setup_torso_controller(
-        context, "torso_joint_space_vel_controller"
+        context, "torso_joint_space_vel_controller", load_gains_separately=True
     )
 
     return [torso_joint_space_controller, torso_joint_space_controller_vel]
 
 
-def setup_torso_controller(context, controller_name):
+def setup_torso_controller(context, controller_name, load_gains_separately=False):
     param_file = os.path.join(
         get_package_share_directory("triago_controller_configuration"),
         "config",
         "tsid",
         f"{controller_name}.yaml",
     )
-
     parsed_yaml = parse_parametric_yaml(source_files=[param_file], param_rewrites={})
+
+    use_sim_time = read_launch_argument("use_sim_time", context)
+    if load_gains_separately:
+        sim_postfix = "_sim" if use_sim_time == "True" else ""
+
+        gains_file = os.path.join(
+            get_package_share_directory("triago_controller_configuration"),
+            "config",
+            "tsid",
+            "gains",
+            f"{controller_name}{sim_postfix}.yaml",
+        )
+
+        parsed_gains = parse_parametric_yaml(
+            source_files=[gains_file], param_rewrites={}
+        )
+
+
+        parsed_yaml = merge_param_files([parsed_yaml, parsed_gains])
 
     launch_controller = GroupAction(
         [
@@ -106,11 +124,17 @@ def setup_torso_controller(context, controller_name):
 def setup_arm_controllers(context, arm_side, *args, **kwargs):
 
     cartesian_space_controller_ee_frame = setup_arm_side_controller(
-        context, "cartesian_space_controller_ee_frame", arm_side, load_gains_separately=True
+        context,
+        "cartesian_space_controller_ee_frame",
+        arm_side,
+        load_gains_separately=True,
     )
 
     cartesian_space_controller_robot_frame = setup_arm_side_controller(
-        context, "cartesian_space_controller_robot_frame", arm_side, load_gains_separately=True
+        context,
+        "cartesian_space_controller_robot_frame",
+        arm_side,
+        load_gains_separately=True,
     )
 
     cartesian_vel = setup_arm_side_controller(
@@ -127,10 +151,10 @@ def setup_arm_controllers(context, arm_side, *args, **kwargs):
     )
 
     return [
-        # cartesian_vel,
+        cartesian_vel,
         joint_space_controller_vel,
         joint_space_controller,
-        sin_joint_controller,
+        # sin_joint_controller,
         cartesian_space_controller_ee_frame,
         cartesian_space_controller_robot_frame,
     ]

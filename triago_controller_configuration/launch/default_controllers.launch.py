@@ -142,6 +142,7 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
         pkg_name='pal_sea_arm_controller_configuration',
         paths=['launch', 'gravity_compensation_controller.launch.py'],
         launch_arguments={"side": end_effector_side})
+    use_sim_time = read_launch_argument("use_sim_time", context)
 
     end_effector = read_launch_argument(end_effector_arg_name, context)
     end_effector_underscore = end_effector.replace('-', '_')
@@ -149,7 +150,7 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
     ee_pkg_name = f'{end_effector_underscore}_controller_configuration'
     ee_launch_file = f'{end_effector_underscore}_controller.launch.py'
 
-    if end_effector == 'allegro-hand':
+    if end_effector == 'allegro-hand' and use_sim_time == 'False':
         ee_launch_file = 'allegro_hand_controller_libhand.launch.py'
 
     end_effector_controller = include_scoped_launch_py_description(

@@ -14,6 +14,11 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Add use sim time for allegro controller on simulation
+* Contributors: Aina
+
 0.8.2 (2025-04-04)
 ------------------
 * remove unused files and change gravity compensation

@@ -233,7 +233,7 @@
         <xacro:allegro_ros2_control side="head" allegro_can="can4" xela_can="can5"/>      
       </xacro:if>
 
-      <ros2_control name="ros2_control_orientus" type="sensor" rw_rate="1000">
+      <ros2_control name="base_imu_sensor" type="sensor" rw_rate="1000">
         <hardware>
           <plugin>pal_orientus_sensor/OrientusSensor</plugin>
           <param name="io_device">/dev/ttyUSB0</param>

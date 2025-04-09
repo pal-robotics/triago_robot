@@ -205,9 +205,6 @@
 
         <!-- wheels -->
         <xacro:ros2_control_wheels/>
-
-        <!-- IMU -->
-        <!-- <xacro:ros2_control_imu name="base_imu_sensor"/> -->
       </ros2_control>
 
       <ros2_control name="ros2_control_triago_system_ethercat" type="system" rw_rate="1000">
@@ -235,6 +232,17 @@
       <xacro:if value="${end_effector_head == 'allegro-hand'}">
         <xacro:allegro_ros2_control side="head" allegro_can="can4" xela_can="can5"/>      
       </xacro:if>
+
+      <ros2_control name="base_imu_sensor" type="sensor" rw_rate="1000">
+        <hardware>
+          <plugin>pal_orientus_sensor/OrientusSensor</plugin>
+          <param name="io_device">/dev/ttyUSB0</param>
+        </hardware>
+
+        <!-- IMU -->
+        <xacro:ros2_control_imu name="base_imu_sensor"/>
+      </ros2_control>
+
     </xacro:unless>
   </xacro:macro>
 </robot>

@@ -150,10 +150,16 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
         paths=['launch', 'arm_controller.launch.py'],
         launch_arguments={"side": end_effector_side})
 
-    gravity_compensation_controller = include_scoped_launch_py_description(
+    gravity_compensation_controller_effort = include_scoped_launch_py_description(
         pkg_name='pal_sea_arm_controller_configuration',
         paths=['launch', 'gravity_compensation_controller.launch.py'],
         launch_arguments={"side": end_effector_side})
+
+    gravity_compensation_controller_torque = include_scoped_launch_py_description(
+        pkg_name='pal_sea_arm_controller_configuration',
+        paths=['launch', 'gravity_compensation_controller.launch.py'],
+        launch_arguments={"side": end_effector_side, "mode": "torque"},
+        condition=IfCondition(LaunchConfiguration("torque_estimation")))
 
     inertia_shaping_controllers = include_scoped_launch_py_description(
         pkg_name='pal_sea_arm_controller_configuration',
@@ -210,7 +216,8 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
                           "ft_sensor": ft_sensor},
         condition=LaunchConfigurationNotEquals(ft_sensor_arg_name, 'no-ft-sensor'))
 
-    return [arm_controller, gravity_compensation_controller,
+    return [arm_controller, gravity_compensation_controller_effort,
+            gravity_compensation_controller_torque,
             inertia_shaping_controllers, end_effector_controller,
             xela_broadcaster, ft_sensor_controller]
 

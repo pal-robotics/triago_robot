@@ -24,6 +24,9 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+
 0.9.0 (2025-04-10)
 ------------------
 * Add torso_imu_link

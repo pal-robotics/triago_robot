@@ -14,6 +14,12 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Added mechanism to also launch the torque gravity compensation
+* Launching the inertia shaping controllers if torque_estimation enabled
+* Contributors: oscarmartinez
+
 0.9.0 (2025-04-10)
 ------------------
 * Update controller name in launchfile

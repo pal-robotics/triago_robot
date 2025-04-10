@@ -103,8 +103,6 @@ def setup_torso_controller(context, controller_name, load_gains_separately=False
         parsed_gains = parse_parametric_yaml(
             source_files=[gains_file], param_rewrites={}
         )
-
-
         parsed_yaml = merge_param_files([parsed_yaml, parsed_gains])
 
     launch_controller = GroupAction(
@@ -146,15 +144,11 @@ def setup_arm_controllers(context, arm_side, *args, **kwargs):
     joint_space_controller = setup_arm_side_controller(
         context, "joint_space_controller", arm_side, load_gains_separately=True
     )
-    sin_joint_controller = setup_arm_side_controller(
-        context, "sin_joint_controller", arm_side, load_gains_separately=True
-    )
 
     return [
         cartesian_vel,
         joint_space_controller_vel,
         joint_space_controller,
-        # sin_joint_controller,
         cartesian_space_controller_ee_frame,
         cartesian_space_controller_robot_frame,
     ]

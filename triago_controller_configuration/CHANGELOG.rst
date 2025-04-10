@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.11.0 (2025-04-10)
+-------------------
 * fix default launch file for tsid
 * fix gains and add manipulation cube
 * update x of the manipulation cube

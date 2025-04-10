@@ -154,6 +154,13 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
         pkg_name='pal_sea_arm_controller_configuration',
         paths=['launch', 'gravity_compensation_controller.launch.py'],
         launch_arguments={"side": end_effector_side})
+
+    inertia_shaping_controllers = include_scoped_launch_py_description(
+        pkg_name='pal_sea_arm_controller_configuration',
+        paths=['launch', 'inertia_shaping_controllers.launch.py'],
+        launch_arguments={"side": end_effector_side},
+        condition=IfCondition(LaunchConfiguration("torque_estimation")))
+
     use_sim_time = read_launch_argument("use_sim_time", context)
 
     end_effector = read_launch_argument(end_effector_arg_name, context)
@@ -204,7 +211,8 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
         condition=LaunchConfigurationNotEquals(ft_sensor_arg_name, 'no-ft-sensor'))
 
     return [arm_controller, gravity_compensation_controller,
-            end_effector_controller, xela_broadcaster, ft_sensor_controller]
+            inertia_shaping_controllers, end_effector_controller,
+            xela_broadcaster, ft_sensor_controller]
 
 
 def concatenate_strings(strings: List[str], delimiter: str = '', skip_empty: bool = False):

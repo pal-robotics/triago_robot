@@ -24,6 +24,16 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Add torso_imu_link
+* Rename hardware component to match ros2_control imu
+* Add ros2 control imu in the proper hardware component
+* Adding Orientus ros2_control sensor
+* Revert "Remove unused imu and broadcaster"
+  This reverts commit 6e49701ec3db1b9231af05d5c39953453b1441e0.
+* Contributors: Jordan Palacios, Noel Jimenez, thomas.peyrucain
+
 0.8.3 (2025-04-08)
 ------------------
 

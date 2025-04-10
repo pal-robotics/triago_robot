@@ -14,6 +14,15 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Update controller name in launchfile
+* Add torso_imu_link
+* Add imu_sensor_broadcaster dependency
+* Revert "Remove unused imu and broadcaster"
+  This reverts commit 6e49701ec3db1b9231af05d5c39953453b1441e0.
+* Contributors: Jordan Palacios, Noel Jimenez, thomas.peyrucain
+
 0.8.3 (2025-04-08)
 ------------------
 * Add use sim time for allegro controller on simulation

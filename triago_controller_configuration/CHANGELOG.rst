@@ -14,6 +14,35 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* fix default launch file for tsid
+* fix gains and add manipulation cube
+* update x of the manipulation cube
+* update gains for joint_space_controller_vel
+* update gains for cartesian_vel_controller
+* remove torso_lift_joint for cartesian controller
+* update manipulation cube
+* update cartesian gains
+* fix gains and launch file for torso controller
+* add manipulation cube in the yaml files
+* fix cartesian gain
+* Fixing controller names
+* Fix gain for cartesian controller
+* Fixing gains
+* set string for use_sim_time as true
+* add torso spawn controller + fix gains / sim gains
+* add cartesian_controllers for ee frame and robot frame
+* fix namespaces
+* update gains for tsid controllers
+* Fix typo in module
+* Add tsid controllers dependency
+* Rename torso param files
+* Add tsid controllers module
+* Add launch file to load tsid controllers
+* Add tsid controller param files, templated
+* Contributors: David ter Kuile, ileniaperrella, vivianamorlando
+
 0.10.0 (2025-04-10)
 -------------------
 * Added mechanism to also launch the torque gravity compensation

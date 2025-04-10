@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.9.0 (2025-04-10)
+------------------
 * Update controller name in launchfile
 * Add torso_imu_link
 * Add imu_sensor_broadcaster dependency

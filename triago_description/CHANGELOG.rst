@@ -24,8 +24,8 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.9.0 (2025-04-10)
+------------------
 * Add torso_imu_link
 * Rename hardware component to match ros2_control imu
 * Add ros2 control imu in the proper hardware component

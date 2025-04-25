@@ -14,6 +14,16 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Merge branch 'dtk/tsid' into 'humble-devel'
+  Dtk/tsid
+  See merge request robots/triago_robot!78
+* set ad default the cube for each arm
+* update common cube
+* update manipulation cube
+* Contributors: ileniaperrella
+
 0.12.2 (2025-04-23)
 -------------------
 

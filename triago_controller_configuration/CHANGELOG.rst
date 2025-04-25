@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.12.3 (2025-04-25)
+-------------------
 * Merge branch 'dtk/tsid' into 'humble-devel'
   Dtk/tsid
   See merge request robots/triago_robot!78

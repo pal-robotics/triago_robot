@@ -1,4 +1,4 @@
-cartesian_force_controller:
+arm_left_cartesian_force_controller:
   ros__parameters:
     type: tsid_controllers/CartesianForceController
 

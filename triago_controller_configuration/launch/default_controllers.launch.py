@@ -130,6 +130,37 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         function=configure_side_controllers, args=['head'],
         condition=LaunchConfigurationNotEquals('arm_type_head', 'no-arm')))
 
+    # Add cartesian force controller
+    arm_left_cartesian_force_controller = GroupAction(
+        [
+            generate_load_controller_launch_description(
+                controller_name='arm_left_cartesian_force_controller',
+                controller_params_file=os.path.join(
+                    pkg_share_folder,
+                    'config', 'arm_left_cartesian_force_controller.yaml'),
+                extra_spawner_args=["--inactive"]
+            )
+        ],
+        forwarding=False,
+        condition=IfCondition(LaunchConfiguration("torque_estimation"))
+    )
+    launch_description.add_action(arm_left_cartesian_force_controller)
+
+    arm_right_cartesian_force_controller = GroupAction(
+        [
+            generate_load_controller_launch_description(
+                controller_name='arm_right_cartesian_force_controller',
+                controller_params_file=os.path.join(
+                    pkg_share_folder,
+                    'config', 'arm_right_cartesian_force_controller.yaml'),
+                extra_spawner_args=["--inactive"]
+            ),
+        ],
+        forwarding=False,
+        condition=IfCondition(LaunchConfiguration("torque_estimation"))
+    )
+    launch_description.add_action(arm_right_cartesian_force_controller)
+
     return
 
 

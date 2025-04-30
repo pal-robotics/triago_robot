@@ -14,6 +14,13 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* force controllers spawned inactive
+* fixed condition and names
+* added cartesian force controllers for left and right
+* Contributors: Daniel Costanzi
+
 0.12.3 (2025-04-25)
 -------------------
 * Merge branch 'dtk/tsid' into 'humble-devel'

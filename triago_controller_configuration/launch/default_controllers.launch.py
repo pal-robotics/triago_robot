@@ -137,7 +137,8 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
                 controller_name='arm_left_cartesian_force_controller',
                 controller_params_file=os.path.join(
                     pkg_share_folder,
-                    'config', 'arm_left_cartesian_force_controller.yaml')
+                    'config', 'arm_left_cartesian_force_controller.yaml'),
+                extra_spawner_args=["--inactive"]
             )
         ],
         forwarding=False,
@@ -151,7 +152,8 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
                 controller_name='arm_right_cartesian_force_controller',
                 controller_params_file=os.path.join(
                     pkg_share_folder,
-                    'config', 'arm_right_cartesian_force_controller.yaml')
+                    'config', 'arm_right_cartesian_force_controller.yaml'),
+                extra_spawner_args=["--inactive"]
             ),
         ],
         forwarding=False,

@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.12.4 (2025-04-30)
+-------------------
 * force controllers spawned inactive
 * fixed condition and names
 * added cartesian force controllers for left and right

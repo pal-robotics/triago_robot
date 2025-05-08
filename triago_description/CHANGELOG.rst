@@ -24,6 +24,11 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Enable error_protection
+* Contributors: Jordan Palacios
+
 0.12.4 (2025-04-30)
 -------------------
 

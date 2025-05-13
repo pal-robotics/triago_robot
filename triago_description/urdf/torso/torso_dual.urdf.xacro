@@ -135,6 +135,7 @@
     <limit effort="0" lower="0" upper="0.34" velocity="${torso_max_vel}" />
   </joint>
 
+  <xacro:include filename="$(find pal_urdf_utils)/urdf/sensors/imu.urdf.xacro"/>
   <xacro:imu_sensor name="${name}_imu" parent="${name}_lift_link" update_rate="1000">
     <origin xyz="0.0985 0.0014 0.38079" rpy="1.570796327 0 -1.570796327" />
   </xacro:imu_sensor>

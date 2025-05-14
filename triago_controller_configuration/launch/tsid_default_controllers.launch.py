@@ -135,9 +135,14 @@ def setup_arm_controllers(context, arm_side, *args, **kwargs):
         load_gains_separately=True,
     )
 
-    cartesian_vel = setup_arm_side_controller(
-        context, "cartesian_vel_controller", arm_side, load_gains_separately=True
+    cartesian_vel_ee_frame = setup_arm_side_controller(
+        context, "cartesian_vel_controller_ee_frame", arm_side, load_gains_separately=True
     )
+
+    cartesian_vel_robot_frame = setup_arm_side_controller(
+        context, "cartesian_vel_controller_robot_frame", arm_side, load_gains_separately=True
+    )
+
     joint_space_controller_vel = setup_arm_side_controller(
         context, "joint_space_controller_vel", arm_side, load_gains_separately=True
     )
@@ -146,7 +151,8 @@ def setup_arm_controllers(context, arm_side, *args, **kwargs):
     )
 
     return [
-        cartesian_vel,
+        cartesian_vel_ee_frame,
+        cartesian_vel_robot_frame,
         joint_space_controller_vel,
         joint_space_controller,
         cartesian_space_controller_ee_frame,

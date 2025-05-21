@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.12.6 (2025-05-21)
+-------------------
 * Adding config file for cartesian vel in local frame
 * Contributors: vivianamorlando
 

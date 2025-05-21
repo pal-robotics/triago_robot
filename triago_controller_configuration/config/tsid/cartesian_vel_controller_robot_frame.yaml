@@ -1,7 +1,8 @@
-${ARM_SIDE_PREFIX}_cartesian_vel_controller:
+${ARM_SIDE_PREFIX}_cartesian_vel_controller_robot_frame:
   ros__parameters:
     type: tsid_controllers/CartesianVelocityController
-    
+    local_frame: false
+
     joint_state_names:
       - ${ARM_SIDE_PREFIX}_1_joint
       - ${ARM_SIDE_PREFIX}_2_joint
@@ -28,7 +29,6 @@ ${ARM_SIDE_PREFIX}_cartesian_vel_controller:
     velocity_scaling: 1.0
 
     posture_gain: 1.0
-    
     manipulation_cube:
          arm_right_7_link:      
           x_min: -0.2

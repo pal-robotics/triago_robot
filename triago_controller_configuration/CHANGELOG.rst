@@ -14,6 +14,12 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* reduce torso trajectory tolerance to 1cm
+* update torso controller with trajectory constraint
+* Contributors: ileniaperrella
+
 0.12.6 (2025-05-21)
 -------------------
 * Adding config file for cartesian vel in local frame

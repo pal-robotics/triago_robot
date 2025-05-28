@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.12.7 (2025-05-28)
+-------------------
 * reduce torso trajectory tolerance to 1cm
 * update torso controller with trajectory constraint
 * Contributors: ileniaperrella

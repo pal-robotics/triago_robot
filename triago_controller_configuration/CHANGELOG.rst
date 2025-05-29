@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.13.0 (2025-05-29)
+-------------------
 * Launching sea broadcaster controller
 * Contributors: oscarmartinez
 

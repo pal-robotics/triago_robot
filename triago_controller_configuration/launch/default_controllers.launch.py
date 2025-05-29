@@ -181,6 +181,11 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
         paths=['launch', 'arm_controller.launch.py'],
         launch_arguments={"side": end_effector_side})
 
+    sea_state_broadcaster_controller = include_scoped_launch_py_description(
+        pkg_name='pal_sea_arm_controller_configuration',
+        paths=['launch', 'sea_state_broadcaster_controller.launch.py'],
+        launch_arguments={"side": end_effector_side})
+
     gravity_compensation_controller_effort = include_scoped_launch_py_description(
         pkg_name='pal_sea_arm_controller_configuration',
         paths=['launch', 'gravity_compensation_controller.launch.py'],
@@ -247,8 +252,8 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
                           "ft_sensor": ft_sensor},
         condition=LaunchConfigurationNotEquals(ft_sensor_arg_name, 'no-ft-sensor'))
 
-    return [arm_controller, gravity_compensation_controller_effort,
-            gravity_compensation_controller_torque,
+    return [arm_controller, sea_state_broadcaster_controller,
+            gravity_compensation_controller_effort, gravity_compensation_controller_torque,
             inertia_shaping_controllers, end_effector_controller,
             xela_broadcaster, ft_sensor_controller]
 

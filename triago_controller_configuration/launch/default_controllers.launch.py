@@ -184,7 +184,13 @@ def configure_side_controllers(context, end_effector_side='right', *args, **kwar
     sea_state_broadcaster_controller = include_scoped_launch_py_description(
         pkg_name='pal_sea_arm_controller_configuration',
         paths=['launch', 'sea_state_broadcaster_controller.launch.py'],
-        launch_arguments={"side": end_effector_side})
+        launch_arguments={"side": end_effector_side},
+        condition=IfCondition(
+            PythonExpression(
+                ["'", LaunchConfiguration('use_sim_time'), "' == 'False' and '",
+                 LaunchConfiguration('torque_estimation'), "' == 'True'"]
+            )
+        ))
 
     gravity_compensation_controller_effort = include_scoped_launch_py_description(
         pkg_name='pal_sea_arm_controller_configuration',

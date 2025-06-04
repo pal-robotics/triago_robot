@@ -20,8 +20,8 @@ Changelog for package triago_bringup
 * Fix wrist + update joint 6 limit + update motions
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.13.1 (2025-06-04)
+-------------------
 
 0.13.0 (2025-05-29)
 -------------------

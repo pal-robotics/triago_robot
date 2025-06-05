@@ -24,6 +24,14 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Change sensors paths according to pal_urdf_utils
+* Change urdf for imu and imu gazebo
+* Change path for imu ros2 control urdf
+* Change path for ftsensor ros2_control xacro
+* Contributors: Aina
+
 0.13.2 (2025-06-05)
 -------------------
 * Enabling idle_mode_on_stop for ethercat system

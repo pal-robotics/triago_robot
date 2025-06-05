@@ -24,8 +24,8 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.14.0 (2025-06-05)
+-------------------
 * Update triago.urdf.xacro
 * Contributors: antoniobrandi
 

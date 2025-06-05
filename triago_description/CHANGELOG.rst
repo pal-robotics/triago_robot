@@ -24,6 +24,11 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Update triago.urdf.xacro
+* Contributors: antoniobrandi
+
 0.13.3 (2025-06-05)
 -------------------
 * Change sensors paths according to pal_urdf_utils

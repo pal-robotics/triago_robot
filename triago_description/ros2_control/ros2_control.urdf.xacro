@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- 
+<!--
   Copyright (c) 2024 PAL Robotics S.L. All rights reserved.
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -88,7 +88,7 @@
   <xacro:macro name="allegro_ros2_control" params="side allegro_can xela_can">
     <ros2_control name="ros2_control_allegro_hand_system_${side}" type="system" rw_rate="1000">
       <hardware>
-        <plugin>allegro_hand_system/AllegroHandSystem</plugin> 
+        <plugin>allegro_hand_system/AllegroHandSystem</plugin>
         <param name="${can_device_name}">${allegro_can}</param>
         <param name="side">${side}</param>
       </hardware>
@@ -212,6 +212,7 @@
           <plugin>robot_control/RobotControl</plugin>
           <param name="group">ethercat</param>
           <param name="error_protection">true</param>
+          <param name="idle_mode_on_stop">true</param>
         </hardware>
 
         <!-- torso -->
@@ -231,7 +232,7 @@
         <xacro:allegro_ros2_control side="left" allegro_can="can2" xela_can="can3"/>
       </xacro:if>
       <xacro:if value="${end_effector_head == 'allegro-hand'}">
-        <xacro:allegro_ros2_control side="head" allegro_can="can4" xela_can="can5"/>      
+        <xacro:allegro_ros2_control side="head" allegro_can="can4" xela_can="can5"/>
       </xacro:if>
 
       <ros2_control name="torso_imu_sensor" type="sensor" rw_rate="1000">

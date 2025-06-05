@@ -24,6 +24,12 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Enabling idle_mode_on_stop for ethercat system
+* Removing trailing spaces
+* Contributors: Jordan Palacios
+
 0.13.1 (2025-06-04)
 -------------------
 

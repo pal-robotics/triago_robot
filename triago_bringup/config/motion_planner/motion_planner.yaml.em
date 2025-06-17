@@ -1,4 +1,4 @@
-/play_motion2:
+/**:
   ros__parameters:
     motion_planner:
       disable_motion_planning: false
@@ -7,7 +7,7 @@
 
       joint_tolerance: 0.01
 
-      #TO DO: Add exclude_from_planning_joints for end effectors 
+      #TO DO: Add exclude_from_planning_joints for end effectors
 
 
       # Parameters for non-planned approach

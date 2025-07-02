@@ -121,56 +121,6 @@
     </xacro:allegro_hand>
   </xacro:if>
 
-
-  <!--Camera-->
-  <xacro:if value="${type == 'camera-tools'}">
-    <link name="${name}_camera_link">
-      <inertial>
-        <origin xyz="-7.7517E-05 -0.00017089 0.003965" rpy="0 0 0"/>
-        <mass
-          value="0.073091" />
-        <inertia
-          ixx="2.656E-05" ixy="-2.4789E-08" ixz="-2.1125E-07"
-          iyy="1.3652E-05" iyz="-2.6011E-09"
-          izz="1.8641E-05" />
-      </inertial>
-      <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <mesh filename="package://pal_sea_arm_description/meshes/arm_tiago_pro/camera_link.STL" />
-        </geometry>
-        <material name="">
-          <color rgba="0.75294 0.75294 0.75294 1" />
-        </material>
-      </visual>
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <mesh filename="package://pal_sea_arm_description/meshes/arm_tiago_pro/camera_link.STL" />
-        </geometry>
-      </collision>
-    </link>
-    <joint name="${name}_camera_joint" type="fixed">
-      <xacro:if value="${camera_position == 'up'}">
-        <origin xyz="0.0406 0 -0.003" rpy="3.1416 -1.5708 0" />
-      </xacro:if>
-      <xacro:if value="${camera_position == 'down'}">
-        <origin xyz="-0.0406 0 -0.003" rpy="0 -1.5708 0" />
-      </xacro:if>
-      <parent link="${parent}" />
-      <child link="${name}_camera_link" />
-      <axis xyz="0 0 0" />
-    </joint>   
-    <xacro:sensor_d405
-      name="${name}_camera_rgbd"
-      parent="${name}_camera_link"
-      topics_ns="triago_end_effector">
-      <origin
-      xyz="0.0 0.0 0.0"
-      rpy="0.0 0.0 0.0"/>
-    </xacro:sensor_d405> 
-  </xacro:if>
-
   </xacro:macro>
 
 </robot>

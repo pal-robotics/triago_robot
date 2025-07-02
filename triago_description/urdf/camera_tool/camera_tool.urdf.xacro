@@ -16,12 +16,11 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!--
-    Utiliy to create a triago end effector (right or left).
+    Utiliy to add camera tool to triago when required.
 
     Parameters:
-    - name: End effector name. The created links and joints are prepended with 'name_'
+    - name: Camera name. The created links and joints are prepended with 'name_'
     - parent: Parent link
-    - reflect: Set to 1 for a right end effector, or to -1 for a left end effector
   -->
   <xacro:include filename="$(find realsense2_description)/urdf/_d405.urdf.xacro" />
   <xacro:macro name="triago_camera_tool" params="name parent type has_camera camera_position">

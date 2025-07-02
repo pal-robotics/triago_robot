@@ -219,7 +219,7 @@
 
   <!-- Cameras -->
   <xacro:if value="${(has_camera_right or has_camera_left or has_camera_head)}">
-    <xacro:include filename="$(find triago_description)/urdf/camera_tool/camera_tool.urdf.xacro" />
+    <xacro:include filename="$(find pal_sea_arm_description)/urdf/end_effector_camera/end_effector_camera.urdf.xacro" />
   </xacro:if>
 
   <!-- Force Torque sensor -->
@@ -258,7 +258,7 @@
      <!-- Cameras -->
 
     <xacro:if value="${has_camera_left}">
-        <xacro:triago_camera_tool name="camera_left" parent="arm_left_tool_link" type="${camera_left}" has_camera="${has_camera_left}" camera_position="${camera_position_left}"/>
+        <xacro:pal_sea_arm_end_effector_camera name="camera_left" parent="arm_left_tool_link" type="${camera_left}" camera_position="${camera_position_left}"/>
     </xacro:if>
 
     <!-- FT sensors -->
@@ -285,7 +285,7 @@
     <!-- Cameras -->
 
     <xacro:if value="${has_camera_right}">
-            <xacro:triago_camera_tool name="camera_right" parent="arm_right_tool_link" type="${camera_right}" has_camera="${has_camera_right}" camera_position="${camera_position_right}"/>
+            <xacro:pal_sea_arm_end_effector_camera name="camera_right" parent="arm_right_tool_link" type="${camera_right}" camera_position="${camera_position_right}"/>
     </xacro:if>
 
     <!-- FT sensors -->
@@ -312,7 +312,7 @@
      <!-- Cameras -->
 
     <xacro:if value="${has_camera_head}">
-        <xacro:triago_camera_tool name="camera_head" parent="arm_head_tool_link" type="${camera_head}" has_camera="${has_camera_head}" camera_position="${camera_position_head}"/>
+        <xacro:pal_sea_arm_end_effector_camera name="camera_head" parent="arm_head_tool_link" type="${camera_head}" camera_position="${camera_position_head}"/>
     </xacro:if>
 
     <!-- FT sensors -->

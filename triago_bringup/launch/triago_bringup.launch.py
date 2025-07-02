@@ -44,6 +44,9 @@ class LaunchArguments(LaunchArgumentsBase):
     camera_position_right: DeclareLaunchArgument = TriagoArgs.camera_position_right
     camera_position_left: DeclareLaunchArgument = TriagoArgs.camera_position_left
     camera_position_head: DeclareLaunchArgument = TriagoArgs.camera_position_head
+    camera_right: DeclareLaunchArgument = TriagoArgs.camera_right
+    camera_left: DeclareLaunchArgument = TriagoArgs.camera_left
+    camera_head: DeclareLaunchArgument = TriagoArgs.camera_head
     laser_model: DeclareLaunchArgument = TriagoArgs.laser_model
     torque_estimation: DeclareLaunchArgument = TriagoArgs.torque_estimation
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
@@ -131,8 +134,11 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
                           "is_public_sim": launch_args.is_public_sim,
                           "camera_position_right": launch_args.camera_position_right,
                           "camera_position_left": launch_args.camera_position_left,
-                          "camera_position_head": launch_args.camera_position_head
-                          })
+                          "camera_position_head": launch_args.camera_position_head,
+                          "camera_right": launch_args.camera_right,
+                          "camera_left": launch_args.camera_left,
+                          "camera_head": launch_args.camera_head}
+                          )
 
     launch_description.add_action(robot_state_publisher)
 

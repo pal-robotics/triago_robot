@@ -48,3 +48,6 @@ class TriagoArgs:
     camera_position_right: DLA = __arg_creator.get_argument("camera_position_right")
     camera_position_left: DLA = __arg_creator.get_argument("camera_position_left")
     camera_position_head: DLA = __arg_creator.get_argument("camera_position_head")
+    camera_right: DLA = __arg_creator.get_argument("camera_right")
+    camera_left: DLA = __arg_creator.get_argument("camera_left")
+    camera_head: DLA = __arg_creator.get_argument("camera_head")

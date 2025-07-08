@@ -21,6 +21,8 @@ from launch_pal.include_utils import include_scoped_launch_py_description
 from launch_pal.arg_utils import LaunchArgumentsBase
 from launch_pal.robot_arguments import CommonArgs
 
+from launch_ros.actions import Node
+
 from dataclasses import dataclass
 
 
@@ -52,6 +54,18 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
     )
 
     launch_description.add_action(twist_mux)
+
+    twist_mux_analyzer = Node(
+        package='diagnostic_aggregator',
+        executable='add_analyzer',
+        namespace='twist_mux',
+        output='screen',
+        emulate_tty=True,
+        parameters=[
+            os.path.join(pkg_dir, 'config', 'twist_mux', 'twist_mux_analyzers.yaml')
+        ],
+    )
+    launch_description.add_action(twist_mux_analyzer)
 
     return
 

@@ -64,6 +64,18 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
     launch_description.add_action(joy_node)
 
+    joystick_analyzer = Node(
+        package='diagnostic_aggregator',
+        executable='add_analyzer',
+        namespace='joystick',
+        output='screen',
+        emulate_tty=True,
+        parameters=[
+            os.path.join(pkg_dir, 'config', 'joy_teleop', 'joystick_analyzers.yaml')
+        ],
+    )
+    launch_description.add_action(joystick_analyzer)
+
     torso_incrementer_server = Node(
         package='joy_teleop',
         executable='incrementer_server',

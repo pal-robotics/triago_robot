@@ -1,0 +1,11 @@
+/triago_controller_configuration/add_analyzer_node:
+  ros__parameters:
+    path: Diagnostics
+    hardware:
+      type: 'diagnostic_aggregator/AnalyzerGroup'
+      path: Hardware
+      analyzers:
+        orientus:
+          type: diagnostic_aggregator/GenericAnalyzer
+          path: Orientus
+          contains: ['torso_imu_sensor: IMU status']

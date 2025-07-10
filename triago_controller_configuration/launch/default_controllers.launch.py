@@ -26,6 +26,8 @@ from launch_pal.arg_utils import LaunchArgumentsBase, read_launch_argument
 from launch_pal.robot_arguments import CommonArgs
 from triago_description.launch_arguments import TriagoArgs
 
+from launch_ros.actions import Node
+
 from dataclasses import dataclass
 
 
@@ -114,6 +116,19 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
         ],
     )
     launch_description.add_action(torso_imu_sensor_broadcaster)
+
+    imu_analyzer = Node(
+        package='diagnostic_aggregator',
+        executable='add_analyzer',
+        namespace='triago_controller_configuration',
+        output='screen',
+        emulate_tty=True,
+        parameters=[
+            os.path.join(
+                get_package_share_directory('triago_controller_configuration'),
+                'config', 'imu_analyzers.yaml')],
+    )
+    launch_description.add_action(imu_analyzer)
 
     # Add controller of right arm, end-effector and ft-sensor
     launch_description.add_action(OpaqueFunction(

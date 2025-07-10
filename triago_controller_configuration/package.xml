@@ -13,6 +13,8 @@
   <build_depend condition="$PAL_DISTRO >= alum">pal_module_cmake</build_depend>
   <exec_depend>allegro_hand_controller_configuration</exec_depend>
   <exec_depend>allegro_hand_controller</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>diagnostic_aggregator</exec_depend>
   <exec_depend>imu_sensor_broadcaster</exec_depend>
   <exec_depend>omni_drive_controller</exec_depend>
   <exec_depend>pal_pro_gripper_controller_configuration</exec_depend>
@@ -26,6 +28,7 @@
 
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_pal</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
 
   <exec_depend>ros2controlcli</exec_depend>
   <exec_depend>xela_uskin_broadcaster_configuration</exec_depend>

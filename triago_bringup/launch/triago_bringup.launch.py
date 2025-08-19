@@ -93,6 +93,19 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
 
     launch_description.add_action(twist_mux)
 
+    gripper_wrapper = include_scoped_launch_py_description(
+        pkg_name='triago_bringup',
+        paths=['launch', 'gripper_grasper.launch.py'],
+        launch_arguments={"arm_type_right": launch_args.arm_type_right,
+                          "arm_type_left": launch_args.arm_type_left,
+                          "arm_type_head": launch_args.arm_type_head,
+                          "end_effector_right": launch_args.end_effector_right,
+                          "end_effector_left": launch_args.end_effector_left,
+                          "end_effector_head": launch_args.end_effector_head,
+                          })
+
+    launch_description.add_action(gripper_wrapper)
+
     robot_state_publisher = include_scoped_launch_py_description(
         pkg_name='triago_description',
         paths=['launch', 'robot_state_publisher.launch.py'],

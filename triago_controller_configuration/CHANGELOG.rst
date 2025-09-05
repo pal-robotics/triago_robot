@@ -14,6 +14,14 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Merge branch 'vmo/remove_tolerance' into 'humble-devel'
+  Removing tolerance for torso
+  See merge request robots/triago_robot!96
+* Removing tolerance for torso
+* Contributors: ileniaperrella, vivianamorlando
+
 0.17.0 (2025-07-10)
 -------------------
 * Add diagnostic analyzers

@@ -20,6 +20,14 @@ Changelog for package triago_bringup
 * Fix wrist + update joint 6 limit + update motions
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Merge branch 'mvi/adding-gripper-grasper' into 'humble-devel'
+  adding gripper grasper for pal-pro-gripper
+  See merge request robots/triago_robot!94
+* adding gripper grasper for pal-pro-gripper
+* Contributors: Matteo Villani, davidterkuile
+
 0.17.0 (2025-07-10)
 -------------------
 

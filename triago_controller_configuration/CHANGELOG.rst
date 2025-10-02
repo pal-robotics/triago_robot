@@ -14,6 +14,11 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Fix relative pose in ee control
+* Contributors: vivianamorlando
+
 0.17.1 (2025-09-05)
 -------------------
 * Merge branch 'vmo/remove_tolerance' into 'humble-devel'

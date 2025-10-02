@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.17.2 (2025-10-02)
+-------------------
 * Fix relative pose in ee control
 * Contributors: vivianamorlando
 

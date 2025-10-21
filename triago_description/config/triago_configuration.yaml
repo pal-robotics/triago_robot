@@ -28,16 +28,16 @@ laser_model:
   default_value: 'sick-571'
 end_effector_right:
   description: 'End effector model right arm'
-  choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector', 'camera-tools'] 
+  choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector'] 
   default_value: 'allegro-hand'
 end_effector_left:
   description: 'End effector model left arm'
-  choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector', 'camera-tools']
+  choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector']
   default_value: 'allegro-hand'
 end_effector_head:
   description: 'End effector model head arm'
-  choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector', 'camera-tools']
-  default_value: 'camera-tools'
+  choices: ['pal-pro-gripper', 'custom', 'allegro-hand', 'no-end-effector']
+  default_value: 'no-end-effector'
 hand_head_type:
   description: 'If the head arm has allegro hand specify if it is right or left'
   choices: ['right' , 'left' , '']
@@ -61,6 +61,18 @@ base_type:
 camera_model:
   description: 'Arm camera model'
   choices: ['no-camera', 'realsense-d405']
+  default_value: 'no-camera'
+camera_right:
+  description: 'Camera model right arm'
+  choices: ['no-camera', 'realsense-d405', 'realsense-d435']
+  default_value: 'no-camera'
+camera_left:
+  description: 'Camera model left arm'
+  choices: ['no-camera', 'realsense-d405', 'realsense-d435']
+  default_value: 'no-camera'
+camera_head:
+  description: 'Camera model head arm'
+  choices: ['no-camera', 'realsense-d405', 'realsense-d435']
   default_value: 'realsense-d405'
 wheel_model:
   description: 'Wheel model'

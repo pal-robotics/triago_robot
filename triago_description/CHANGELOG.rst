@@ -24,6 +24,21 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* adding realsense dependency
+* Moving reference to camera to pal sea arm
+* Fix end effector xacro
+* Fix camera tool xacro
+* Fix position camera tool
+* Fixing xacro config
+* Adding default config after camera option
+* removing camera from end effector xacro
+* Adding cameras in urdf
+* Adding camera options
+* Adding camera tool xacro
+* Contributors: vivianamorlando
+
 0.17.2 (2025-10-02)
 -------------------
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>triago_description</name>
-  <version>0.18.0</version>
+  <version>0.19.0</version>
   <description>The triago_description package</description>
 
   <maintainer email="viviana.morlando@pal-robotics.com">Viviana Morlando</maintainer>

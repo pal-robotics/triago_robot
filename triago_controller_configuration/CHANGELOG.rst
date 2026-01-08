@@ -14,6 +14,11 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Add "Hardware Components Activity" module dependency
+* Contributors: Noel Jimenez
+
 0.19.0 (2025-12-05)
 -------------------
 

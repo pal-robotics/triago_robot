@@ -11,4 +11,4 @@ default_controllers:
            ft_sensor_head:=@ft_sensor_head@
            torque_estimation:=@has_torque_estimation@"
   finishes: True
-  
+  dependencies: ["Hardware/Controller Manager/Hardware Components Activity"]  

@@ -2,6 +2,6 @@ tsid_default_controllers:
   launch: "triago_controller_configuration tsid_default_controllers.launch.py
            arm_type_right:=@arm_type_right@
            arm_type_left:=@arm_type_left@
-           arm_type_head:=@arm_type_head@
+           arm_type_head:=@arm_type_head@"
   finishes: True
-  
+  dependencies: ["Hardware/Controller Manager/Hardware Components Activity"]  

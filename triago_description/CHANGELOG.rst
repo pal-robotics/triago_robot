@@ -24,6 +24,11 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Add parameter expose_safety_interface
+* Contributors: Noel Jimenez
+
 0.19.2 (2026-01-27)
 -------------------
 * Add parameter expose_collision_interface

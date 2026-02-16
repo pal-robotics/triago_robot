@@ -2,12 +2,12 @@ ${ARM_SIDE_PREFIX}_cartesian_vel_controller_ee_frame:
   ros__parameters:
     cartesian_vel_gain:
         ${ARM_SIDE_PREFIX}_7_link:
-          kp_x: 250.0
-          kp_y: 250.0
-          kp_z: 250.0
-          kp_roll: 250.0
-          kp_pitch: 250.0
-          kp_yaw: 250.0
+          kp_x: 150.0
+          kp_y: 150.0
+          kp_z: 150.0
+          kp_roll: 150.0
+          kp_pitch: 150.0
+          kp_yaw: 150.0
           ki_x: 5.0
           ki_y: 5.0
           ki_z: 5.0
@@ -22,26 +22,26 @@ ${ARM_SIDE_PREFIX}_cartesian_vel_controller_ee_frame:
           kd_yaw: 0.05
     joint_pos_gain:
       ${ARM_SIDE_PREFIX}_1_joint:
-        kp: 100.0
-        kd: 50.0
+        kp: 10.0
+        kd: 5.0
       ${ARM_SIDE_PREFIX}_2_joint:
-        kp: 100.0
-        kd: 50.0
+        kp: 10.0
+        kd: 5.0
       ${ARM_SIDE_PREFIX}_3_joint:
-        kp: 100.0
-        kd: 50.0
+        kp: 10.0
+        kd: 5.0
       ${ARM_SIDE_PREFIX}_4_joint:
-        kp: 100.0
-        kd: 50.0
+        kp: 10.0
+        kd: 5.0
       ${ARM_SIDE_PREFIX}_5_joint:
-        kp: 100.0
-        kd: 50.0
+        kp: 10.0
+        kd: 5.0
       ${ARM_SIDE_PREFIX}_6_joint:
-        kp: 100.0
-        kd: 50.0
+        kp: 10.0
+        kd: 5.0
       ${ARM_SIDE_PREFIX}_7_joint:
-        kp: 100.0
-        kd: 50.0
+        kp: 10.0
+        kd: 5.0
 
 
 

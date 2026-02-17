@@ -14,8 +14,8 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.19.5 (2026-02-17)
+-------------------
 * Fix cartesian gain velocity simulation
 * Contributors: vivianamorlando
 

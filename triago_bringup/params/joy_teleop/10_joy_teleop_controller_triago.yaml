@@ -1,0 +1,76 @@
+/joy_teleop:
+
+  use_if:
+    robot_type: tiago_pro
+
+  ros__parameters:
+
+    default_controller_left:
+      type: action
+      interface_type: change_controllers_interfaces/action/Switch
+      action_name: /change_controllers
+      action_goal:
+        start_controllers: [arm_left_controller]
+      buttons: [2]
+      axes_negative: [4]
+
+    gravity_controller_left:
+      type: action
+      interface_type: change_controllers_interfaces/action/Switch
+      action_name: /change_controllers
+      action_goal:
+        start_controllers: [arm_left_gravity_compensation_controller]
+      buttons: [3]
+      axes_negative: [4]
+
+    default_controller_right:
+      type: action
+      interface_type: change_controllers_interfaces/action/Switch
+      action_name: /change_controllers
+      action_goal:
+        start_controllers: [arm_right_controller]
+      buttons: [2]
+      axes_negative: [5]
+
+    gravity_controller_right:
+      type: action
+      interface_type: change_controllers_interfaces/action/Switch
+      action_name: /change_controllers
+      action_goal:
+        start_controllers: [arm_right_gravity_compensation_controller]
+      buttons: [3]
+      axes_negative: [5]
+
+    torso_up:
+      type: action
+      interface_type: teleop_tools_msgs/action/Increment
+      action_name: /torso_controller/increment
+      action_goal:
+        increment_by: [0.05]
+      buttons: [9, 3]
+
+    torso_up_axes:
+      type: action
+      interface_type: teleop_tools_msgs/action/Increment
+      action_name: /torso_controller/increment
+      action_goal:
+        increment_by: [0.05]
+      buttons: [9]
+      axes: [3]
+
+    torso_down:
+      type: action
+      interface_type: teleop_tools_msgs/action/Increment
+      action_name: /torso_controller/increment
+      action_goal:
+        increment_by: [-0.05]
+      buttons: [9, 0]
+
+    torso_down_axes:
+      type: action
+      interface_type: teleop_tools_msgs/action/Increment
+      action_name: /torso_controller/increment
+      action_goal:
+        increment_by: [-0.05]
+      buttons: [9]
+      axes_negative: [3]

@@ -10,6 +10,7 @@
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 
   <build_depend condition="$PAL_DISTRO >= alum">pal_module_cmake</build_depend>
+  <build_depend condition="$PAL_DISTRO >= alum">pal_configuration_cmake</build_depend>
 
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>diagnostic_aggregator</exec_depend>
@@ -20,6 +21,7 @@
   <exec_depend>play_motion2</exec_depend>
   <exec_depend>play_motion2_cli</exec_depend>
   <exec_depend>teleop_tools_msgs</exec_depend>
+  <exec_depend condition="$PAL_DISTRO > 0">pal_joy_teleop_cfg</exec_depend>
 
 <!--  <exec_depend>robot_pose</exec_depend>-->
 

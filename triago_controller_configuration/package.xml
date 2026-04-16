@@ -16,7 +16,7 @@
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>diagnostic_aggregator</exec_depend>
   <exec_depend>imu_sensor_broadcaster</exec_depend>
-  <exec_depend>omni_drive_controller</exec_depend>
+  <exec_depend condition="$PAL_DISTRO >= alum">omni_drive_controller</exec_depend>
   <exec_depend>pal_pro_gripper_controller_configuration</exec_depend>
   <exec_depend>pal_sea_arm_controller_configuration</exec_depend>
   <exec_depend>joint_state_broadcaster</exec_depend>
@@ -31,8 +31,8 @@
   <exec_depend>launch_ros</exec_depend>
 
   <exec_depend>ros2controlcli</exec_depend>
-  <exec_depend>xela_uskin_broadcaster_configuration</exec_depend>
-  <exec_depend>xela_uskin_broadcaster</exec_depend>
+  <exec_depend condition="$PAL_DISTRO >= alum">xela_uskin_broadcaster_configuration</exec_depend>
+  <exec_depend condition="$PAL_DISTRO >= alum">xela_uskin_broadcaster</exec_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

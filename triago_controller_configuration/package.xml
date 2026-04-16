@@ -11,8 +11,8 @@
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 
   <build_depend condition="$PAL_DISTRO >= alum">pal_module_cmake</build_depend>
-  <exec_depend>allegro_hand_controller_configuration</exec_depend>
-  <exec_depend>allegro_hand_controller</exec_depend>
+  
+  <exec_depend condition="$PAL_DISTRO >= alum">allegro_hand_controller_configuration</exec_depend>
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>diagnostic_aggregator</exec_depend>
   <exec_depend>imu_sensor_broadcaster</exec_depend>

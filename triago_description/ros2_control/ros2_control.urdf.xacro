@@ -242,13 +242,13 @@
 
       </ros2_control>
 
-      <xacro:if value="${end_effector_right == 'allegro-hand'}">
+      <xacro:if value="${has_arm_right and end_effector_right == 'allegro-hand'}">
         <xacro:allegro_ros2_control side="right" allegro_can="can0" xela_can="can1"/>
       </xacro:if>
-      <xacro:if value="${end_effector_left == 'allegro-hand'}">
+      <xacro:if value="${has_arm_left and end_effector_left == 'allegro-hand'}">
         <xacro:allegro_ros2_control side="left" allegro_can="can2" xela_can="can3"/>
       </xacro:if>
-      <xacro:if value="${end_effector_head == 'allegro-hand'}">
+      <xacro:if value="${has_arm_head and end_effector_head == 'allegro-hand'}">
         <xacro:allegro_ros2_control side="head" allegro_can="can4" xela_can="can5"/>
       </xacro:if>
 

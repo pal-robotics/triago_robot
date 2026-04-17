@@ -167,9 +167,9 @@ test_xacro_camera_right = define_xacro_test(
 test_xacro_camera_head = define_xacro_test(
     xacro_file_path, TriagoArgs.arm_type_head, TriagoArgs.camera_position_head)
 
-test_xacro_ee_arm = define_xacro_test(
+test_xacro_ee_arm_left = define_xacro_test(
     xacro_file_path, TriagoArgs.arm_type_left, end_effector_left)
-test_xacro_ee_arm = define_xacro_test(
+test_xacro_ee_arm_right = define_xacro_test(
     xacro_file_path, TriagoArgs.arm_type_right, end_effector_right)
-test_xacro_ee_arm = define_xacro_test(
-    xacro_file_path, TriagoArgs.arm_type_head, TriagoArgs.end_effector_head)
+test_xacro_ee_arm_head = define_xacro_test(
+    xacro_file_path, TriagoArgs.arm_type_head, end_effector_head)

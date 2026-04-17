@@ -68,6 +68,7 @@ no_ft_sensor_head = DeclareLaunchArgument(
 
 # Exclude Allegro Hand if needed
 
+
 def exclude_allegro_hand(end_effector):
     _choices = getattr(end_effector, 'choices', None)
     _name = getattr(end_effector, 'name', None)

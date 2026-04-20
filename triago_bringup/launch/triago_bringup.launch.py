@@ -70,6 +70,7 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
                           "ft_sensor_left": launch_args.ft_sensor_left,
                           "ft_sensor_head": launch_args.ft_sensor_head,
                           "torque_estimation": launch_args.torque_estimation,
+                          "is_public_sim": launch_args.is_public_sim,
                           "use_sim_time": launch_args.use_sim_time
                           })
 

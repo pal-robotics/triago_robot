@@ -327,6 +327,6 @@
 
 
   <!-- ROS 2 Control -->
-  <xacro:triago_ros2_control use_sim_time="$(arg use_sim_time)" />
+  <xacro:triago_ros2_control use_sim_time="$(arg use_sim_time)" gazebo_version="${gazebo_version}" />
 
 </robot>

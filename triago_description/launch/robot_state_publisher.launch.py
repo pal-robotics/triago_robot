@@ -21,6 +21,7 @@ from launch import LaunchDescription
 from launch.substitutions import LaunchConfiguration
 from launch.actions import DeclareLaunchArgument, OpaqueFunction, SetLaunchConfiguration
 from launch_ros.actions import Node
+from launch_ros.parameter_descriptions import ParameterValue
 from launch_param_builder import load_xacro
 
 from launch_pal.arg_utils import LaunchArgumentsBase, read_launch_argument
@@ -58,6 +59,7 @@ class LaunchArguments(LaunchArgumentsBase):
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
     namespace: DeclareLaunchArgument = CommonArgs.namespace
     is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
+    gazebo_version: DeclareLaunchArgument = CommonArgs.gazebo_version
 
 
 def declare_actions(launch_description: LaunchDescription, launch_args: LaunchArguments):
@@ -65,11 +67,20 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
     launch_description.add_action(OpaqueFunction(
         function=create_robot_description_param))
 
+    # Using ParameterValue is needed so ROS knows the parameter type
+    # Otherwise https://github.com/ros2/launch_ros/issues/136
     rsp = Node(package='robot_state_publisher',
                executable='robot_state_publisher',
                output='both',
-               parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time'),
-                            'robot_description': LaunchConfiguration('robot_description')}])
+               parameters=[
+                   {
+                       'use_sim_time': LaunchConfiguration('use_sim_time'),
+                       "robot_description": ParameterValue(
+                           LaunchConfiguration("robot_description"), value_type=str
+                       ),
+                   }
+               ],
+               )
     launch_description.add_action(rsp)
 
     return
@@ -102,6 +113,7 @@ def create_robot_description_param(context, *args, **kwargs):
         'use_sim_time': read_launch_argument('use_sim_time', context),
         'namespace': read_launch_argument('namespace', context),
         'is_public_sim': read_launch_argument('is_public_sim', context),
+        'gazebo_version': read_launch_argument('gazebo_version', context),
         'camera_position_right': read_launch_argument('camera_position_right', context),
         'camera_position_left': read_launch_argument('camera_position_left', context),
         'camera_position_head': read_launch_argument('camera_position_head', context),

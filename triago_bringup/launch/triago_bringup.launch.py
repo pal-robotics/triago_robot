@@ -52,6 +52,7 @@ class LaunchArguments(LaunchArgumentsBase):
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
     namespace: DeclareLaunchArgument = CommonArgs.namespace
     is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
+    gazebo_version: DeclareLaunchArgument = CommonArgs.gazebo_version
 
 
 def declare_actions(launch_description: LaunchDescription, launch_args: LaunchArguments):
@@ -132,13 +133,14 @@ def declare_actions(launch_description: LaunchDescription, launch_args: LaunchAr
                           "torque_estimation": launch_args.torque_estimation,
                           "use_sim_time": launch_args.use_sim_time,
                           "is_public_sim": launch_args.is_public_sim,
+                          "gazebo_version": launch_args.gazebo_version,
                           "camera_position_right": launch_args.camera_position_right,
                           "camera_position_left": launch_args.camera_position_left,
                           "camera_position_head": launch_args.camera_position_head,
                           "camera_right": launch_args.camera_right,
                           "camera_left": launch_args.camera_left,
                           "camera_head": launch_args.camera_head}
-                          )
+    )
 
     launch_description.add_action(robot_state_publisher)
 

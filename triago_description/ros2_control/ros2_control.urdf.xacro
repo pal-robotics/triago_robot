@@ -103,7 +103,7 @@
     </ros2_control>
   </xacro:macro>
 
-  <xacro:macro name="triago_ros2_control" params="use_sim_time:=^|false">
+  <xacro:macro name="triago_ros2_control" params="use_sim_time:=^|false gazebo_version:=^|classic">
 
     <xacro:arg name="arm_type_left" default="triago"/>
     <xacro:arg name="arm_type_right" default="triago"/>
@@ -159,14 +159,29 @@
     <xacro:if value="$(arg use_sim_time)">
       <!-- Init the ROS 2 control gazebo interface -->
       <gazebo>
-        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
-          <parameters>$(find triago_description)/ros2_control/gazebo_controller_manager_cfg.yaml</parameters>
-        </plugin>
+        <xacro:if value="${gazebo_version == 'classic'}">
+          <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+            <parameters>$(find tiago_pro_description)/ros2_control/gazebo_controller_manager_cfg.yaml</parameters>
+          </plugin>
+        </xacro:if>
+        <xacro:if value="${gazebo_version == 'gazebo'}">
+          <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+            <robot_param>robot_description</robot_param>
+            <robot_param_node>robot_state_publisher</robot_param_node>
+            <parameters>$(find tiago_pro_description)/ros2_control/gazebo_controller_manager_cfg.yaml</parameters>
+          </plugin>
+        </xacro:if>
       </gazebo>
+
 
       <ros2_control name="ros2_control_gazebo_system" type="system">
         <hardware>
-          <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+          <xacro:if value="${gazebo_version == 'classic'}">
+            <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+          </xacro:if>
+          <xacro:if value="${gazebo_version == 'gazebo'}">
+            <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+          </xacro:if>
         </hardware>
 
         <!-- wheels -->

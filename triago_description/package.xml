@@ -20,9 +20,7 @@
   <exec_depend>xacro</exec_depend>
   <exec_depend condition="$PAL_DISTRO >= alum">hector_gazebo_plugins</exec_depend>
   <exec_depend>triago_controller_configuration</exec_depend>
-  <exec_depend>allegro_hand_description</exec_depend>
-  <exec_depend>allegro_hand_system</exec_depend>
-  <exec_depend>xela_uskin_sensor</exec_depend>
+  <exec_depend condition="$PAL_DISTRO >= alum">allegro_hand_description</exec_depend>
 
   <test_depend>ament_cmake_pytest</test_depend>
   <test_depend>ament_lint_auto</test_depend>

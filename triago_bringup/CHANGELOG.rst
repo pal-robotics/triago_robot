@@ -20,6 +20,15 @@ Changelog for package triago_bringup
 * Fix wrist + update joint 6 limit + update motions
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* is_public_sim in triago_bringup
+* Add arguments to support the new gazebo
+* Add pal configuration
+* Update Joystick Layout
+* Rm unused file
+* Contributors: martinaannicelli, thomas.peyrucain, thomaspeyrucain, vivianamorlando
+
 0.19.5 (2026-02-17)
 -------------------
 

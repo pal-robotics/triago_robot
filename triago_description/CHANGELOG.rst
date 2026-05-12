@@ -24,6 +24,20 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Pal pro gripper as default in config
+* no-end-effector if there is no arm
+* Fix test naming and use filtered Args
+* Default gripper pal-pro-gripper to avoid loading allegro description
+* Do not load allegro_ros2_control if no arm
+* Fix typo
+* Fix tests
+* Conditional dependencies for internal packages
+* Add arguments to support the new gazebo
+* update vel limits
+* Contributors: ileniaperrella, narcismiguel, thomas.peyrucain
+
 0.19.5 (2026-02-17)
 -------------------
 

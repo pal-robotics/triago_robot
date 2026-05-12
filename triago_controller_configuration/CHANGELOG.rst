@@ -14,6 +14,12 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* Remove dep and make dependency conditional
+* Conditional dependencies for internal packages
+* Contributors: narcismiguel
+
 0.19.5 (2026-02-17)
 -------------------
 * Fix cartesian gain velocity simulation

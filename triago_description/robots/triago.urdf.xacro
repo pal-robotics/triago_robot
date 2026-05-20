@@ -5,7 +5,7 @@
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
   You may obtain a copy of the License at
-  
+
       http://www.apache.org/licenses/LICENSE-2.0
 
   Unless required by applicable law or agreed to in writing, software
@@ -147,7 +147,7 @@
     <xacro:property name="head_hand_reflect" value="1" />
   </xacro:unless>
   <xacro:property name="has_camera_head" value="${camera_head not in ['no-camera']}" />
-  
+
 
 
   <!-- Properties check -->
@@ -253,7 +253,7 @@
 
     <!-- End effector -->
     <xacro:if value="${has_end_effector_left}">
-      <xacro:triago_end_effector name="gripper_left" parent="${end_effector_left_link}" type="${end_effector_left}" has_end_effector="${has_end_effector_left}" reflect="-1" is_dual="true" camera_position="${camera_position_left}"/>
+      <xacro:triago_end_effector name="gripper_left" parent="${end_effector_left_link}" type="${end_effector_left}" has_end_effector="${has_end_effector_left}" reflect="-1" is_dual="true"/>
     </xacro:if>
 
      <!-- Cameras -->
@@ -266,7 +266,7 @@
     <xacro:if value="${has_ft_sensor_left}">
       <xacro:ft_sensor type="${ft_sensor_left}" name="wrist_left" parent="arm_left_tool_link"/>
     </xacro:if>
-  
+
   </xacro:if>
 
   <!-- Right arm -->
@@ -280,7 +280,7 @@
     <!-- End effector -->
 
     <xacro:if value="${has_end_effector_right}">
-      <xacro:triago_end_effector name="gripper_right" parent="${end_effector_right_link}" type="${end_effector_right}" has_end_effector="${has_end_effector_right}" reflect="1" is_dual="true" camera_position="${camera_position_right}"/>
+      <xacro:triago_end_effector name="gripper_right" parent="${end_effector_right_link}" type="${end_effector_right}" has_end_effector="${has_end_effector_right}" reflect="1" is_dual="true"/>
     </xacro:if>
 
     <!-- Cameras -->
@@ -307,7 +307,7 @@
 
     <!-- End effector -->
     <xacro:if value="${has_end_effector_head}">
-      <xacro:triago_end_effector name="gripper_head" parent="${end_effector_head_link}" type="${end_effector_head}" has_end_effector="${has_end_effector_head}" reflect="${head_hand_reflect}" is_dual="true" camera_position="${camera_position_head}"/>
+      <xacro:triago_end_effector name="gripper_head" parent="${end_effector_head_link}" type="${end_effector_head}" has_end_effector="${has_end_effector_head}" reflect="${head_hand_reflect}" is_dual="true"/>
     </xacro:if>
 
      <!-- Cameras -->
@@ -320,7 +320,7 @@
     <xacro:if value="${has_ft_sensor_head}">
       <xacro:ft_sensor type="${ft_sensor_head}" name="wrist_head" parent="arm_head_tool_link"/>
     </xacro:if>
-    
+
 
   </xacro:if>
 

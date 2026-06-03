@@ -24,8 +24,8 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
-Forthcoming
------------
+0.19.7 (2026-06-03)
+-------------------
 * remove _d405.urdf.xacro include
 * Contributors: Ortisa Poci
 

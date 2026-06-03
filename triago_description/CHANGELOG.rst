@@ -24,6 +24,11 @@ Changelog for package triago_description
 * Adjust config head
 * Contributors: thomas.peyrucain, thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+* remove _d405.urdf.xacro include
+* Contributors: Ortisa Poci
+
 0.19.6 (2026-05-12)
 -------------------
 * Pal pro gripper as default in config

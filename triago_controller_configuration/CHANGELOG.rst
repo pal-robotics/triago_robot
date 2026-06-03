@@ -14,6 +14,9 @@ Changelog for package triago_controller_configuration
 * Adding pro gripper control
 * Contributors: thomaspeyrucain, vivianamorlando
 
+Forthcoming
+-----------
+
 0.19.6 (2026-05-12)
 -------------------
 * Remove dep and make dependency conditional
